@@ -1,0 +1,9 @@
+.wrapper {
+  display: grid;
+  background: firebrick;
+  grid-template-areas: 
+    'navbar, navbar, navbar, navbar'
+    'sidebar main main main';
+  gap: 10px;
+  height: 100%;
+}
