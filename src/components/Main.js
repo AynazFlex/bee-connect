@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Main.module'
+import s from './Main.module.css'
 
 
 class Main extends React.Component {
@@ -8,6 +8,7 @@ class Main extends React.Component {
     }
 
     render() {
+        console.log(s);
         return (
             <div className={s.main}>Lorem ipsum dolor sit amet, consectetur adip</div>
         )

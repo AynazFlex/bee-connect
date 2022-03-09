@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Navbar.module'
+import s from './Sidebar.module.css';
 
 
 class Sidebar extends React.Component {
@@ -8,8 +8,9 @@ class Sidebar extends React.Component {
     }
 
     render() {
+        console.log(s);
         return (
-            <div className={s.sidebar}>Lorem ipsum dolor sit amet, consectetur adip</div>
+            <div className={s.sidebar}>Lsfsefsfsefs</div>
         )
     }
 }

@@ -1,3 +1,43 @@
 .navbar {
     grid-area: navbar;
+    display: flex;
+    background: #4d636f;
+    justify-content: space-between;
+}
+
+.left {
+    display: flex;
+}
+
+.right {
+    display: flex;
+}
+
+.link {
+    padding: 12px 24px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.link:hover {
+    background: white;
+    color: black;
+}
+
+.link:first-child:hover {
+    background: #4d636f;
+    color: white;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.logo {
+    margin: 0 0 0 10px;
+    font-size: 18px;
+    line-height: 0;
+    text-transform: uppercase;
 }

@@ -1,9 +1,9 @@
 .wrapper {
   display: grid;
-  background: firebrick;
   grid-template-areas: 
-    'navbar, navbar, navbar, navbar'
-    'sidebar main main main';
+    'navbar navbar navbar navbar navbar navbar navbar'
+    'sidebar main main main main main main';
   gap: 10px;
-  height: 100%;
+  max-width: 990px;
+  margin: 0 auto;
 }
