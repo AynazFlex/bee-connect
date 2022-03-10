@@ -20,7 +20,7 @@ class Navbar extends React.Component {
         <div className={s.left}>
           <a className={s.link}>
             <FontAwesomeIcon icon={faVk} className={s.icon} />
-            <span className={s.logo}>вконекте</span>
+            <span className={s.logo}>биконект</span>
           </a>
           <a className={s.link}>
             <FontAwesomeIcon icon={faUser} className={s.icon} />
@@ -35,8 +35,14 @@ class Navbar extends React.Component {
             <FontAwesomeIcon icon={faBell} className={s.icon} />
           </a>
         </div>
-        <div className={s.right}>
-          <a className={s.link}>My Accont</a>
+        <div>
+          <a className={s.link}>
+            <img
+              src="https://vk.com/images/camera_200.png"
+              className={s.avatar}
+              alt="nav avatar"
+            />
+          </a>
         </div>
       </div>
     );

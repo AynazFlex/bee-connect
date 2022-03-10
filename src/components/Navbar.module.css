@@ -1,6 +1,6 @@
 .navbar {
-    grid-area: navbar;
     display: flex;
+    grid-column: 1 / span 2;
     background: #4d636f;
     justify-content: space-between;
 }
@@ -9,12 +9,9 @@
     display: flex;
 }
 
-.right {
-    display: flex;
-}
-
 .link {
-    padding: 12px 24px;
+    display: block;
+    padding: 8px 24px;
     font-size: 20px;
     color: white;
     cursor: pointer;
@@ -31,13 +28,21 @@
 }
 
 .icon {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
 }
 
 .logo {
     margin: 0 0 0 10px;
-    font-size: 18px;
+    font-size: 22px;
     line-height: 0;
     text-transform: uppercase;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 0;
+    margin: 0;
 }

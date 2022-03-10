@@ -1,9 +1,7 @@
 .wrapper {
   display: grid;
-  grid-template-areas: 
-    'navbar navbar navbar navbar navbar navbar navbar'
-    'sidebar main main main main main main';
-  gap: 10px;
-  max-width: 990px;
+  gap: 20px 10px;
+  grid-template-columns: 25% 75%;
+  width: 990px;
   margin: 0 auto;
 }

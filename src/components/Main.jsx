@@ -10,7 +10,7 @@ class Main extends React.Component {
     render() {
         console.log(s);
         return (
-            <div className={s.main}>Lorem ipsum dolor sit amet, consectetur adip</div>
+            <div className={s.main}></div>
         )
     }
 }

@@ -1,4 +1,34 @@
 .sidebar {
-    grid-area: sidebar;
-    background-color: green;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    background: white;
+    padding: 0 16px;
+}
+
+.profile {
+    text-align: center;
+    font-size: 20px;
+}
+
+.avatar {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.icon {
+    width: 20px;
+    margin: 0 20px 0 0;
+    color: #7d97a5;
+}
+
+.redac {
+    display: block;
+    margin: 20px auto;
+    width: 150px;
+    background: #7d97a5;
+    color: white;
+    padding: 4px 8px;
+    border: none;
+    cursor: pointer;
 }
