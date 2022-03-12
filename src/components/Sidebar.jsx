@@ -32,7 +32,7 @@ class Sidebar extends React.Component {
           <FontAwesomeIcon icon={faHome} className={s.icon} />Россия, Mосква
         </p>
         <p>
-          <FontAwesomeIcon icon={faCakeCandles} className={s.icon} />17 мая 1999
+          <FontAwesomeIcon icon={faCakeCandles} className={s.icon} />17 мая 2003
         </p>
         <Hr />
         <button className={s.redac}>Редактировать</button>

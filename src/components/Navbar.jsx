@@ -12,26 +12,50 @@ import { faVk } from "@fortawesome/free-brands-svg-icons";
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
+    this.mouseMove = this.mouseMove.bind(this);
+    this.mouseOut = this.mouseOut.bind(this);
+    this.state = {
+      info: null
+    }
+  }
+
+  mouseMove(e) {
+    let info = e.target.closest(`.${s.link}`);
+    if(info.dataset.name) {
+      this.setState({
+        info: <div style={{left: info.getBoundingClientRect().left, top: info.getBoundingClientRect().bottom + 5}} className={s.info}>{info.dataset.name}</div>
+      })
+    } else {
+      this.setState({
+        info: null
+      })
+    }
+  }
+
+  mouseOut() {
+    this.setState({
+      info: null
+    })
   }
 
   render() {
     return (
-      <div className={s.navbar}>
+      <div className={s.navbar} onMouseOver={this.mouseMove} onMouseOut={this.mouseOut}>
         <div className={s.left}>
           <a className={s.link}>
             <FontAwesomeIcon icon={faVk} className={s.icon} />
             <span className={s.logo}>биконект</span>
           </a>
-          <a className={s.link}>
+          <a data-name="Друзья" className={s.link}>
             <FontAwesomeIcon icon={faUser} className={s.icon} />
           </a>
-          <a className={s.link}>
+          <a data-name="Новости" className={s.link}>
             <FontAwesomeIcon icon={faNewspaper} className={s.icon} />
           </a>
-          <a className={s.link}>
+          <a data-name="Сообщения" className={s.link}>
             <FontAwesomeIcon icon={faMessage} className={s.icon} />
           </a>
-          <a className={s.link}>
+          <a data-name="Уведомления" className={s.link}>
             <FontAwesomeIcon icon={faBell} className={s.icon} />
           </a>
         </div>
@@ -44,6 +68,7 @@ class Navbar extends React.Component {
             />
           </a>
         </div>
+        {this.state.info}
       </div>
     );
   }

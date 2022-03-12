@@ -8,7 +8,6 @@ class Main extends React.Component {
     }
 
     render() {
-        console.log(s);
         return (
             <div className={s.main}></div>
         )
