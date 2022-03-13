@@ -8,6 +8,7 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { faVk } from "@fortawesome/free-brands-svg-icons";
+import Promt from "../Other/Prompt";
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class Navbar extends React.Component {
     let info = e.target.closest(`.${s.link}`);
     if(info.dataset.name) {
       this.setState({
-        info: <div style={{left: info.getBoundingClientRect().left, top: info.getBoundingClientRect().bottom + 5}} className={s.info}>{info.dataset.name}</div>
+        info: <Promt info={info}/>
       })
     } else {
       this.setState({

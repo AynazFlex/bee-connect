@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Sidebar.module.css";
-import Hr from "./Hr";
+import Hr from "../Other/Hr";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCakeCandles,
