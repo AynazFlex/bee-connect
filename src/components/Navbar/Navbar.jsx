@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faVk } from "@fortawesome/free-brands-svg-icons";
 import Promt from "../Other/Prompt";
+import { Link } from "react-router-dom";
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -21,8 +22,9 @@ class Navbar extends React.Component {
   }
 
   mouseMove(e) {
-    let info = e.target.closest(`.${s.link}`);
-    if(info.dataset.name) {
+    const info = e.target.closest(`.${s.link}`)
+    if(!info) return;
+    if(info.hasAttribute('data-name')) {
       this.setState({
         info: <Promt info={info}/>
       })
@@ -43,19 +45,19 @@ class Navbar extends React.Component {
     return (
       <div className={s.navbar} onMouseOver={this.mouseMove} onMouseOut={this.mouseOut}>
         <div className={s.left}>
-          <a className={s.link}>
+          <Link to="/profile" className={s.link}>
             <FontAwesomeIcon icon={faVk} className={s.icon} />
             <span className={s.logo}>биконект</span>
-          </a>
-          <a data-name="Друзья" className={s.link}>
+          </Link>
+          <Link to="/friends" data-name="Друзья" className={s.link}>
             <FontAwesomeIcon icon={faUser} className={s.icon} />
-          </a>
-          <a data-name="Новости" className={s.link}>
+          </Link>
+          <Link to="/news" data-name="Новости" className={s.link}>
             <FontAwesomeIcon icon={faNewspaper} className={s.icon} />
-          </a>
-          <a data-name="Сообщения" className={s.link}>
+          </Link>
+          <Link to="/messages" data-name="Сообщения" className={s.link}>
             <FontAwesomeIcon icon={faMessage} className={s.icon} />
-          </a>
+          </Link>
           <a data-name="Уведомления" className={s.link}>
             <FontAwesomeIcon icon={faBell} className={s.icon} />
           </a>

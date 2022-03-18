@@ -1,14 +1,30 @@
-import s from './Newpost.module.css'
-import Button from '../Other/Button';
-
+import { useState } from "react";
+import s from "./Newpost.module.css";
+import Button from "../Other/Button";
 
 function Newpost() {
-    return (
-        <div className={s.post}>
-            <div contenteditable="true" className={s.input}>Что у вас нового?</div>
-            <Button text='Опубликовать' />
-        </div>
-    )
+  let posts = [];
+
+  const [text, setText] = useState("");
+
+  const click = () => {
+    console.log(text);
+  };
+
+  return (
+    <>
+      <div className={s.post}>
+        <div
+          tabindex="0"
+          onBlur={(e) => setText(e.target.innerHTML)}
+          placeholder="Что у вас нового?"
+          contenteditable="true"
+          className={s.input}
+        ></div>
+        <Button callback={click} text="Опубликовать" />
+      </div>
+    </>
+  );
 }
 
 export default Newpost;
