@@ -9,17 +9,23 @@ import News from "./components/News/News";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+
   render() {
     return (
       <BrowserRouter>
         <div className="wrapper">
-          <Navbar />
-          <Sidebar />
+          <Navbar avatar={this.props.avatar}/>
+          <Sidebar avatar={this.props.avatar}/>
           <Routes>
-            <Route path="/profile" element={<Main />} />
+            <Route path="/profile" element={<Main posts={this.props.posts}/>} />
             <Route path="/friends" element={<Friends />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/news" element={<News />} />
+            <Route path="*" element={<h1>404</h1>} />
           </Routes>
         </div>
       </BrowserRouter>

@@ -65,7 +65,7 @@ class Navbar extends React.Component {
         <div>
           <a className={s.link}>
             <img
-              src="https://vk.com/images/camera_200.png"
+              src={this.props.avatar}
               className={s.avatar}
               alt="nav avatar"
             />

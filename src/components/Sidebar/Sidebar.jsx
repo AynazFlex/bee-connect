@@ -19,7 +19,7 @@ class Sidebar extends React.Component {
         <h4 className={s.profile}>Айназ Давлетшин</h4>
         <div>
           <img
-            src="https://vk.com/images/camera_200.png"
+            src={this.props.avatar}
             className={s.avatar}
             alt="my avatar"
           />

@@ -1,4 +1,5 @@
 import React from "react";
+import Hr from "../Other/Hr";
 import s from "./News.module.css";
 
 class News extends React.Component {
@@ -9,7 +10,7 @@ class News extends React.Component {
   render() {
     return (
       <div className={s.news}>
-        <h1>Новости</h1>
+        Новости
       </div>
     );
   }
