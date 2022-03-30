@@ -12,7 +12,7 @@ class Main extends React.Component {
     return (
       <div className={s.main}>
         <Newpost />
-        {this.props.posts.map(post => <Posts post={post}/>)}
+        {this.props.posts.map((post, index) => <Posts key={index} post={post}/>)}
       </div>
     );
   }

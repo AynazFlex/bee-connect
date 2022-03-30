@@ -18,10 +18,11 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div className="wrapper">
-          <Navbar avatar={this.props.avatar}/>
-          <Sidebar avatar={this.props.avatar}/>
+          <Navbar avatar={this.props.state.avatar}/>
+          <Sidebar avatar={this.props.state.avatar}/>
           <Routes>
-            <Route path="/profile" element={<Main posts={this.props.posts}/>} />
+            <Route path="/" element={<Main posts={this.props.state.posts}/>} />
+            <Route path="/profile" element={<Main posts={this.props.state.posts}/>} />
             <Route path="/friends" element={<Friends />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/news" element={<News />} />
