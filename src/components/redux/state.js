@@ -1,5 +1,12 @@
 
 const state = {
+    profile: {
+      name: 'Айназ Давлетшин',
+      age: '17 мая 2003',
+      job: 'Frontend Developer',
+      address: 'Россия, Mосква',
+    },
+
     posts: [
         {
           ava: 'https://www.w3schools.com/w3images/avatar2.png',
@@ -28,6 +35,17 @@ const state = {
     ],
 
     avatar: 'https://vk.com/images/camera_200.png',
+}
+
+export const addPost = (postText) => {
+  const post = {
+    ava: state.avatar,
+    profileName: state.profile.name,
+    body: postText,
+    date: '0 sec',
+  }
+
+  state.posts.push(post);
 }
 
 export default state;

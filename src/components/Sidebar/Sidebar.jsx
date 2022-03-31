@@ -16,7 +16,7 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div className={s.sidebar}>
-        <h4 className={s.profile}>Айназ Давлетшин</h4>
+        <h4 className={s.profile}>{this.props.profile.name}</h4>
         <div>
           <img
             src={this.props.avatar}
@@ -26,13 +26,13 @@ class Sidebar extends React.Component {
         </div>
         <Hr />
         <p>
-          <FontAwesomeIcon icon={faPen} className={s.icon} />Frontend Developer
+          <FontAwesomeIcon icon={faPen} className={s.icon} />{this.props.profile.job}
         </p>
         <p>
-          <FontAwesomeIcon icon={faHome} className={s.icon} />Россия, Mосква
+          <FontAwesomeIcon icon={faHome} className={s.icon} />{this.props.profile.address}
         </p>
         <p>
-          <FontAwesomeIcon icon={faCakeCandles} className={s.icon} />17 мая 2003
+          <FontAwesomeIcon icon={faCakeCandles} className={s.icon} />{this.props.profile.age}
         </p>
         <Hr />
         <button className={s.redac}>Редактировать</button>

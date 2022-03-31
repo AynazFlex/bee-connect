@@ -1,22 +1,22 @@
-import { useState } from "react";
+import React from "react";
 import s from "./Newpost.module.css";
 import Button from "../Other/Button";
 
-function Newpost() {
-  let posts = [];
+function Newpost(props) {
 
-  const [text, setText] = useState("");
+  const textRef = React.createRef();
 
   const click = () => {
-    console.log(text);
-  };
+    alert(textRef.current.textContent);
+    props.addPost(textRef.current.textContent);
+  }
 
   return (
     <>
       <div className={s.post}>
         <div
+          ref={textRef}
           tabindex="0"
-          onBlur={(e) => setText(e.target.innerHTML)}
           placeholder="Что у вас нового?"
           contenteditable="true"
           className={s.input}
