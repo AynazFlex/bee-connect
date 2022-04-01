@@ -45,7 +45,7 @@ export const addPost = (postText) => {
     date: '0 sec',
   }
 
-  state.posts.push(post);
+  state.posts.unshift(post);
 }
 
 export default state;
