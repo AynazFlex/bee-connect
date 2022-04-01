@@ -7,7 +7,8 @@ const state = {
       address: 'Россия, Mосква',
     },
 
-    posts: [
+    main: {
+      posts: [
         {
           ava: 'https://www.w3schools.com/w3images/avatar2.png',
           profileName: 'John Doe',
@@ -32,7 +33,10 @@ const state = {
           body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
           date: '1 day 12 hours'
         }
-    ],
+      ],
+
+      newPostText: '',
+    },
 
     avatar: 'https://vk.com/images/camera_200.png',
 }
@@ -45,7 +49,11 @@ export const addPost = (postText) => {
     date: '0 sec',
   }
 
-  state.posts.unshift(post);
+  state.main.posts.unshift(post);
+}
+
+export const changeText = (text) => {
+  state.main.newPostText = text;
 }
 
 export default state;

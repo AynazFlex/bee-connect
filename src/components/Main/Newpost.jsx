@@ -1,26 +1,31 @@
 import React from "react";
+import { useState } from "react";
 import s from "./Newpost.module.css";
 import Button from "../Other/Button";
 
 function Newpost(props) {
 
-  const textRef = React.createRef();
+  const [text, setText] = useState(props.text);
 
   const click = () => {
-    alert(textRef.current.textContent);
-    props.addPost(textRef.current.textContent);
+    alert(text);
+    props.addPost(text);
+  }
+
+  const change = (e) => {
+    setText(e.target.textContent)
   }
 
   return (
     <>
       <div className={s.post}>
         <div
-          ref={textRef}
-          tabindex="0"
+          onBlur={change}
+          tabIndex="0"
           placeholder="Что у вас нового?"
-          contenteditable="true"
+          contentEditable="true"
           className={s.input}
-        ></div>
+        >{text}</div>
         <Button callback={click} text="Опубликовать" />
       </div>
     </>
