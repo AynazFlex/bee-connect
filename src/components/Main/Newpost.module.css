@@ -6,17 +6,21 @@
 }
 
 .input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
     background-color: white;
     box-sizing: border-box;
     color: black;
+    border: none;
     padding: 8px 16px;
+    resize: vertical;
     margin: 0 0 8px 0;
     border-bottom: 1px solid black;
     outline: none;
     cursor: text;
 }
 
-.input[placeholder]:empty:before {
-    content: attr(placeholder);
+.input::placeholder {
     color: #555; 
 }

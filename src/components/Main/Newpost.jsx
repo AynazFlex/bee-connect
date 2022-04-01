@@ -4,23 +4,23 @@ import Button from "../Other/Button";
 
 function Newpost(props) {
 
-  const textRef = React.createRef();
-
   const click = () => {
-    alert(textRef.current.textContent);
-    props.addPost(textRef.current.textContent);
+    props.addPost();
+  }
+
+  const change = event => {
+    props.changeEntryField(event.target.value);
   }
 
   return (
     <>
       <div className={s.post}>
-        <div
-          ref={textRef}
-          tabindex="0"
+        <textarea
+          onChange={change}
           placeholder="Что у вас нового?"
-          contenteditable="true"
           className={s.input}
-        ></div>
+          value={props.textOfPost}
+        />
         <Button callback={click} text="Опубликовать" />
       </div>
     </>

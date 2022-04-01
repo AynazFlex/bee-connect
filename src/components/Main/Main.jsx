@@ -11,8 +11,8 @@ class Main extends React.Component {
   render() {
     return (
       <div className={s.main}>
-        <Newpost addPost={this.props.addPost}/>
-        {this.props.posts.map((post, index) => <Posts key={index} post={post}/>)}
+        <Newpost textOfPost={this.props.state.textOfPost} addPost={this.props.addPost} changeEntryField={this.props.changeEntryField}/>
+        {this.props.state.posts.map((post, index) => <Posts key={index} post={post}/>)}
       </div>
     );
   }
