@@ -1,7 +1,7 @@
-let render;
 
+const store = {
 
-const state = {
+  _state: {
     profile: {
       name: 'Айназ Давлетшин',
       age: '17 мая 2003',
@@ -41,30 +41,35 @@ const state = {
     },
 
     avatar: 'https://vk.com/images/camera_200.png',
-}
+  },
 
-export const addPost = () => {
+  getState() {
+    return this._state
+  },
 
-  if(state.main.textOfPost === '') return;
+  addPost() {
+    if(this._state.main.textOfPost === '') return;
 
-  const post = {
-    ava: state.avatar,
-    profileName: state.profile.name,
-    body: state.main.textOfPost,
-    date: '0 sec',
+    const post = {
+      ava: this._state.avatar,
+      profileName: this._state.profile.name,
+      body: this._state.main.textOfPost,
+      date: '0 sec',
+    }
+
+    this._state.main.posts.unshift(post);
+    this._render();
+  },
+
+  changeEntryField(newText) {
+    this._state.main.textOfPost = newText;
+    this._render();
+  },
+
+  subscribe(observer) {
+    this._render = observer;
   }
 
-  state.main.posts.unshift(post);
-  render();
 }
 
-export const changeEntryField = (newText) => {
-  state.main.textOfPost = newText;
-  render();
-}
-
-export const subscribe = observer => {
-  render = observer;
-}
-
-export default state;
+export default store;

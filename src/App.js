@@ -16,19 +16,19 @@ class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <Navbar avatar={this.props.state.avatar} />
+        <Navbar avatar={this.props.store.getState().avatar} />
         <Sidebar
-          avatar={this.props.state.avatar}
-          profile={this.props.state.profile}
+          avatar={this.props.store.getState().avatar}
+          profile={this.props.store.getState().profile}
         />
         <Routes>
           <Route
             path="/"
             element={
               <Main
-                state={this.props.state.main}
-                addPost={this.props.addPost}
-                changeEntryField={this.props.changeEntryField}
+                state={this.props.store.getState().main}
+                addPost={this.props.store.addPost.bind(this.props.store)}
+                changeEntryField={this.props.store.changeEntryField.bind(this.props.store)}
               />
             }
           />
@@ -36,9 +36,9 @@ class App extends React.Component {
             path="/profile"
             element={
               <Main
-                state={this.props.state.main}
-                addPost={this.props.addPost}
-                changeEntryField={this.props.changeEntryField}
+                state={this.props.store.getState().main}
+                addPost={this.props.store.addPost.bind(this.props.store)}
+                changeEntryField={this.props.store.changeEntryField.bind(this.props.store)}
               />
             }
           />
