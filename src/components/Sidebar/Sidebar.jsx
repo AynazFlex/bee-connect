@@ -7,6 +7,7 @@ import {
   faHome,
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class Sidebar extends React.Component {
           <FontAwesomeIcon icon={faCakeCandles} className={s.icon} />{this.props.profile.age}
         </p>
         <Hr />
-        <button className={s.redac}>Редактировать</button>
+        <Link to="/edit" className={s.redac}>Редактировать</Link>
       </div>
     );
   }

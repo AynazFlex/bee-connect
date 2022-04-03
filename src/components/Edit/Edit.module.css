@@ -1,0 +1,26 @@
+.formBlock {
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+
+}
+
+.item {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.input {
+    margin-left: 10px;
+    width: 300px;
+    margin-bottom: 12px;
+    outline: none;
+    border: none;
+    padding: 4px 8px;
+}
+
+.modify {
+    margin: 10px auto 0 auto;
+}

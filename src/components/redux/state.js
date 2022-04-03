@@ -40,6 +40,13 @@ const store = {
       textOfPost: '',
     },
 
+    edit: {
+      FullName: '',
+      birthday: '',
+      address: '',
+      job: '',
+    },
+
     avatar: 'https://vk.com/images/camera_200.png',
   },
 
@@ -68,6 +75,36 @@ const store = {
 
   subscribe(observer) {
     this._render = observer;
+  },
+
+  changeFormEdit(name, value) {
+    switch (name) {
+      case 'fullname': {
+        this._state.edit.FullName = value;
+        break;
+      }
+      case 'address': {
+        this._state.edit.address = value;
+        break;
+      }
+      case 'birthday': {
+        this._state.edit.birthday = value;
+        break;
+      }
+      case 'job': {
+        this._state.edit.job = value;
+        break;
+      }
+    }
+    this._render();
+  },
+
+  commitFormEdit() {
+    this._state.profile.name = this._state.edit.FullName;
+    this._state.profile.address = this._state.edit.address;
+    this._state.profile.age = this._state.edit.birthday;
+    this._state.profile.job = this._state.edit.job;
+    this._render();
   }
 
 }
