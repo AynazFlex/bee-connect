@@ -5,11 +5,15 @@ import Button from "../Other/Button";
 function Newpost(props) {
 
   const click = () => {
-    props.addPost();
+    props.dispatch({ type: 'ADD-POST' })
   }
 
   const change = event => {
-    props.changeEntryField(event.target.value);
+    const action = {
+      type: 'CHANGE_ENTRY_FIELD',
+      newText: event.target.value,
+    }
+    props.dispatch(action);
   }
 
   return (

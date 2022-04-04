@@ -1,20 +1,24 @@
 import React from "react";
 import s from "./Edit.module.css";
 import Button from "../Other/Button";
+import Hr from "../Other/Hr";
 
 
 const Edit = (props) => {
 
     const changeForm = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
+        const action = {
+            type: 'CHANGE_FORM_EDIT',
+            name: e.target.name,
+            value: e.target.value
+        }
         
-        props.changeFormEdit(name, value);
+        props.dispatch(action)
     }
 
     const submitForm = (e) =>  {
         e.preventDefault();
-        props.commitFormEdit();
+        props.dispatch({ type: 'COMMIT_FORM_EDIT' });
     }
 
     return (
@@ -60,6 +64,7 @@ const Edit = (props) => {
                         placeholder="Работа"
                     />
                 </label>
+                <Hr />
                 <Button classname={s.modify} callback={submitForm} text="Сохранить" />
             </form>
         </div>

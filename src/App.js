@@ -6,7 +6,7 @@ import Main from "./components/Main/Main";
 import Friends from "./components/Friends/Friends";
 import Messages from "./components/Messages/Messages";
 import News from "./components/News/News";
-import Edit from "./components/Edit/Edit"
+import Edit from "./components/Edit/Edit";
 import { Route, Routes } from "react-router-dom";
 
 class App extends React.Component {
@@ -28,8 +28,7 @@ class App extends React.Component {
             element={
               <Main
                 state={this.props.store.getState().main}
-                addPost={this.props.store.addPost.bind(this.props.store)}
-                changeEntryField={this.props.store.changeEntryField.bind(this.props.store)}
+                dispatch={this.props.store.dispatch.bind(this.props.store)}
               />
             }
           />
@@ -38,19 +37,23 @@ class App extends React.Component {
             element={
               <Main
                 state={this.props.store.getState().main}
-                addPost={this.props.store.addPost.bind(this.props.store)}
-                changeEntryField={this.props.store.changeEntryField.bind(this.props.store)}
+                dispatch={this.props.store.dispatch.bind(this.props.store)}
               />
             }
           />
           <Route path="/friends" element={<Friends />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/news" element={<News />} />
+          <Route
+            path="/edit"
+            element={
+              <Edit
+                state={this.props.store.getState().edit}
+                dispatch={this.props.store.dispatch.bind(this.props.store)}
+              />
+            }
+          />
           <Route path="*" element={<h1>404</h1>} />
-          <Route path="/edit" element={<Edit
-            changeFormEdit={this.props.store.changeFormEdit.bind(this.props.store)}
-            commitFormEdit={this.props.store.commitFormEdit.bind(this.props.store)} 
-            state={this.props.store.getState().edit}/>} />
         </Routes>
       </div>
     );

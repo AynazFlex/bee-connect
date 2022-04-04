@@ -54,7 +54,11 @@ const store = {
     return this._state
   },
 
-  addPost() {
+  subscribe(observer) {
+    this._render = observer;
+  },
+
+  _addPost() {
     if(this._state.main.textOfPost === '') return;
 
     const post = {
@@ -65,19 +69,16 @@ const store = {
     }
 
     this._state.main.posts.unshift(post);
+    this._state.main.textOfPost = '';
     this._render();
   },
 
-  changeEntryField(newText) {
+  _changeEntryField(newText) {
     this._state.main.textOfPost = newText;
     this._render();
   },
 
-  subscribe(observer) {
-    this._render = observer;
-  },
-
-  changeFormEdit(name, value) {
+  _changeFormEdit(name, value) {
     switch (name) {
       case 'fullname': {
         this._state.edit.FullName = value;
@@ -99,12 +100,29 @@ const store = {
     this._render();
   },
 
-  commitFormEdit() {
-    this._state.profile.name = this._state.edit.FullName;
-    this._state.profile.address = this._state.edit.address;
-    this._state.profile.age = this._state.edit.birthday;
-    this._state.profile.job = this._state.edit.job;
+  _commitFormEdit() {
+    this._state.profile.name = this._state.edit.FullName || this._state.profile.name;
+    this._state.profile.address = this._state.edit.address || this._state.profile.address;
+    this._state.profile.age = this._state.edit.birthday || this._state.profile.age;
+    this._state.profile.job = this._state.edit.job || this._state.profile.job;
     this._render();
+  },
+
+  dispatch(action) {
+    switch (action.type) {
+      case 'ADD-POST': 
+        this._addPost();
+        break;
+      case 'CHANGE_ENTRY_FIELD':
+        this._changeEntryField(action.newText);
+        break;
+      case 'CHANGE_FORM_EDIT':
+        this._changeFormEdit(action.name, action.value);
+        break;
+      case 'COMMIT_FORM_EDIT':
+        this._commitFormEdit();
+        break;
+    }
   }
 
 }
