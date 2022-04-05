@@ -1,19 +1,17 @@
 import React from "react";
 import s from "./Newpost.module.css";
 import Button from "../Other/Button";
+import { addPostActionCreate, changeEntryActionCreate } from "../redux/state";
 
 function Newpost(props) {
 
   const click = () => {
-    props.dispatch({ type: 'ADD-POST' })
+    props.dispatch(addPostActionCreate())
   }
 
   const change = event => {
-    const action = {
-      type: 'CHANGE_ENTRY_FIELD',
-      newText: event.target.value,
-    }
-    props.dispatch(action);
+    const text = event.target.value;
+    props.dispatch(changeEntryActionCreate(text));
   }
 
   return (

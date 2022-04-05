@@ -2,23 +2,21 @@ import React from "react";
 import s from "./Edit.module.css";
 import Button from "../Other/Button";
 import Hr from "../Other/Hr";
+import { commitFormActionCreate, changeFormActionCreate } from "../redux/state";
 
 
 const Edit = (props) => {
 
     const changeForm = (e) => {
-        const action = {
-            type: 'CHANGE_FORM_EDIT',
-            name: e.target.name,
-            value: e.target.value
-        }
+        const name = e.target.name;
+        const value = e.target.value;
         
-        props.dispatch(action)
+        props.dispatch(changeFormActionCreate(name, value));
     }
 
     const submitForm = (e) =>  {
         e.preventDefault();
-        props.dispatch({ type: 'COMMIT_FORM_EDIT' });
+        props.dispatch(commitFormActionCreate());
     }
 
     return (

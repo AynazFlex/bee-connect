@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD_POST';
+const CHANGE_ENTRY_FIELD = 'CHANGE_ENTRY_FIELD';
+const CHANGE_FORM_EDIT = 'CHANGE_FORM_EDIT';
+const COMMIT_FORM_EDIT = 'COMMIT_FORM_EDIT';
+
 
 const store = {
 
@@ -110,21 +115,36 @@ const store = {
 
   dispatch(action) {
     switch (action.type) {
-      case 'ADD-POST': 
+      case ADD_POST: 
         this._addPost();
         break;
-      case 'CHANGE_ENTRY_FIELD':
+      case CHANGE_ENTRY_FIELD:
         this._changeEntryField(action.newText);
         break;
-      case 'CHANGE_FORM_EDIT':
+      case CHANGE_FORM_EDIT:
         this._changeFormEdit(action.name, action.value);
         break;
-      case 'COMMIT_FORM_EDIT':
+      case COMMIT_FORM_EDIT:
         this._commitFormEdit();
         break;
     }
   }
 
 }
+
+export const addPostActionCreate = () => ({ type: ADD_POST });
+
+export const changeEntryActionCreate = (text) => ({
+  type: CHANGE_ENTRY_FIELD,
+  newText: text,
+})
+
+export const changeFormActionCreate = (name, value) => ({
+  type: CHANGE_FORM_EDIT,
+  name: name,
+  value: value
+})
+
+export const commitFormActionCreate = () => ({ type: COMMIT_FORM_EDIT })
 
 export default store;
