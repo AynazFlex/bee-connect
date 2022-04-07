@@ -42,7 +42,15 @@ class App extends React.Component {
             }
           />
           <Route path="/friends" element={<Friends />} />
-          <Route path="/messages" element={<Messages />} />
+          <Route 
+            path="/messages" 
+            element={
+              <Messages
+                state={this.props.store.getState().messagesPage}
+                dispatch={this.props.store.dispatch.bind(this.props.store)}
+              />
+            } 
+          />
           <Route path="/news" element={<News />} />
           <Route
             path="/edit"

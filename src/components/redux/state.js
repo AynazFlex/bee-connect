@@ -2,6 +2,10 @@ const ADD_POST = 'ADD_POST';
 const CHANGE_ENTRY_FIELD = 'CHANGE_ENTRY_FIELD';
 const CHANGE_FORM_EDIT = 'CHANGE_FORM_EDIT';
 const COMMIT_FORM_EDIT = 'COMMIT_FORM_EDIT';
+const OPEN_MESSAGE = 'OPEN_MESSAGE';
+const NEW_MESSAGE = 'NEW_MESSAGE';
+const SEND_MESSAGE = 'SEND_MESSAGE';
+const CLOSE_MESSAGE = 'CLOSE_MESSAGE'
 
 
 const store = {
@@ -13,6 +17,8 @@ const store = {
       job: 'Frontend Developer',
       address: 'Россия, Mосква',
     },
+
+    shortName: 'Айназ',
 
     main: {
       posts: [
@@ -53,6 +59,76 @@ const store = {
     },
 
     avatar: 'https://vk.com/images/camera_200.png',
+
+    messagesPage: {
+      isOpen: false,
+
+      index: '',
+
+      newMessage: '',
+
+      messages: [{
+        title: {
+          ava: 'https://www.w3schools.com/w3images/avatar5.png',
+          name: 'Jane Doe',
+          lastmessage: 'blablabla',
+          shortName: 'Jane',
+        },
+  
+        dialogs: [
+          {
+            name: 'Jane',
+            ava: 'https://www.w3schools.com/w3images/avatar5.png',
+            body: 'Привет'
+          },
+          {
+            name: 'Айназ',
+            ava: 'https://vk.com/images/camera_200.png',
+            body: 'Привет'
+          },
+          {
+            name: 'Jane',
+            ava: 'https://www.w3schools.com/w3images/avatar5.png',
+            body: 'Как дела?'
+          },
+          {
+            name: 'Айназ',
+            ava: 'https://vk.com/images/camera_200.png',
+            body: 'Хорошо'
+          },
+
+        ]
+      },
+      {
+        title: {
+          ava: 'https://www.w3schools.com/w3images/avatar6.png',
+          name: 'Angie Jane',
+          lastmessage: '))))'
+        },
+  
+        dialogs: []
+      },
+      {
+        title: {
+          ava: 'https://www.w3schools.com/w3images/avatar2.png',
+          name: 'Jane Doe',
+          lastmessage: 'Hello'
+        },
+  
+        dialogs: []
+      },
+      {
+        title: {
+          ava: 'https://www.w3schools.com/w3images/avatar1.png',
+          name: 'Артур Хуесосов',
+          lastmessage: 'иди нахуй, чмо'
+        },
+  
+        dialogs: []
+      },
+      ]
+    },
+
   },
 
   getState() {
@@ -113,6 +189,42 @@ const store = {
     this._render();
   },
 
+  _openMessage(index) {
+    this._state.messagesPage.isOpen = true;
+    this._state.messagesPage.index = index;
+    this._render();
+  },
+
+  _closeMessage() {
+    this._state.messagesPage.isOpen = false;
+    this._state.messagesPage.index = '';
+    this._render();
+  },
+
+  _closeMessage() {
+    this._state.messagesPage.isOpen = false;
+    this._state.messagesPage.index = '';
+    this._render();
+  },
+
+  _sendMessage() {
+    const index = this._state.messagesPage.index;
+    const text = this._state.messagesPage.newMessage;
+    const message = {
+      name: this._state.shortName,
+      ava: this._state.avatar,
+      body: text
+    };
+    this._state.messagesPage.messages[index].dialogs.push(message);
+    this._state.messagesPage.newMessage = '';
+    this._render();
+  },
+
+  _newMessage(body) {
+    this._state.messagesPage.newMessage = body;
+    this._render();
+  },
+
   dispatch(action) {
     switch (action.type) {
       case ADD_POST: 
@@ -127,6 +239,18 @@ const store = {
       case COMMIT_FORM_EDIT:
         this._commitFormEdit();
         break;
+      case OPEN_MESSAGE:
+        this._openMessage(action.index);
+        break;
+      case NEW_MESSAGE: 
+        this._newMessage(action.body);
+        break;
+      case SEND_MESSAGE:
+        this._sendMessage();
+        break;
+      case CLOSE_MESSAGE:
+        this._closeMessage();
+        break;
     }
   }
 
@@ -137,14 +261,32 @@ export const addPostActionCreate = () => ({ type: ADD_POST });
 export const changeEntryActionCreate = (text) => ({
   type: CHANGE_ENTRY_FIELD,
   newText: text,
-})
+});
 
 export const changeFormActionCreate = (name, value) => ({
   type: CHANGE_FORM_EDIT,
   name: name,
   value: value
-})
+});
 
 export const commitFormActionCreate = () => ({ type: COMMIT_FORM_EDIT })
+
+export const openMessageActionCreate = (index) => ({ 
+  type: OPEN_MESSAGE,
+  index: index,
+});
+
+export const closeMessageActionCreate = () => ({
+  type: CLOSE_MESSAGE,
+})
+
+export const newMessageActionCreate = (body) => ({
+  type: NEW_MESSAGE,
+  body: body,
+})
+
+export const sendMessageActionCreate = () => ({
+  type: SEND_MESSAGE,
+})
 
 export default store;

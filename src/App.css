@@ -4,4 +4,6 @@
   grid-template-columns: 25% 75%;
   width: 990px;
   margin: 0 auto;
+  align-content: start;
+  height: 100vh;
 }

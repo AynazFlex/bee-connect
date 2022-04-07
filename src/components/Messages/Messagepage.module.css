@@ -1,0 +1,106 @@
+.page {
+    display: flex;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    background: white;
+    height: calc(100vh - 70px);
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title {
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    background: white;
+    border-bottom: 1px solid black;
+}
+
+.item {
+    display: flex;
+    box-sizing: border-box;
+    margin: 10px 20px;
+}
+
+.image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 5px 10px;
+}
+
+.name {
+    font-size: 16px;
+    line-height: 30px;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.message {
+    margin: 0;
+}
+
+.correspondence {
+    overflow-y: auto;
+    margin-bottom: auto;
+}
+
+.correspondence::-webkit-scrollbar {
+    width: 5px; 
+}
+
+.correspondence::-webkit-scrollbar-thumb {
+    background: black;
+}
+
+.writer {
+    padding: 4px 12px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.newmess {
+    display: block;
+    box-sizing: border-box;
+    margin-right: 4px;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid black;
+    outline: none;
+    resize: none;
+    width: 100%;
+}
+
+.send {
+    align-self: center;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+}
+
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 20px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18.72px;
+}
+
+.back:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+.icon {
+    color: #7d97a5;
+    width: 30px;
+    height: 30px;
+}
+
+.backicon {
+    color: black;
+    margin-right: 10px;
+}
