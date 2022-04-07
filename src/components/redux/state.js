@@ -61,6 +61,7 @@ const store = {
     avatar: 'https://vk.com/images/camera_200.png',
 
     messagesPage: {
+
       isOpen: false,
 
       index: '',
@@ -71,7 +72,7 @@ const store = {
         title: {
           ava: 'https://www.w3schools.com/w3images/avatar5.png',
           name: 'Jane Doe',
-          lastmessage: 'blablabla',
+          lastmessage: 'Хорошо',
           shortName: 'Jane',
         },
   
@@ -103,7 +104,7 @@ const store = {
         title: {
           ava: 'https://www.w3schools.com/w3images/avatar6.png',
           name: 'Angie Jane',
-          lastmessage: '))))'
+          lastmessage: ''
         },
   
         dialogs: []
@@ -112,7 +113,7 @@ const store = {
         title: {
           ava: 'https://www.w3schools.com/w3images/avatar2.png',
           name: 'Jane Doe',
-          lastmessage: 'Hello'
+          lastmessage: ''
         },
   
         dialogs: []
@@ -121,7 +122,7 @@ const store = {
         title: {
           ava: 'https://www.w3schools.com/w3images/avatar1.png',
           name: 'Артур Хуесосов',
-          lastmessage: 'иди нахуй, чмо'
+          lastmessage: ''
         },
   
         dialogs: []
@@ -215,7 +216,10 @@ const store = {
       ava: this._state.avatar,
       body: text
     };
+    console.log(message);
     this._state.messagesPage.messages[index].dialogs.push(message);
+    const lastmessage = this._state.messagesPage.messages[index].dialogs.slice(-1)[0].body;
+    this._state.messagesPage.messages[index].title.lastmessage = lastmessage;
     this._state.messagesPage.newMessage = '';
     this._render();
   },
