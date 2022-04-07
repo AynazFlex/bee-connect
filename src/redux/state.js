@@ -209,6 +209,7 @@ const store = {
   },
 
   _sendMessage() {
+    if(this._state.messagesPage.newMessage === '') return;
     const index = this._state.messagesPage.index;
     const text = this._state.messagesPage.newMessage;
     const message = {

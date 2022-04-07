@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Messages.module.css";
-import { openMessageActionCreate } from "../redux/state";
+import { openMessageActionCreate } from "../../redux/state";
 
 const Message = props => {
 
