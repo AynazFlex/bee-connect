@@ -1,11 +1,6 @@
-const ADD_POST = 'ADD_POST';
-const CHANGE_ENTRY_FIELD = 'CHANGE_ENTRY_FIELD';
-const CHANGE_FORM_EDIT = 'CHANGE_FORM_EDIT';
-const COMMIT_FORM_EDIT = 'COMMIT_FORM_EDIT';
-const OPEN_MESSAGE = 'OPEN_MESSAGE';
-const NEW_MESSAGE = 'NEW_MESSAGE';
-const SEND_MESSAGE = 'SEND_MESSAGE';
-const CLOSE_MESSAGE = 'CLOSE_MESSAGE'
+import mainReducer from "./mainReducer";
+import editReducer from "./editReducer";
+import messageReducer from "./messageReducer";
 
 
 const store = {
@@ -140,158 +135,13 @@ const store = {
     this._render = observer;
   },
 
-  _addPost() {
-    if(this._state.main.textOfPost === '') return;
-
-    const post = {
-      ava: this._state.avatar,
-      profileName: this._state.profile.name,
-      body: this._state.main.textOfPost,
-      date: '0 sec',
-    }
-
-    this._state.main.posts.unshift(post);
-    this._state.main.textOfPost = '';
-    this._render();
-  },
-
-  _changeEntryField(newText) {
-    this._state.main.textOfPost = newText;
-    this._render();
-  },
-
-  _changeFormEdit(name, value) {
-    switch (name) {
-      case 'fullname': {
-        this._state.edit.FullName = value;
-        break;
-      }
-      case 'address': {
-        this._state.edit.address = value;
-        break;
-      }
-      case 'birthday': {
-        this._state.edit.birthday = value;
-        break;
-      }
-      case 'job': {
-        this._state.edit.job = value;
-        break;
-      }
-    }
-    this._render();
-  },
-
-  _commitFormEdit() {
-    this._state.profile.name = this._state.edit.FullName || this._state.profile.name;
-    this._state.profile.address = this._state.edit.address || this._state.profile.address;
-    this._state.profile.age = this._state.edit.birthday || this._state.profile.age;
-    this._state.profile.job = this._state.edit.job || this._state.profile.job;
-    this._render();
-  },
-
-  _openMessage(index) {
-    this._state.messagesPage.isOpen = true;
-    this._state.messagesPage.index = index;
-    this._render();
-  },
-
-  _closeMessage() {
-    this._state.messagesPage.isOpen = false;
-    this._state.messagesPage.index = '';
-    this._render();
-  },
-
-  _closeMessage() {
-    this._state.messagesPage.isOpen = false;
-    this._state.messagesPage.index = '';
-    this._render();
-  },
-
-  _sendMessage() {
-    if(this._state.messagesPage.newMessage === '') return;
-    const index = this._state.messagesPage.index;
-    const text = this._state.messagesPage.newMessage;
-    const message = {
-      name: this._state.shortName,
-      ava: this._state.avatar,
-      body: text
-    };
-    console.log(message);
-    this._state.messagesPage.messages[index].dialogs.push(message);
-    const lastmessage = this._state.messagesPage.messages[index].dialogs.slice(-1)[0].body;
-    this._state.messagesPage.messages[index].title.lastmessage = lastmessage;
-    this._state.messagesPage.newMessage = '';
-    this._render();
-  },
-
-  _newMessage(body) {
-    this._state.messagesPage.newMessage = body;
-    this._render();
-  },
-
   dispatch(action) {
-    switch (action.type) {
-      case ADD_POST: 
-        this._addPost();
-        break;
-      case CHANGE_ENTRY_FIELD:
-        this._changeEntryField(action.newText);
-        break;
-      case CHANGE_FORM_EDIT:
-        this._changeFormEdit(action.name, action.value);
-        break;
-      case COMMIT_FORM_EDIT:
-        this._commitFormEdit();
-        break;
-      case OPEN_MESSAGE:
-        this._openMessage(action.index);
-        break;
-      case NEW_MESSAGE: 
-        this._newMessage(action.body);
-        break;
-      case SEND_MESSAGE:
-        this._sendMessage();
-        break;
-      case CLOSE_MESSAGE:
-        this._closeMessage();
-        break;
-    }
+    this._state.main = mainReducer(this._state, action);
+    this._state.messagesPage = messageReducer(this._state, action);
+    this._state = editReducer(this._state, action);
+    this._render();
   }
 
 }
-
-export const addPostActionCreate = () => ({ type: ADD_POST });
-
-export const changeEntryActionCreate = (text) => ({
-  type: CHANGE_ENTRY_FIELD,
-  newText: text,
-});
-
-export const changeFormActionCreate = (name, value) => ({
-  type: CHANGE_FORM_EDIT,
-  name: name,
-  value: value
-});
-
-export const commitFormActionCreate = () => ({ type: COMMIT_FORM_EDIT })
-
-export const openMessageActionCreate = (index) => ({ 
-  type: OPEN_MESSAGE,
-  index: index,
-});
-
-export const closeMessageActionCreate = () => ({
-  type: CLOSE_MESSAGE,
-})
-
-export const newMessageActionCreate = (body) => ({
-  type: NEW_MESSAGE,
-  body: body,
-})
-
-export const sendMessageActionCreate = () => ({
-  type: SEND_MESSAGE,
-})
 
 export default store;

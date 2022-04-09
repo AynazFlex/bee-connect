@@ -1,7 +1,7 @@
 import React from "react";
 import Correspondence from "./Correspondence";
 import s from "./Messagepage.module.css";
-import { newMessageActionCreate, sendMessageActionCreate, closeMessageActionCreate } from "../../redux/state";
+import { newMessageActionCreate, sendMessageActionCreate, closeMessageActionCreate } from "../../redux/messageReducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 

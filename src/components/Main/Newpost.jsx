@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Newpost.module.css";
 import Button from "../Other/Button";
-import { addPostActionCreate, changeEntryActionCreate } from "../../redux/state";
+import { addPostActionCreate, changeEntryActionCreate } from "../../redux/mainReducer";
 
 function Newpost(props) {
 
