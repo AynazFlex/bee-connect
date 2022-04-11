@@ -6,15 +6,15 @@ import "normalize.css";
 import store from "./redux/reduxStore";
 import { BrowserRouter } from "react-router-dom";
 
-const render = (state) => {
+const render = (store) => {
   ReactDOM.render(
     <BrowserRouter>
-      <App state={state} dispatch={store.dispatch.bind(store)}/>
+      <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>
     </BrowserRouter>,
     document.getElementById("root")
   );
 };
 
-store.subscribe(() => render(store.getState()));
+store.subscribe(() => render(store));
 
-render(store.getState());
+render(store);

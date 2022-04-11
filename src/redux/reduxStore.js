@@ -1,12 +1,8 @@
 import { createStore, combineReducers } from "redux";
-import editReduser from "./editReducer";
-import mainReducer from "./mainReducer";
-import messageReducer from "./messageReducer";
+import dataReducer from "./dataReducer";
 
 const reducers = combineReducers({
-    editPage: editReduser,
-    messagesPage: messageReducer,
-    mainPage: mainReducer,
+    data: dataReducer,
 })
 const store = createStore(reducers);
 

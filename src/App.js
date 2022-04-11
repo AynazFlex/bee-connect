@@ -17,17 +17,17 @@ class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <Navbar avatar={this.props.state.mainPage.avatar} />
+        <Navbar avatar={this.props.state.data.avatar} />
         <Sidebar
-          avatar={this.props.state.mainPage.avatar}
-          profile={this.props.state.editPage.profile}
+          avatar={this.props.state.data.avatar}
+          profile={this.props.state.data.profile}
         />
         <Routes>
           <Route
             path="/"
             element={
               <Main
-                state={this.props.state.mainPage.main}
+                state={this.props.state.data.main}
                 dispatch={this.props.dispatch}
               />
             }
@@ -36,7 +36,7 @@ class App extends React.Component {
             path="/profile"
             element={
               <Main
-                state={this.props.state.mainPage.main}
+                state={this.props.state.data.main}
                 dispatch={this.props.dispatch}
               />
             }
@@ -46,7 +46,9 @@ class App extends React.Component {
             path="/messages" 
             element={
               <Messages
-                state={this.props.state.messagesPage.messagesPage}
+                avatar={this.props.state.data.avatar}
+                shortName={this.props.state.data.shortName}
+                state={this.props.state.data.messagesPage}
                 dispatch={this.props.dispatch}
               />
             } 
@@ -56,7 +58,7 @@ class App extends React.Component {
             path="/edit"
             element={
               <Edit
-                state={this.props.state.editPage.edit}
+                state={this.props.state.data.edit}
                 dispatch={this.props.dispatch}
               />
             }

@@ -15,6 +15,9 @@ class Messages extends React.Component {
           <Messagepage 
             newMessage={this.props.state.newMessage}
             dialogs={this.props.state.messages[this.props.state.index].dialogs}
+            shortName={this.props.shortName}
+            avatar={this.props.avatar}
+            avatar1={this.props.state.messages[this.props.state.index].title.ava}
             name={this.props.state.messages[this.props.state.index].title.name}
             dispatch={this.props.dispatch}
           /> : 
@@ -22,7 +25,7 @@ class Messages extends React.Component {
             {this.props.state.messages.map((item, index) => <Message 
               i={index} 
               key={index} 
-              state={item}
+              state={item.title}
               dispatch={this.props.dispatch}
             />)}
           </div>

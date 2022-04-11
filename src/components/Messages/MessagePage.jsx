@@ -1,7 +1,7 @@
 import React from "react";
 import Correspondence from "./Correspondence";
 import s from "./Messagepage.module.css";
-import { newMessageActionCreate, sendMessageActionCreate, closeMessageActionCreate } from "../../redux/messageReducer";
+import { newMessageActionCreate, sendMessageActionCreate, closeMessageActionCreate } from "../../redux/dataReducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 
@@ -36,7 +36,11 @@ class Messagepage extends React.Component {
                 <h3 className={s.title}>{this.props.name}</h3>
                 <div className={s.correspondence}>
                     {this.props.dialogs.map((item, index) => 
-                        <Correspondence 
+                        <Correspondence
+                            avatar1={this.props.avatar1}
+                            avatar={this.props.avatar}
+                            me={this.props.shortName}
+                            name={this.props.name}
                             key={index}
                             state={item}
                         />)}

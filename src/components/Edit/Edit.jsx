@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Edit.module.css";
 import Button from "../Other/Button";
 import Hr from "../Other/Hr";
-import { commitFormActionCreate, changeFormActionCreate } from "../../redux/editReducer";
+import { commitFormActionCreate, changeFormActionCreate } from "../../redux/dataReducer";
 
 
 const Edit = (props) => {
