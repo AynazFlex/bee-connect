@@ -15,6 +15,6 @@ const render = (state) => {
   );
 };
 
-store.subscribe(render.bind(null, store.getState()));
+store.subscribe(() => render(store.getState()));
 
 render(store.getState());
