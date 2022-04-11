@@ -10,8 +10,23 @@ export const changeFormActionCreate = (name, value) => ({
   
 export const commitFormActionCreate = () => ({ type: COMMIT_FORM_EDIT });
 
+const initialState = {
+  profile: {
+    name: 'Айназ Давлетшин',
+    age: '17 мая 2003',
+    job: 'Frontend Developer',
+    address: 'Россия, Mосква',
+  },
 
-const editReduser = (state, action) => {
+  edit: {
+    FullName: '',
+    birthday: '',
+    address: '',
+    job: '',
+  },
+}
+
+const editReduser = (state = initialState, action) => {
     switch (action.type) {
         case CHANGE_FORM_EDIT: {
             switch (action.name) {

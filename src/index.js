@@ -3,18 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import "normalize.css";
-import store from "./redux/store";
+import store from "./redux/reduxStore";
 import { BrowserRouter } from "react-router-dom";
 
-const render = () => {
+const render = (state) => {
   ReactDOM.render(
     <BrowserRouter>
-      <App store={store} />
+      <App state={state} dispatch={store.dispatch.bind(store)}/>
     </BrowserRouter>,
     document.getElementById("root")
   );
 };
 
-store.subscribe(render);
+store.subscribe(render.bind(null, store.getState()));
 
-render();
+render(store.getState());

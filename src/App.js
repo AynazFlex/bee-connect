@@ -17,18 +17,18 @@ class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <Navbar avatar={this.props.store.getState().avatar} />
+        <Navbar avatar={this.props.state.mainPage.avatar} />
         <Sidebar
-          avatar={this.props.store.getState().avatar}
-          profile={this.props.store.getState().profile}
+          avatar={this.props.state.mainPage.avatar}
+          profile={this.props.state.editPage.profile}
         />
         <Routes>
           <Route
             path="/"
             element={
               <Main
-                state={this.props.store.getState().main}
-                dispatch={this.props.store.dispatch.bind(this.props.store)}
+                state={this.props.state.mainPage.main}
+                dispatch={this.props.dispatch}
               />
             }
           />
@@ -36,8 +36,8 @@ class App extends React.Component {
             path="/profile"
             element={
               <Main
-                state={this.props.store.getState().main}
-                dispatch={this.props.store.dispatch.bind(this.props.store)}
+                state={this.props.state.mainPage.main}
+                dispatch={this.props.dispatch}
               />
             }
           />
@@ -46,8 +46,8 @@ class App extends React.Component {
             path="/messages" 
             element={
               <Messages
-                state={this.props.store.getState().messagesPage}
-                dispatch={this.props.store.dispatch.bind(this.props.store)}
+                state={this.props.state.messagesPage.messagesPage}
+                dispatch={this.props.dispatch}
               />
             } 
           />
@@ -56,8 +56,8 @@ class App extends React.Component {
             path="/edit"
             element={
               <Edit
-                state={this.props.store.getState().edit}
-                dispatch={this.props.store.dispatch.bind(this.props.store)}
+                state={this.props.state.editPage.edit}
+                dispatch={this.props.dispatch}
               />
             }
           />
