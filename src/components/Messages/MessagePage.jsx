@@ -33,7 +33,7 @@ class Messagepage extends React.Component {
     render() {
         return (
             <div className={s.page}>
-                <h3 className={s.title}>{this.props.name}</h3>
+                <h3 className={s.title}>{this.props.title}</h3>
                 <div className={s.correspondence}>
                     {this.props.dialogs.map((item, index) => 
                         <Correspondence

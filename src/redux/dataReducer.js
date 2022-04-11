@@ -7,13 +7,12 @@ const NEW_MESSAGE = "NEW_MESSAGE";
 const SEND_MESSAGE = "SEND_MESSAGE";
 const CLOSE_MESSAGE = "CLOSE_MESSAGE";
 
-
 export const changeFormActionCreate = (name, value) => ({
-    type: CHANGE_FORM_EDIT,
-    name: name,
-    value: value
+  type: CHANGE_FORM_EDIT,
+  name: name,
+  value: value,
 });
-  
+
 export const commitFormActionCreate = () => ({ type: COMMIT_FORM_EDIT });
 
 export const addPostActionCreate = () => ({ type: ADD_POST });
@@ -24,22 +23,22 @@ export const changeEntryActionCreate = (text) => ({
 });
 
 export const openMessageActionCreate = (index) => ({
-    type: OPEN_MESSAGE,
-    index: index,
-  });
-  
-  export const closeMessageActionCreate = () => ({
-    type: CLOSE_MESSAGE,
-  });
-  
-  export const newMessageActionCreate = (body) => ({
-    type: NEW_MESSAGE,
-    body: body,
-  });
-  
-  export const sendMessageActionCreate = () => ({
-    type: SEND_MESSAGE,
-  });
+  type: OPEN_MESSAGE,
+  index: index,
+});
+
+export const closeMessageActionCreate = () => ({
+  type: CLOSE_MESSAGE,
+});
+
+export const newMessageActionCreate = (body) => ({
+  type: NEW_MESSAGE,
+  body: body,
+});
+
+export const sendMessageActionCreate = () => ({
+  type: SEND_MESSAGE,
+});
 
 const initialState = {
   profile: {
@@ -109,19 +108,19 @@ const initialState = {
 
         dialogs: [
           {
-            identefication: 'interlocutor',
+            identefication: "interlocutor",
             body: "Привет",
           },
           {
-            identefication: 'me',
+            identefication: "me",
             body: "Привет",
           },
           {
-            identefication: 'interlocutor',
+            identefication: "interlocutor",
             body: "Как дела?",
           },
           {
-            identefication: 'me',
+            identefication: "me",
             body: "Хорошо",
           },
         ],
@@ -130,31 +129,46 @@ const initialState = {
         title: {
           ava: "https://www.w3schools.com/w3images/avatar6.png",
           name: "Angie Jane",
-          lastmessage: "",
+          lastmessage: "Привет",
           shortName: "Angie",
         },
 
-        dialogs: [],
+        dialogs: [
+            {
+                identefication: "interlocutor",
+                body: "Привет",
+            },
+        ],
       },
       {
         title: {
           ava: "https://www.w3schools.com/w3images/avatar2.png",
           name: "Jane Doe",
-          lastmessage: "",
+          lastmessage: "Привет",
           shortName: "Jane",
         },
 
-        dialogs: [],
+        dialogs: [
+            {
+                identefication: "interlocutor",
+                body: "Привет",
+            },
+        ],
       },
       {
         title: {
           ava: "https://www.w3schools.com/w3images/avatar1.png",
           name: "Артур Хуесосов",
-          lastmessage: "",
+          lastmessage: "Привет",
           shortName: "Артут",
         },
 
-        dialogs: [],
+        dialogs: [
+            {
+                identefication: "interlocutor",
+                body: "Привет",
+            },
+        ],
       },
     ],
   },
@@ -188,7 +202,7 @@ const dataReducer = (state = initialState, action) => {
       state.profile.address = state.edit.address || state.profile.address;
       state.profile.age = state.edit.birthday || state.profile.age;
       state.profile.job = state.edit.job || state.profile.job;
-      state.shortName = state.profile.name.split(' ')[0];
+      state.shortName = state.profile.name.split(" ")[0];
       return state;
     }
     case ADD_POST: {
@@ -221,7 +235,7 @@ const dataReducer = (state = initialState, action) => {
       const index = state.messagesPage.index;
       const text = state.messagesPage.newMessage;
       const message = {
-        identefication: 'me',
+        identefication: "me",
         body: text,
       };
       state.messagesPage.messages[index].dialogs.push(message);
@@ -237,7 +251,7 @@ const dataReducer = (state = initialState, action) => {
       return state;
     }
     default: {
-        return state;
+      return state;
     }
   }
 };

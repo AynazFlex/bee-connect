@@ -9,6 +9,7 @@ class Messages extends React.Component {
   }
 
   render() {
+    debugger;
     return (
       <>
         {this.props.state.isOpen ? 
@@ -18,7 +19,8 @@ class Messages extends React.Component {
             shortName={this.props.shortName}
             avatar={this.props.avatar}
             avatar1={this.props.state.messages[this.props.state.index].title.ava}
-            name={this.props.state.messages[this.props.state.index].title.name}
+            name={this.props.state.messages[this.props.state.index].title.shortName}
+            title={this.props.state.messages[this.props.state.index].title.name}
             dispatch={this.props.dispatch}
           /> : 
           <div className={s.messages}>
