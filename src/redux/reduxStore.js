@@ -4,6 +4,8 @@ import dataReducer from "./dataReducer";
 const reducers = combineReducers({
     data: dataReducer,
 })
+
+
 const store = createStore(reducers);
 
 

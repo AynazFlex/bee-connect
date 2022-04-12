@@ -1,12 +1,11 @@
 import React from "react";
 import s from "./Messages.module.css";
-import { openMessageActionCreate } from "../../redux/dataReducer";
 
 const Message = props => {
 
     const openMessage = (e) => {
       const index = e.currentTarget.getAttribute('i');
-      props.dispatch(openMessageActionCreate(index));
+      props.openMessage(index);
     }
 
     return (

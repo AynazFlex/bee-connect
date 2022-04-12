@@ -1,17 +1,14 @@
 import React from "react";
 import s from "./Newpost.module.css";
 import Button from "../Other/Button";
-import { addPostActionCreate, changeEntryActionCreate } from "../../redux/dataReducer";
 
 function Newpost(props) {
 
-  const click = () => {
-    props.dispatch(addPostActionCreate())
-  }
+  const click = () => props.addPost();
 
   const change = event => {
     const text = event.target.value;
-    props.dispatch(changeEntryActionCreate(text));
+    props.changeText(text);
   }
 
   return (
