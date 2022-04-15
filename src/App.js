@@ -17,18 +17,18 @@ class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <Navbar avatar={this.props.state.data.avatar} />
+        <Navbar avatar={this.props.store.getState().data.avatar} />
         <Sidebar
-          avatar={this.props.state.data.avatar}
-          profile={this.props.state.data.profile}
+          avatar={this.props.store.getState().data.avatar}
+          profile={this.props.store.getState().data.profile}
         />
         <Routes>
           <Route
             path="/"
             element={
               <Main
-                state={this.props.state.data.main}
-                dispatch={this.props.dispatch}
+                state={this.props.store.getState().data.main}
+                dispatch={this.props.store.dispatch}
               />
             }
           />
@@ -36,8 +36,8 @@ class App extends React.Component {
             path="/profile"
             element={
               <Main
-                state={this.props.state.data.main}
-                dispatch={this.props.dispatch}
+                state={this.props.store.getState().data.main}
+                dispatch={this.props.store.dispatch}
               />
             }
           />
@@ -46,10 +46,10 @@ class App extends React.Component {
             path="/messages" 
             element={
               <Messages
-                avatar={this.props.state.data.avatar}
-                shortName={this.props.state.data.shortName}
-                state={this.props.state.data.messagesPage}
-                dispatch={this.props.dispatch}
+                avatar={this.props.store.getState().data.avatar}
+                shortName={this.props.store.getState().data.shortName}
+                state={this.props.store.getState().data.messagesPage}
+                dispatch={this.props.store.dispatch}
               />
             } 
           />
@@ -58,8 +58,8 @@ class App extends React.Component {
             path="/edit"
             element={
               <Edit
-                state={this.props.state.data.edit}
-                dispatch={this.props.dispatch}
+                state={this.props.store.getState().data.edit}
+                dispatch={this.props.store.dispatch}
               />
             }
           />

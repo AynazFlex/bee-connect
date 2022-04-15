@@ -3,6 +3,8 @@
     background: white;
     padding: 0 16px;
     align-self: start;
+    position: sticky;
+    top: 10px;
 }
 
 .profile {

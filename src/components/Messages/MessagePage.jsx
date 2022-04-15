@@ -44,7 +44,6 @@ class Messagepage extends React.Component {
               ava = this.props.avatar1;
               name = this.props.name;
             }
-            console.log(ava, name);
             return (
               <Correspondence
                 ava={ava}
