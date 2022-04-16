@@ -18,7 +18,7 @@ const Messages = (props) => {
           avatar1={props.state.messages[i].title.ava}
           name={props.state.messages[i].title.shortName}
           title={props.state.messages[i].title.name}
-          newMessageInput={props.newMessage}
+          newMessageInput={props.newMessageInput}
           sendMessage={props.sendMessage}
           closeMessage={props.closeMessage}
         />

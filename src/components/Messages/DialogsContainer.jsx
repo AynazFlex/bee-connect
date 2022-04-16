@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    newMessage: (e) => {
+    newMessageInput: (e) => {
         const mess = e.target.value;
         dispatch(newMessageActionCreate(mess));
     },

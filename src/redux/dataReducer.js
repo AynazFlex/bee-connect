@@ -88,7 +88,7 @@ const initialState = {
     job: "",
   },
 
-  avatar: "https://vk.com/images/camera_200.png",
+  avatar: "https://sun9-21.userapi.com/impg/URis_7zX3Nm3t-wBnTqQ5XQUH5VCIAYpUlV9XQ/cmHhq12O3Ls.jpg?size=483x604&quality=96&sign=a548a3c9cce26b53c8b4a78ad42d507f&c_uniq_tag=js-xaOwuO11YP32bq5Z1Fu1VdQ0xl6j6AZCQYFLVPy4&type=album",
 
   messagesPage: {
     isOpen: false,
@@ -175,83 +175,89 @@ const initialState = {
 };
 
 const dataReducer = (state = initialState, action) => {
+  const copyState = JSON.parse(JSON.stringify(state));
+  console.log(copyState);
   switch (action.type) {
     case CHANGE_FORM_EDIT: {
       switch (action.name) {
         case "fullname": {
-          state.edit.FullName = action.value;
+          copyState.edit.FullName = action.value;
           break;
         }
         case "address": {
-          state.edit.address = action.value;
+          copyState.edit.address = action.value;
           break;
         }
         case "birthday": {
-          state.edit.birthday = action.value;
+          copyState.edit.birthday = action.value;
           break;
         }
         case "job": {
-          state.edit.job = action.value;
+          copyState.edit.job = action.value;
           break;
         }
       }
-      return state;
+      return copyState;
     }
     case COMMIT_FORM_EDIT: {
-      state.profile.name = state.edit.FullName || state.profile.name;
-      state.profile.address = state.edit.address || state.profile.address;
-      state.profile.age = state.edit.birthday || state.profile.age;
-      state.profile.job = state.edit.job || state.profile.job;
-      state.shortName = state.profile.name.split(" ")[0];
-      return state;
+      copyState.profile.name = copyState.edit.FullName || copyState.profile.name;
+      copyState.profile.address = copyState.edit.address || copyState.profile.address;
+      copyState.profile.age = copyState.edit.birthday || copyState.profile.age;
+      copyState.profile.job = copyState.edit.job || copyState.profile.job;
+      copyState.shortName = copyState.profile.name.split(" ")[0];
+      copyState.edit.FullName = '';
+      copyState.edit.address = '';
+      copyState.edit.birthday = '';
+      copyState.edit.job = '';
+      return copyState;
     }
     case ADD_POST: {
-      if (state.main.textOfPost === "") return;
+      if (copyState.main.textOfPost === "") return copyState;
 
       const post = {
-        ava: state.avatar,
-        profileName: state.profile.name,
-        body: state.main.textOfPost,
+        ava: copyState.avatar,
+        profileName: copyState.profile.name,
+        body: copyState.main.textOfPost,
         date: "0 sec",
       };
 
-      state.main.posts.unshift(post);
-      state.main.textOfPost = "";
-      return state;
+      copyState.main.posts.unshift(post);
+      copyState.main.textOfPost = "";
+      return copyState;
     }
     case CHANGE_ENTRY_FIELD:
-      state.main.textOfPost = action.newText;
-      return state;
+      copyState.main.textOfPost = action.newText;
+      return copyState;
     case OPEN_MESSAGE: {
-      state.messagesPage.isOpen = true;
-      state.messagesPage.index = action.index;
-      return state;
+      copyState.messagesPage.isOpen = true;
+      copyState.messagesPage.index = action.index;
+      return copyState;
     }
     case NEW_MESSAGE:
-      state.messagesPage.newMessage = action.body;
-      return state;
+      copyState.messagesPage.newMessage = action.body;
+      return copyState;
     case SEND_MESSAGE: {
-      if (state.messagesPage.newMessage === "") return state;
-      const index = state.messagesPage.index;
-      const text = state.messagesPage.newMessage;
+      if (copyState.messagesPage.newMessage === "") return copyState;
+      const index = copyState.messagesPage.index;
+      const text = copyState.messagesPage.newMessage;
       const message = {
         identefication: "me",
         body: text,
       };
-      state.messagesPage.messages[index].dialogs.push(message);
+      copyState.messagesPage.messages[index].dialogs.push(message);
       const lastmessage =
-        state.messagesPage.messages[index].dialogs.slice(-1)[0].body;
-      state.messagesPage.messages[index].title.lastmessage = lastmessage;
-      state.messagesPage.newMessage = "";
-      return state;
+        copyState.messagesPage.messages[index].dialogs.slice(-1)[0].body;
+      copyState.messagesPage.messages[index].title.lastmessage = lastmessage;
+      copyState.messagesPage.newMessage = "";
+      return copyState;
     }
     case CLOSE_MESSAGE: {
-      state.messagesPage.isOpen = false;
-      state.messagesPage.index = "";
-      return state;
+      copyState.messagesPage.isOpen = false;
+      copyState.messagesPage.index = "";
+      return copyState;
     }
     default: {
-      return state;
+      return copyState;
     }
   }
 };

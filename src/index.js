@@ -7,17 +7,11 @@ import store from "./redux/reduxStore";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
-const render = (store) => {
-  ReactDOM.render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <App store={store}/>
-      </Provider>
-    </BrowserRouter>,
-    document.getElementById("root")
-  );
-};
-
-store.subscribe(() => render(store));
-
-render(store);
+ReactDOM.render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <App store={store} />
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById("root")
+);
