@@ -3,13 +3,8 @@ import s from "./Messages.module.css";
 
 const Message = props => {
 
-    const openMessage = (e) => {
-      const index = e.currentTarget.getAttribute('i');
-      props.openMessage(index);
-    }
-
     return (
-        <div i={props.i} className={s.item} onClick={openMessage}>
+        <div i={props.i} className={s.item} onClick={props.openMessage}>
           <img src={props.state.ava} className={s.image}/>
           <div>
             <h4 className={s.title}>{props.state.name}</h4>

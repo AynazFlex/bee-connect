@@ -9,13 +9,19 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    newMessage: (text) => dispatch(newMessageActionCreate(text)),
+    newMessage: (e) => {
+        const mess = e.target.value;
+        dispatch(newMessageActionCreate(mess));
+    },
     
     sendMessage: () => dispatch(sendMessageActionCreate()),
     
     closeMessage: () => dispatch(closeMessageActionCreate()),
     
-    openMessage: (index) => dispatch(openMessageActionCreate(index)),
+    openMessage: (e) => {
+        const index = e.currentTarget.getAttribute('i');
+        dispatch(openMessageActionCreate(index))
+    }
 });
 
 

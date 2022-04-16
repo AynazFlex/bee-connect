@@ -7,26 +7,10 @@ import { faPaperPlane, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 class Messagepage extends React.Component {
   constructor(props) {
     super(props);
-    this.newMessage = this.newMessage.bind(this);
-    this.sendMessage = this.sendMessage.bind(this);
-    this.close = this.close.bind(this);
-  }
-
-  newMessage(e) {
-    const mess = e.target.value;
-    this.props.newMessageInput(mess);
-  }
-
-  sendMessage() {
-    this.props.sendMessage();
-  }
-
-  close() {
-    this.props.closeMessage();
   }
 
   componentWillUnmount() {
-    this.close();
+    this.props.closeMessage();
   }
 
   render() {
@@ -56,16 +40,16 @@ class Messagepage extends React.Component {
         </div>
         <div className={s.writer}>
           <textarea
-            onChange={this.newMessage}
+            onChange={this.props.newMessage}
             className={s.newmess}
             placeholder="Напишите сообщение..."
             value={this.props.newMessage}
           />
-          <button className={s.send} onClick={this.sendMessage}>
+          <button className={s.send} onClick={this.props.sendMessage}>
             <FontAwesomeIcon icon={faPaperPlane} className={s.icon} />
           </button>
         </div>
-        <button onClick={this.close} className={s.back}>
+        <button onClick={this.props.closeMessage} className={s.back}>
           <FontAwesomeIcon icon={faAngleLeft} className={s.backicon} />
           Назад
         </button>
