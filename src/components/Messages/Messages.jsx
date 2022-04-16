@@ -2,27 +2,10 @@ import React from "react";
 import s from "./Messages.module.css";
 import Message from "./Message";
 import Messagepage from "./MessagePage";
-import { newMessageActionCreate, sendMessageActionCreate, closeMessageActionCreate, openMessageActionCreate } from "../../redux/dataReducer";
 
 const Messages = (props) => {
 
   const i = props.state.index;
-
-  const newMessage = (text) => {
-    props.dispatch(newMessageActionCreate(text));
-  }
-
-  const sendMessage = () => {
-    props.dispatch(sendMessageActionCreate());
-  }
-
-  const closeMessage = () => {
-    props.dispatch(closeMessageActionCreate());
-  }
-
-  const openMessage = (index) => {
-    props.dispatch(openMessageActionCreate(index));
-  }
 
   return (
     <>
@@ -35,9 +18,9 @@ const Messages = (props) => {
           avatar1={props.state.messages[i].title.ava}
           name={props.state.messages[i].title.shortName}
           title={props.state.messages[i].title.name}
-          newMessageInput={newMessage}
-          sendMessage={sendMessage}
-          closeMessage={closeMessage}
+          newMessageInput={props.newMessage}
+          sendMessage={props.sendMessage}
+          closeMessage={props.closeMessage}
         />
       ) : (
         <div className={s.messages}>
@@ -46,7 +29,7 @@ const Messages = (props) => {
               i={index}
               key={index}
               state={item.title}
-              openMessage={openMessage}
+              openMessage={props.openMessage}
             />
           ))}
         </div>
