@@ -88,7 +88,7 @@ const initialState = {
     job: "",
   },
 
-  avatar: "https://sun9-21.userapi.com/impg/URis_7zX3Nm3t-wBnTqQ5XQUH5VCIAYpUlV9XQ/cmHhq12O3Ls.jpg?size=483x604&quality=96&sign=a548a3c9cce26b53c8b4a78ad42d507f&c_uniq_tag=js-xaOwuO11YP32bq5Z1Fu1VdQ0xl6j6AZCQYFLVPy4&type=album",
+  avatar: "https://sun1-97.userapi.com/s/v1/ig2/ttGUkS0WwNfQTG9JV4ylFf3bHbk4pTBDfIfOp8kIBdbxWg7ERDiBahB5W-ZFoDTyZUNq9ffkSsnMpowsic43WPaw.jpg?size=200x200&quality=96&crop=0,0,1440,1440&ava=1",
 
   messagesPage: {
     isOpen: false,
