@@ -88,7 +88,8 @@ const initialState = {
     job: "",
   },
 
-  avatar: "https://sun1-97.userapi.com/s/v1/ig2/ttGUkS0WwNfQTG9JV4ylFf3bHbk4pTBDfIfOp8kIBdbxWg7ERDiBahB5W-ZFoDTyZUNq9ffkSsnMpowsic43WPaw.jpg?size=200x200&quality=96&crop=0,0,1440,1440&ava=1",
+  avatar:
+    "https://sun1-97.userapi.com/s/v1/ig2/ttGUkS0WwNfQTG9JV4ylFf3bHbk4pTBDfIfOp8kIBdbxWg7ERDiBahB5W-ZFoDTyZUNq9ffkSsnMpowsic43WPaw.jpg?size=200x200&quality=96&crop=0,0,1440,1440&ava=1",
 
   messagesPage: {
     isOpen: false,
@@ -134,10 +135,10 @@ const initialState = {
         },
 
         dialogs: [
-            {
-                identefication: "interlocutor",
-                body: "Привет",
-            },
+          {
+            identefication: "interlocutor",
+            body: "Привет",
+          },
         ],
       },
       {
@@ -149,10 +150,10 @@ const initialState = {
         },
 
         dialogs: [
-            {
-                identefication: "interlocutor",
-                body: "Привет",
-            },
+          {
+            identefication: "interlocutor",
+            body: "Привет",
+          },
         ],
       },
       {
@@ -164,10 +165,10 @@ const initialState = {
         },
 
         dialogs: [
-            {
-                identefication: "interlocutor",
-                body: "Привет",
-            },
+          {
+            identefication: "interlocutor",
+            body: "Привет",
+          },
         ],
       },
     ],
@@ -175,90 +176,144 @@ const initialState = {
 };
 
 const dataReducer = (state = initialState, action) => {
-  const copyState = JSON.parse(JSON.stringify(state));
-  console.log(copyState);
   switch (action.type) {
     case CHANGE_FORM_EDIT: {
       switch (action.name) {
-        case "fullname": {
-          copyState.edit.FullName = action.value;
-          break;
-        }
-        case "address": {
-          copyState.edit.address = action.value;
-          break;
-        }
-        case "birthday": {
-          copyState.edit.birthday = action.value;
-          break;
-        }
-        case "job": {
-          copyState.edit.job = action.value;
-          break;
-        }
+        case "fullname":
+          return {
+            ...state,
+            edit: {
+              ...state.edit,
+              FullName: action.value,
+            },
+          };
+        case "address": 
+          return {
+            ...state,
+            edit: {
+              ...state.edit,
+              address: action.value,
+            },
+          };
+        case "birthday": 
+          return {
+            ...state,
+            edit: {
+              ...state.edit,
+              birthday: action.value,
+            },
+          };
+        case "job": 
+          return {
+            ...state,
+            edit: {
+              ...state.edit,
+              job: action.value,
+            },
+          };
       }
-      return copyState;
     }
     case COMMIT_FORM_EDIT: {
-      copyState.profile.name = copyState.edit.FullName || copyState.profile.name;
-      copyState.profile.address = copyState.edit.address || copyState.profile.address;
-      copyState.profile.age = copyState.edit.birthday || copyState.profile.age;
-      copyState.profile.job = copyState.edit.job || copyState.profile.job;
-      copyState.shortName = copyState.profile.name.split(" ")[0];
-      copyState.edit.FullName = '';
-      copyState.edit.address = '';
-      copyState.edit.birthday = '';
-      copyState.edit.job = '';
-      return copyState;
+      return {
+        ...state,
+        profile: {
+          name: state.edit.FullName || state.profile.name,
+          address: state.edit.address || state.profile.address,
+          age: state.edit.birthday || state.profile.age,
+          job: state.edit.job || state.profile.job,
+        },
+        shortName: (state.edit.FullName || state.profile.name).split(" ")[0],
+        edit: {
+          FullName: "",
+          address: "",
+          birthday: "",
+          job: "",
+        },
+      };
     }
     case ADD_POST: {
-      if (copyState.main.textOfPost === "") return copyState;
+      if (state.main.textOfPost === "") return state;
 
       const post = {
-        ava: copyState.avatar,
-        profileName: copyState.profile.name,
-        body: copyState.main.textOfPost,
+        ava: state.avatar,
+        profileName: state.profile.name,
+        body: state.main.textOfPost,
         date: "0 sec",
       };
 
-      copyState.main.posts.unshift(post);
-      copyState.main.textOfPost = "";
-      return copyState;
+      return {
+        ...state,
+        main: {
+          posts: [post, ...state.main.posts],
+          textOfPost: "",
+        },
+      };
     }
     case CHANGE_ENTRY_FIELD:
-      copyState.main.textOfPost = action.newText;
-      return copyState;
+      return {
+        ...state,
+        main: {
+          ...state.main,
+          textOfPost: action.newText,
+        },
+      };
     case OPEN_MESSAGE: {
-      copyState.messagesPage.isOpen = true;
-      copyState.messagesPage.index = action.index;
-      return copyState;
+      return {
+        ...state,
+        messagesPage: {
+          ...state.messagesPage,
+          isOpen: true,
+          index: action.index,
+        },
+      };
     }
     case NEW_MESSAGE:
-      copyState.messagesPage.newMessage = action.body;
-      return copyState;
+      return {
+        ...state,
+        messagesPage: {
+          ...state.messagesPage,
+          newMessage: action.body,
+        },
+      };
     case SEND_MESSAGE: {
-      if (copyState.messagesPage.newMessage === "") return copyState;
-      const index = copyState.messagesPage.index;
-      const text = copyState.messagesPage.newMessage;
+      if (state.messagesPage.newMessage === "") return state;
+      const index = state.messagesPage.index;
+      const text = state.messagesPage.newMessage;
       const message = {
         identefication: "me",
         body: text,
       };
-      copyState.messagesPage.messages[index].dialogs.push(message);
-      const lastmessage =
-        copyState.messagesPage.messages[index].dialogs.slice(-1)[0].body;
-      copyState.messagesPage.messages[index].title.lastmessage = lastmessage;
-      copyState.messagesPage.newMessage = "";
-      return copyState;
+      return {
+        ...state,
+        messagesPage: {
+          ...state.messagesPage,
+          messages: [
+            ...state.messagesPage.messages.slice(0, index),
+            {
+              title: {
+                ...state.messagesPage.messages[index].title,
+                lastmessage: text,
+              },
+
+              dialogs: [...state.messagesPage.messages[index].dialogs, message],
+            },
+            ...state.messagesPage.messages.slice(+index + 1),
+          ],
+          newMessage: "",
+        },
+      };
     }
-    case CLOSE_MESSAGE: {
-      copyState.messagesPage.isOpen = false;
-      copyState.messagesPage.index = "";
-      return copyState;
-    }
-    default: {
-      return copyState;
-    }
+    case CLOSE_MESSAGE:
+      return {
+        ...state,
+        messagesPage: {
+          ...state.messagesPage,
+          isOpen: false,
+          index: "",
+        },
+      };
+    default:
+      return state;
   }
 };
 

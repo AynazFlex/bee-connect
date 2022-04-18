@@ -14,8 +14,7 @@
 
 .avatar {
     display: block;
-    width: 150px;
-    height: 150px;
+    width: 100%;
     margin: 0 auto;
 }
 
