@@ -3,7 +3,7 @@ import "./App.css";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import MainContainer from "./components/Main/MainContainer";
-import Friends from "./components/Friends/Friends";
+import UsersContainer from "./components/Users/UsersContainer";
 import DialogsContainer from "./components/Messages/DialogsContainer";
 import News from "./components/News/News";
 import EditContainer from "./components/Edit/EditContainer";
@@ -17,7 +17,7 @@ const App = (props) => {
       <Routes>
         <Route path="/" element={<MainContainer />}/>
         <Route path="/profile" element={<MainContainer />}/>
-        <Route path="/friends" element={<Friends />} />
+        <Route path="/friends" element={<UsersContainer />} />
         <Route path="/messages" element={<DialogsContainer />}/>
         <Route path="/news" element={<News />} />
         <Route path="/edit" element={<EditContainer />}/>

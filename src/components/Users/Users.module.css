@@ -1,0 +1,49 @@
+.usersPage {
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    align-self: start;
+}
+
+.user {
+    display: flex;
+    background: white;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid black;
+}
+
+.data {
+    display: flex;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+}
+
+.locations, .name, .birthday {
+    margin: 0;
+}
+
+.name {
+    color: #2a5885;
+    cursor: pointer;
+}
+
+.followed {
+    align-self: center;
+    display: block;
+    background: #5181b8;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}

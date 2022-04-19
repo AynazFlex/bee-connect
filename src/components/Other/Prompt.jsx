@@ -1,6 +1,6 @@
 import s from './Prompt.module.css'
 
-function Promt(props) {
+const Promt = (props) => {
     const x = props.info.getBoundingClientRect().left;
     const y = props.info.getBoundingClientRect().bottom + 5;
     return (

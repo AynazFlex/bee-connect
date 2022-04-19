@@ -49,7 +49,7 @@ class Navbar extends React.Component {
             <FontAwesomeIcon icon={faVk} className={s.icon} />
             <span className={s.logo}>биконект</span>
           </Link>
-          <Link to="/friends" data-name="Друзья" className={s.link}>
+          <Link to="/friends" data-name="Пользователи" className={s.link}>
             <FontAwesomeIcon icon={faUser} className={s.icon} />
           </Link>
           <Link to="/news" data-name="Новости" className={s.link}>
