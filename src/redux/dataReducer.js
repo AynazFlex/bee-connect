@@ -88,8 +88,7 @@ const initialState = {
     job: "",
   },
 
-  avatar:
-    "https://sun1-97.userapi.com/s/v1/ig2/ttGUkS0WwNfQTG9JV4ylFf3bHbk4pTBDfIfOp8kIBdbxWg7ERDiBahB5W-ZFoDTyZUNq9ffkSsnMpowsic43WPaw.jpg?size=200x200&quality=96&crop=0,0,1440,1440&ava=1",
+  avatar: "https://vk.com/images/camera_200.png",
 
   messagesPage: {
     isOpen: false,
