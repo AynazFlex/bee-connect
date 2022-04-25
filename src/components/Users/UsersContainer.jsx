@@ -7,12 +7,15 @@ import {
   SetUsersActionCreat,
   SetTotalCountActionCreat,
   SetActiveActionCreat,
+  toggleLoadingActionCreat,
 } from "../../redux/usersReducer";
+import Preloader from "../Other/Preloader";
 
 const UsersContainer = (props) => {
   const [scroll, setScroll] = useState(0);
 
   useEffect(() => {
+    props.isFetching(true);
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?page=1&count=${props.users.pageSize}`
@@ -21,6 +24,7 @@ const UsersContainer = (props) => {
         props.setUsers(response.data.items);
         props.setTotalCount(response.data.totalCount);
         props.setActive(1);
+        props.isFetching(false);
       });
   }, []);
 
@@ -47,17 +51,21 @@ const UsersContainer = (props) => {
   };
 
   const changePage = (page) => {
+    props.isFetching(true);
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${props.users.pageSize}`
       )
       .then((response) => {
         props.setUsers(response.data.items);
-        props.setActive(page);
+        props.isFetching(false);
       });
+    props.setActive(page);
   };
 
-  return (
+  return props.users.isFetch ? (
+    <Preloader />
+  ) : (
     <Users
       users={props.users.users}
       activePage={props.users.activePage}
@@ -86,6 +94,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setActive: (page) => {
     dispatch(SetActiveActionCreat(page));
+  },
+  isFetching: (isFetching) => {
+    dispatch(toggleLoadingActionCreat(isFetching));
   },
 });
 

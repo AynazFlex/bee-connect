@@ -2,6 +2,7 @@ const FOLLOW_UNFOLLOW = "FOLLOW-UNFOLLOW";
 const SET_USERS = "SET-USERS";
 const SET_TOTAL_COUNT = "SET-TOTAL-COUNT";
 const SET_ACTIVE_PAGE = "SET-ACTIVE-PAGE";
+const TOGGLE_LOADING = "TOGGLE-LOADING";
 
 export const FollowUnfollowActionCreat = (userId) => ({
   type: FOLLOW_UNFOLLOW,
@@ -17,11 +18,14 @@ export const SetTotalCountActionCreat = (totalCount) => ({
 
 export const SetActiveActionCreat = (page) => ({ type: SET_ACTIVE_PAGE, page });
 
+export const toggleLoadingActionCreat = (isFetching) => ({ type: TOGGLE_LOADING, isFetching})
+
 const initialState = {
   users: [],
   totalCount: 0,
   pageSize: 20,
   activePage: 1,
+  isFetch: true,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -56,6 +60,11 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         activePage: action.page,
       };
+    case TOGGLE_LOADING:
+        return {
+            ...state,
+            isFetch: action.isFetching,
+        }
     default:
       return state;
   }
