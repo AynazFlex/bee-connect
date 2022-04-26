@@ -8,7 +8,10 @@ function Newpost(props) {
     <>
       <div className={s.post}>
         <textarea
-          onChange={props.changeText}
+          onChange={(e) => {
+            const text = e.target.value;
+            props.changeText(text);
+          }}
           placeholder="Что у вас нового?"
           className={s.input}
           value={props.textOfPost}

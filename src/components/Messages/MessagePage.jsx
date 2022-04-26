@@ -40,7 +40,10 @@ class Messagepage extends React.Component {
         </div>
         <div className={s.writer}>
           <textarea
-            onChange={this.props.newMessageInput}
+            onChange={(e) => {
+              const mess = e.target.value;
+              this.props.newMessageInput(mess);
+            }}
             className={s.newmess}
             placeholder="Напишите сообщение..."
             value={this.props.newMessage}

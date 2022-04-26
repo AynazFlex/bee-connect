@@ -4,21 +4,21 @@ const SET_TOTAL_COUNT = "SET-TOTAL-COUNT";
 const SET_ACTIVE_PAGE = "SET-ACTIVE-PAGE";
 const TOGGLE_LOADING = "TOGGLE-LOADING";
 
-export const FollowUnfollowActionCreat = (userId) => ({
+export const followed = (userId) => ({
   type: FOLLOW_UNFOLLOW,
   userId,
 });
 
-export const SetUsersActionCreat = (users) => ({ type: SET_USERS, users });
+export const setUsers = (users) => ({ type: SET_USERS, users });
 
-export const SetTotalCountActionCreat = (totalCount) => ({
+export const setTotalCount = (totalCount) => ({
   type: SET_TOTAL_COUNT,
   totalCount,
 });
 
-export const SetActiveActionCreat = (page) => ({ type: SET_ACTIVE_PAGE, page });
+export const setActive = (page) => ({ type: SET_ACTIVE_PAGE, page });
 
-export const toggleLoadingActionCreat = (isFetching) => ({ type: TOGGLE_LOADING, isFetching})
+export const isFetching = (isFetching) => ({ type: TOGGLE_LOADING, isFetching})
 
 const initialState = {
   users: [],

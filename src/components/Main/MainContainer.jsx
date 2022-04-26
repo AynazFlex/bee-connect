@@ -1,24 +1,14 @@
 import { connect } from "react-redux";
 import Main from "./Main";
 import {
-  addPostActionCreate,
-  changeEntryActionCreate,
+  addPost,
+  changeText,
 } from "../../redux/dataReducer";
 
 const mapStateToProps = (state) => ({
   state: state.data.main,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  addPost: () => {
-    dispatch(addPostActionCreate());
-  },
-  changeText: (event) => {
-    const text = event.target.value;
-    dispatch(changeEntryActionCreate(text));
-  },
-});
-
-const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
+const MainContainer = connect(mapStateToProps, {addPost, changeText})(Main);
 
 export default MainContainer;

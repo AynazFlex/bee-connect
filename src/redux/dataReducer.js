@@ -7,36 +7,36 @@ const NEW_MESSAGE = "NEW_MESSAGE";
 const SEND_MESSAGE = "SEND_MESSAGE";
 const CLOSE_MESSAGE = "CLOSE_MESSAGE";
 
-export const changeFormActionCreate = (name, value) => ({
+export const changeForm = (name, value) => ({
   type: CHANGE_FORM_EDIT,
   name: name,
   value: value,
 });
 
-export const commitFormActionCreate = () => ({ type: COMMIT_FORM_EDIT });
+export const commitForm = () => ({ type: COMMIT_FORM_EDIT });
 
-export const addPostActionCreate = () => ({ type: ADD_POST });
+export const addPost = () => ({ type: ADD_POST });
 
-export const changeEntryActionCreate = (text) => ({
+export const changeText = (text) => ({
   type: CHANGE_ENTRY_FIELD,
   newText: text,
 });
 
-export const openMessageActionCreate = (index) => ({
+export const openMessage = (index) => ({
   type: OPEN_MESSAGE,
   index: index,
 });
 
-export const closeMessageActionCreate = () => ({
+export const closeMessage = () => ({
   type: CLOSE_MESSAGE,
 });
 
-export const newMessageActionCreate = (body) => ({
+export const newMessageInput = (body) => ({
   type: NEW_MESSAGE,
   body: body,
 });
 
-export const sendMessageActionCreate = () => ({
+export const sendMessage = () => ({
   type: SEND_MESSAGE,
 });
 
