@@ -22,6 +22,7 @@ const NavbarContainer = (props) => {
       mouseOut={mouseOut}
       mouseMove={mouseMove}
       info={info}
+      id={props.id}
     />
   );
 };
@@ -29,6 +30,7 @@ const NavbarContainer = (props) => {
 const mapStateToProps = (state) => {
   return {
     avatar: state.data.avatar,
+    id: state.data.profile.id,
   };
 };
 

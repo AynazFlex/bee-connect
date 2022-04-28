@@ -8,6 +8,7 @@ import DialogsContainer from "./components/Messages/DialogsContainer";
 import News from "./components/News/News";
 import EditContainer from "./components/Edit/EditContainer";
 import { Route, Routes } from "react-router-dom";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 const App = (props) => {
   return (
@@ -16,7 +17,8 @@ const App = (props) => {
       <SidebarContainer />
       <Routes>
         <Route path="/" element={<MainContainer />}/>
-        <Route path="/profile" element={<MainContainer />}/>
+        <Route path={`/${props.id}`} element={<MainContainer />}/>
+        <Route path="/profile/:userId" element={<ProfileContainer />}/>
         <Route path="/friends" element={<UsersContainer />} />
         <Route path="/messages" element={<DialogsContainer />}/>
         <Route path="/news" element={<News />} />

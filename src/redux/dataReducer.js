@@ -46,6 +46,7 @@ const initialState = {
     age: "17 мая 2003",
     job: "Frontend Developer",
     address: "Россия, Mосква",
+    id: 1713,
   },
 
   shortName: "Айназ",
@@ -216,6 +217,7 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         profile: {
+          ...state.profile,
           name: state.edit.FullName || state.profile.name,
           address: state.edit.address || state.profile.address,
           age: state.edit.birthday || state.profile.age,

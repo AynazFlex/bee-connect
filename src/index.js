@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
-      <App />
+      <App id={store.getState().data.profile.id} />
     </Provider>
   </BrowserRouter>,
   document.getElementById("root")

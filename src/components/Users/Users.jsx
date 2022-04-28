@@ -1,14 +1,19 @@
 import React from "react";
 import s from "./Users.module.css";
+import { Link } from "react-router-dom";
 
 const Users = (props) => (
   <div className={s.users}>
     {props.users.map((user) => (
       <div className={s.user} key={user.id}>
         <div className={s.data}>
-          <img className={s.avatar} src={user.avatar} alt="ava" />
+          <Link to={`/profile/${user.id}`}>
+            <img className={s.avatar} src={user.avatar} alt="ava" />
+          </Link>
           <div className={s.info}>
-            <h3 className={s.name}>{user.name}</h3>
+            <Link to={`/profile/${user.id}`} className={s.link}>
+              <h3 className={s.name}>{user.name}</h3>
+            </Link>
             <p className={s.locations}>{user.locations}</p>
             <p className={s.birthday}>{user.birthday}</p>
           </div>
