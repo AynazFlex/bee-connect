@@ -18,7 +18,14 @@ const Users = (props) => (
             <p className={s.birthday}>{user.birthday}</p>
           </div>
         </div>
-        <button className={s.followed} onClick={() => props.followed(user.id)}>
+        <button
+          className={s.followed}
+          onClick={() => {
+            user.followed
+              ? props.setUnfollow(user.id)
+              : props.setFollow(user.id);
+          }}
+        >
           {user.followed ? "Удалить из друзей" : "Добавить в друзья"}
         </button>
       </div>

@@ -4,9 +4,10 @@ const SET_TOTAL_COUNT = "SET-TOTAL-COUNT";
 const SET_ACTIVE_PAGE = "SET-ACTIVE-PAGE";
 const TOGGLE_LOADING = "TOGGLE-LOADING";
 
-export const followed = (userId) => ({
+export const followed = (userId, follow) => ({
   type: FOLLOW_UNFOLLOW,
   userId,
+  follow
 });
 
 export const setUsers = (users) => ({ type: SET_USERS, users });
@@ -35,7 +36,7 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         users: state.users.map((user) =>
           action.userId === user.id
-            ? { ...user, followed: !user.followed }
+            ? { ...user, followed: action.follow }
             : user
         ),
       };
@@ -48,6 +49,7 @@ const usersReducer = (state = initialState, action) => {
           name: user.name,
           birthday: user.birthday || "Дата рождения не указана",
           locations: user.locations || user.status || "Локация не указана",
+          followed: user.followed
         })),
       };
     case SET_TOTAL_COUNT:

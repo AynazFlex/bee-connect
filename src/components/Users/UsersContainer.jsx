@@ -18,7 +18,8 @@ const UsersContainer = (props) => {
     props.isFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=1&count=${props.users.pageSize}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=1&count=${props.users.pageSize}`,
+        { withCredentials: true }
       )
       .then((response) => {
         props.setUsers(response.data.items);
@@ -54,13 +55,46 @@ const UsersContainer = (props) => {
     props.isFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${props.users.pageSize}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${props.users.pageSize}`,
+        { withCredentials: true }
       )
       .then((response) => {
         props.setUsers(response.data.items);
         props.isFetching(false);
       });
     props.setActive(page);
+  };
+
+  const setUnfollow = (id, callback) => {
+    console.log("DELETE", id);
+    axios
+      .delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
+        withCredentials: true,
+        headers: {
+          "API-KEY": "69fffc0e-9b9e-4602-9adc-6d9baa3d8be8",
+        },
+      })
+      .then((response) => {
+        response.data.resultCode === 0 && props.followed(id, false);
+      });
+  };
+
+  const setFollow = (id) => {
+    console.log("POST", id);
+    axios
+      .post(
+        `https://social-network.samuraijs.com/api/1.0/follow/${id}`,
+        {},
+        {
+          withCredentials: true,
+          headers: {
+            "API-KEY": "69fffc0e-9b9e-4602-9adc-6d9baa3d8be8",
+          },
+        }
+      )
+      .then((response) => {
+        response.data.resultCode === 0 && props.followed(id, true);
+      });
   };
 
   return props.users.isFetch ? (
@@ -74,6 +108,8 @@ const UsersContainer = (props) => {
       scroll={scroll}
       scrolling={scrolling}
       pagination={pagination}
+      setFollow={setFollow}
+      setUnfollow={setUnfollow}
     />
   );
 };

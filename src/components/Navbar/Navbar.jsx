@@ -36,9 +36,14 @@ const Navbar = (props) => {
         </a>
       </div>
       <div>
-        <a className={s.link}>
-          <img src={props.avatar} className={s.avatar} alt="nav avatar" />
-        </a>
+        {props.auth.isAuthenticated ? (
+          <a className={s.link}>
+            <img src={props.avatar} className={s.avatar} alt="nav avatar" />
+            <span className={s.login}>{props.auth.login}</span>
+          </a>
+        ) : (
+          <a className={s.link}>Login</a>
+        )}
       </div>
       {props.info}
     </div>
