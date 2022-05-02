@@ -3,19 +3,11 @@ import s from "./Navbar.module.css";
 import Promt from "../Other/Prompt";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
-import { setAuthData } from "../../redux/authReducer";
-import * as axios from "axios";
+import { setAuthDataThunkCreate } from "../../redux/authReducer";
 
 const NavbarContainer = (props) => {
-
   useEffect(() => {
-    axios
-      .get('https://social-network.samuraijs.com/api/1.0/auth/me', {
-        withCredentials: true
-      })
-      .then(response => {
-        props.setAuthData(response.data.data);
-      })
+    props.setAuthData();
   }, []);
 
   const [info, setInfo] = useState(<></>);
@@ -49,4 +41,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {setAuthData})(NavbarContainer);
+export default connect(mapStateToProps, { setAuthData: setAuthDataThunkCreate })(NavbarContainer);

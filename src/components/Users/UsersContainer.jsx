@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import * as axios from "axios";
 import Users from "./Users";
 import { connect } from "react-redux";
 import {
-  followed,
-  setUsers,
-  setTotalCount,
-  setActive,
-  isFetching,
+  getUsersThunkCreate,
+  changeUsersThunkCreate,
+  setUnfollowThunkCreate,
+  setFollowThunkCreate,
 } from "../../redux/usersReducer";
 import Preloader from "../Other/Preloader";
 
@@ -15,18 +13,7 @@ const UsersContainer = (props) => {
   const [scroll, setScroll] = useState(0);
 
   useEffect(() => {
-    props.isFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=1&count=${props.users.pageSize}`,
-        { withCredentials: true }
-      )
-      .then((response) => {
-        props.setUsers(response.data.items);
-        props.setTotalCount(response.data.totalCount);
-        props.setActive(1);
-        props.isFetching(false);
-      });
+    props.getUsers(props.users.pageSize);
   }, []);
 
   const pagination = () => {
@@ -52,49 +39,7 @@ const UsersContainer = (props) => {
   };
 
   const changePage = (page) => {
-    props.isFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${props.users.pageSize}`,
-        { withCredentials: true }
-      )
-      .then((response) => {
-        props.setUsers(response.data.items);
-        props.isFetching(false);
-      });
-    props.setActive(page);
-  };
-
-  const setUnfollow = (id, callback) => {
-    console.log("DELETE", id);
-    axios
-      .delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
-        withCredentials: true,
-        headers: {
-          "API-KEY": "69fffc0e-9b9e-4602-9adc-6d9baa3d8be8",
-        },
-      })
-      .then((response) => {
-        response.data.resultCode === 0 && props.followed(id, false);
-      });
-  };
-
-  const setFollow = (id) => {
-    console.log("POST", id);
-    axios
-      .post(
-        `https://social-network.samuraijs.com/api/1.0/follow/${id}`,
-        {},
-        {
-          withCredentials: true,
-          headers: {
-            "API-KEY": "69fffc0e-9b9e-4602-9adc-6d9baa3d8be8",
-          },
-        }
-      )
-      .then((response) => {
-        response.data.resultCode === 0 && props.followed(id, true);
-      });
+    props.changeUsers(page, props.users.pageSize);
   };
 
   return props.users.isFetch ? (
@@ -108,8 +53,9 @@ const UsersContainer = (props) => {
       scroll={scroll}
       scrolling={scrolling}
       pagination={pagination}
-      setFollow={setFollow}
-      setUnfollow={setUnfollow}
+      setFollow={props.setFollow}
+      setUnfollow={props.setUnfollow}
+      followingInProgress={props.users.followingInProgress}
     />
   );
 };
@@ -119,9 +65,8 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  followed,
-  setUsers,
-  setTotalCount,
-  setActive,
-  isFetching,
+  getUsers: getUsersThunkCreate,
+  changeUsers: changeUsersThunkCreate,
+  setUnfollow: setUnfollowThunkCreate,
+  setFollow: setFollowThunkCreate,
 })(UsersContainer);
