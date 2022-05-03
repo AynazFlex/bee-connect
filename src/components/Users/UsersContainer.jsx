@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import Users from "./Users";
 import { connect } from "react-redux";
 import {
-  getUsersThunkCreate,
-  changeUsersThunkCreate,
-  setUnfollowThunkCreate,
-  setFollowThunkCreate,
+  getUsers,
+  changeUsers,
+  setUnfollow,
+  setFollow,
 } from "../../redux/usersReducer";
 import Preloader from "../Other/Preloader";
 
@@ -65,8 +65,8 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getUsers: getUsersThunkCreate,
-  changeUsers: changeUsersThunkCreate,
-  setUnfollow: setUnfollowThunkCreate,
-  setFollow: setFollowThunkCreate,
+  getUsers,
+  changeUsers,
+  setUnfollow,
+  setFollow,
 })(UsersContainer);

@@ -24,3 +24,8 @@
 .date {
     opacity: 0.60;
 }
+
+h3 {
+    align-self: center;
+    margin: 0;
+}

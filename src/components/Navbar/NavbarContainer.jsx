@@ -3,7 +3,7 @@ import s from "./Navbar.module.css";
 import Promt from "../Other/Prompt";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
-import { setAuthDataThunkCreate } from "../../redux/authReducer";
+import { setAuthData } from "../../redux/authReducer";
 
 const NavbarContainer = (props) => {
   useEffect(() => {
@@ -41,4 +41,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { setAuthData: setAuthDataThunkCreate })(NavbarContainer);
+export default connect(mapStateToProps, { setAuthData })(NavbarContainer);

@@ -2,11 +2,9 @@ import Api from "../api/api";
 
 const SET_AUTH_DATA = "SET-AUTH-DATA";
 
-export const setAuthData = (data) => ({ type: SET_AUTH_DATA, data });
-
-export const setAuthDataThunkCreate = () => (dispatch) => {
+export const setAuthData = () => (dispatch) => {
   Api.setAuth().then((data) => {
-    dispatch(setAuthData(data.data));
+    dispatch({ type: SET_AUTH_DATA, data });
   });
 };
 

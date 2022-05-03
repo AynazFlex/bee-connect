@@ -1,7 +1,12 @@
+import Api from "../api/api";
+
 const SET_PROFILE = "SET-PROFILE";
 
 export const setProfile = (profile) => ({type: SET_PROFILE, profile});
 
+export const getProfile = (userId) => (dispatch) => {
+    Api.getProfile(userId).then((data) => dispatch(setProfile(data)));
+};
 
 const initialState = {
     profile: null,

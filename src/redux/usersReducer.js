@@ -7,33 +7,33 @@ const SET_ACTIVE_PAGE = "SET-ACTIVE-PAGE";
 const TOGGLE_LOADING = "TOGGLE-LOADING";
 const TOGGLE_FOLLOWING = "TOGGLE-FOLLOWING";
 
-export const followed = (userId, follow) => ({
+const followed = (userId, follow) => ({
   type: FOLLOW_UNFOLLOW,
   userId,
   follow,
 });
 
-export const setUsers = (users) => ({ type: SET_USERS, users });
+const setUsers = (users) => ({ type: SET_USERS, users });
 
-export const setTotalCount = (totalCount) => ({
+const setTotalCount = (totalCount) => ({
   type: SET_TOTAL_COUNT,
   totalCount,
 });
 
-export const setActive = (page) => ({ type: SET_ACTIVE_PAGE, page });
+const setActive = (page) => ({ type: SET_ACTIVE_PAGE, page });
 
-export const isFetching = (isFetching) => ({
+const isFetching = (isFetching) => ({
   type: TOGGLE_LOADING,
   isFetching,
 });
 
-export const toggleFollowing = (index, progress) => ({
+const toggleFollowing = (index, progress) => ({
   type: TOGGLE_FOLLOWING,
   index,
   progress,
 });
 
-export const getUsersThunkCreate = (pageSize) => (dispatch) => {
+export const getUsers = (pageSize) => (dispatch) => {
   dispatch(isFetching(true));
   Api.getUsers(1, pageSize).then((data) => {
     dispatch(setUsers(data.items));
@@ -43,7 +43,7 @@ export const getUsersThunkCreate = (pageSize) => (dispatch) => {
   });
 };
 
-export const changeUsersThunkCreate = (page, pageSize) => (dispatch) => {
+export const changeUsers = (page, pageSize) => (dispatch) => {
   dispatch(isFetching(true));
   Api.getUsers(page, pageSize).then((data) => {
     dispatch(setUsers(data.items));
@@ -52,7 +52,7 @@ export const changeUsersThunkCreate = (page, pageSize) => (dispatch) => {
   dispatch(setActive(page));
 };
 
-export const setUnfollowThunkCreate = (id) => (dispatch) => {
+export const setUnfollow = (id) => (dispatch) => {
   dispatch(toggleFollowing(id, true));
   Api.deleteFollow(id).then((data) => {
     data.resultCode === 0 && dispatch(followed(id, false));
@@ -60,7 +60,7 @@ export const setUnfollowThunkCreate = (id) => (dispatch) => {
   });
 };
 
-export const setFollowThunkCreate = (id) => (dispatch) => {
+export const setFollow = (id) => (dispatch) => {
   dispatch(toggleFollowing(id, true));
   Api.postFollow(id).then((data) => {
     data.resultCode === 0 && dispatch(followed(id, true));
