@@ -4,7 +4,7 @@ const SET_AUTH_DATA = "SET-AUTH-DATA";
 
 export const setAuthData = () => (dispatch) => {
   Api.setAuth().then((data) => {
-    dispatch({ type: SET_AUTH_DATA, data });
+    if(data.resultCode === 0) dispatch({ type: SET_AUTH_DATA, data: data.data });
   });
 };
 

@@ -5,10 +5,11 @@ import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import MainContainer from "./components/Main/MainContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import DialogsContainer from "./components/Messages/DialogsContainer";
-import News from "./components/News/News";
 import EditContainer from "./components/Edit/EditContainer";
 import { Route, Routes } from "react-router-dom";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import LoginContainer from "./components/Login/LoginContainer";
+import NewsContainer from "./components/News/NewsContainer";
 
 const App = (props) => {
   return (
@@ -21,8 +22,9 @@ const App = (props) => {
         <Route path="/profile/:userId" element={<ProfileContainer />}/>
         <Route path="/friends" element={<UsersContainer />} />
         <Route path="/messages" element={<DialogsContainer />}/>
-        <Route path="/news" element={<News />} />
-        <Route path="/edit" element={<EditContainer />}/>
+        <Route path="/news" element={<NewsContainer />} />
+        <Route path="/edit" element={<EditContainer />} />
+        <Route path="/login" element={<LoginContainer />} />
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </div>

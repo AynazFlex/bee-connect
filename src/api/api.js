@@ -28,8 +28,16 @@ const Api = {
   },
 
   setAuth: () => {
-      return instance.get('auth/me').then((response) => response.data.data);
-  }
+    return instance.get("auth/me").then((response) => response.data);
+  },
+
+  setNews: () => {
+    return axios
+      .get(
+        "https://newsdata.io/api/1/news?apikey=pub_71229f52ec9873cef06493c4ce0185058fe4&q=pegasus&language=en"
+      )
+      .then((response) => response.data.results);
+  },
 };
 
 export default Api;

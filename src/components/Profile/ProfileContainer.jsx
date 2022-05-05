@@ -4,6 +4,8 @@ import Preloader from "../Other/Preloader";
 import { getProfile } from "../../redux/profileReducer";
 import Profile from "./Profile";
 import { useParams } from "react-router-dom";
+import withAuthNavigate from "../../hoc/withAuthNavigate";
+import { compose } from "redux";
 
 const ProfileContainer = (props) => {
   const { userId } = useParams();
@@ -19,4 +21,7 @@ const mapStateToProps = (state) => ({
   profile: state.profile.profile,
 });
 
-export default connect(mapStateToProps, { getProfile })(ProfileContainer);
+export default compose(
+  withAuthNavigate,
+  connect(mapStateToProps, { getProfile })
+)(ProfileContainer)

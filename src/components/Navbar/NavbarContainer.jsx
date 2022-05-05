@@ -33,12 +33,10 @@ const NavbarContainer = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    avatar: state.data.avatar,
-    id: state.data.profile.id,
-    auth: state.auth,
-  };
-};
+const mapStateToProps = (state) => ({
+  avatar: state.data.avatar,
+  id: state.data.profile.id,
+  auth: state.auth,
+});
 
 export default connect(mapStateToProps, { setAuthData })(NavbarContainer);

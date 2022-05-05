@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import withAuthNavigate from "../../hoc/withAuthNavigate";
 import {
   newMessageInput,
   sendMessage,
@@ -20,4 +21,4 @@ const DialogsContainer = connect(mapStateToProps, {
   openMessage,
 })(Messages);
 
-export default DialogsContainer;
+export default withAuthNavigate(DialogsContainer);

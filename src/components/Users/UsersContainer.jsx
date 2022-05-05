@@ -8,6 +8,8 @@ import {
   setFollow,
 } from "../../redux/usersReducer";
 import Preloader from "../Other/Preloader";
+import withAuthNavigate from "../../hoc/withAuthNavigate";
+import { compose } from "redux";
 
 const UsersContainer = (props) => {
   const [scroll, setScroll] = useState(0);
@@ -64,9 +66,12 @@ const mapStateToProps = (state) => ({
   users: state.usersPage,
 });
 
-export default connect(mapStateToProps, {
-  getUsers,
-  changeUsers,
-  setUnfollow,
-  setFollow,
-})(UsersContainer);
+export default compose(
+  withAuthNavigate,
+  connect(mapStateToProps, {
+    getUsers,
+    changeUsers,
+    setUnfollow,
+    setFollow,
+  })
+)(UsersContainer);
