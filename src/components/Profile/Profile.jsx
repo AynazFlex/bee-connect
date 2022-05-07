@@ -14,13 +14,16 @@ const Profile = (props) => {
       <div className={s.profile}>
         <img
           className={s.photo}
-          src={props.photos.large || 'https://sun1-97.userapi.com/s/v1/ig2/ttGUkS0WwNfQTG9JV4ylFf3bHbk4pTBDfIfOp8kIBdbxWg7ERDiBahB5W-ZFoDTyZUNq9ffkSsnMpowsic43WPaw.jpg?size=200x200&quality=96&crop=0,0,1440,1440&ava=1'}
+          src={
+            props.photos.large ||
+            "https://sun1-97.userapi.com/s/v1/ig2/ttGUkS0WwNfQTG9JV4ylFf3bHbk4pTBDfIfOp8kIBdbxWg7ERDiBahB5W-ZFoDTyZUNq9ffkSsnMpowsic43WPaw.jpg?size=200x200&quality=96&crop=0,0,1440,1440&ava=1"
+          }
           alt="profile avatar"
         />
         <div>
           <h3 className={s.name}>{props.fullName}</h3>
           <p className={s.aboutUser}>
-            {props.aboutMe || "Статус не установлен"}
+            {props.status || "Статус не установлен"}
           </p>
           <Hr />
           <p>

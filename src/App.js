@@ -11,14 +11,13 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import NewsContainer from "./components/News/NewsContainer";
 
-const App = (props) => {
+const App = () => {
   return (
     <div className="wrapper">
       <NavbarContainer />
       <SidebarContainer />
       <Routes>
-        <Route path="/" element={<MainContainer />}/>
-        <Route path={`/${props.id}`} element={<MainContainer />}/>
+        <Route path="/*" element={<MainContainer />}/>
         <Route path="/profile/:userId" element={<ProfileContainer />}/>
         <Route path="/friends" element={<UsersContainer />} />
         <Route path="/messages" element={<DialogsContainer />}/>

@@ -7,18 +7,16 @@ import { compose } from "redux";
 import withAuthNavigate from "../../hoc/withAuthNavigate";
 
 const NewsContainer = (props) => {
-    useEffect(() =>props.setNews(), []);
+  useEffect(() => props.setNews(), []);
 
-    console.log(props.news.news, props.news.isGet);
-
-    return props.news.isGet ? <News news={props.news}/> : <Preloader />
-}
+  return props.news.isGet ? <News news={props.news.news} /> : <Preloader />;
+};
 
 const mapStateToProps = (state) => ({
-    news: state.news
-})
+  news: state.news,
+});
 
 export default compose(
-    withAuthNavigate,
-    connect(mapStateToProps, { setNews })
+  withAuthNavigate,
+  connect(mapStateToProps, { setNews })
 )(NewsContainer);

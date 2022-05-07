@@ -4,6 +4,7 @@ import Promt from "../Other/Prompt";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
 import { setAuthData } from "../../redux/authReducer";
+import { getStatus } from "../../redux/profileReducer";
 
 const NavbarContainer = (props) => {
   useEffect(() => {
@@ -27,7 +28,6 @@ const NavbarContainer = (props) => {
       mouseOut={mouseOut}
       mouseMove={mouseMove}
       info={info}
-      id={props.id}
       auth={props.auth}
     />
   );
@@ -35,8 +35,9 @@ const NavbarContainer = (props) => {
 
 const mapStateToProps = (state) => ({
   avatar: state.data.avatar,
-  id: state.data.profile.id,
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { setAuthData })(NavbarContainer);
+export default connect(mapStateToProps, { setAuthData, getStatus })(
+  NavbarContainer
+);

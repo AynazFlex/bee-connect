@@ -18,7 +18,7 @@ const Navbar = (props) => {
       onMouseOut={props.mouseOut}
     >
       <div className={s.left}>
-        <Link to={`/${props.id}`} className={s.link}>
+        <Link to={`/${props.auth.id}`} className={s.link}>
           <FontAwesomeIcon icon={faVk} className={s.icon} />
           <span className={s.logo}>биконект</span>
         </Link>

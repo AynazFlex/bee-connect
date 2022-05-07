@@ -2,12 +2,15 @@ import React from "react";
 import s from "./Main.module.css";
 import Newpost from "./Newpost";
 import Posts from "./Posts";
+import Status from "./Status";
+import Hr from "../Other/Hr";
 
 const Main = (props) => {
-
   return (
     <div className={s.main}>
-      <Newpost 
+      <Status status={props.status} putStatus={props.putStatus} />
+      <Hr />
+      <Newpost
         textOfPost={props.state.textOfPost}
         addPost={props.addPost}
         changeText={props.changeText}

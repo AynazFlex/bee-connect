@@ -34,9 +34,19 @@ const Api = {
   setNews: () => {
     return axios
       .get(
-        "https://newsdata.io/api/1/news?apikey=pub_71229f52ec9873cef06493c4ce0185058fe4&q=pegasus&language=en"
+        "https://newsdata.io/api/1/news?apikey=pub_71229f52ec9873cef06493c4ce0185058fe4&q=ukraine"
       )
       .then((response) => response.data.results);
+  },
+
+  getStatus: (userId) => {
+    return instance.get(`profile/status/${userId}`).then((response) => {
+      return response.data;
+    });
+  },
+
+  putStatus: (status) => {
+    return instance.put("profile/status", { status: status });
   },
 };
 
