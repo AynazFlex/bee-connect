@@ -3,6 +3,31 @@ import Correspondence from "./Correspondence";
 import s from "./Messagepage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { useForm } from "react-hook-form";
+
+const MessageForm = (props) => {
+  const { register, handleSubmit, reset } = useForm();
+
+  const onSubmit = (data) => {
+    props.sendMessage(data.message);
+    reset();
+  };
+
+  return (
+    <form className={s.writer} onSubmit={handleSubmit(onSubmit)}>
+      <textarea
+        {...register("message", {
+          required: true,
+        })}
+        className={s.newmess}
+        placeholder="Напишите сообщение..."
+      />
+      <button className={s.send}>
+        <FontAwesomeIcon icon={faPaperPlane} className={s.icon} />
+      </button>
+    </form>
+  );
+};
 
 class Messagepage extends React.Component {
   constructor(props) {
@@ -38,20 +63,7 @@ class Messagepage extends React.Component {
             );
           })}
         </div>
-        <div className={s.writer}>
-          <textarea
-            onChange={(e) => {
-              const mess = e.target.value;
-              this.props.newMessageInput(mess);
-            }}
-            className={s.newmess}
-            placeholder="Напишите сообщение..."
-            value={this.props.newMessage}
-          />
-          <button className={s.send} onClick={this.props.sendMessage}>
-            <FontAwesomeIcon icon={faPaperPlane} className={s.icon} />
-          </button>
-        </div>
+        <MessageForm sendMessage={this.props.sendMessage} />
         <button onClick={this.props.closeMessage} className={s.back}>
           <FontAwesomeIcon icon={faAngleLeft} className={s.backicon} />
           Назад

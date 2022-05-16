@@ -10,11 +10,7 @@ const Main = (props) => {
     <div className={s.main}>
       <Status status={props.status} putStatus={props.putStatus} />
       <Hr />
-      <Newpost
-        textOfPost={props.state.textOfPost}
-        addPost={props.addPost}
-        changeText={props.changeText}
-      />
+      <Newpost addPost={props.addPost} />
       {props.state.posts.map((post, index) => (
         <Posts key={index} post={post} />
       ))}

@@ -1,10 +1,43 @@
 import Api from "../api/api";
 
 const SET_AUTH_DATA = "SET-AUTH-DATA";
+const SET_CORECT_DATA = "SET-CORECT-DATA";
 
-export const setAuthData = () => (dispatch) => {
+const setAuth = (data, isAuth, isCorectlData) => ({
+  type: SET_AUTH_DATA,
+  data,
+  isAuth,
+  isCorectlData,
+});
+
+export const setAuthData = () => (dispatch) =>
   Api.setAuth().then((data) => {
-    if(data.resultCode === 0) dispatch({ type: SET_AUTH_DATA, data: data.data });
+    if (data.resultCode === 0) dispatch(setAuth(data.data, true, null));
+  });
+
+export const loginAuth = (email, password, rememberMe) => (dispatch) => {
+  Api.login(email, password, rememberMe).then((data) => {
+    console.log(data.data.resultCode);
+    switch (data.data.resultCode) {
+      case 0:
+        dispatch(setAuthData());
+        break;
+      case 1:
+        dispatch({
+          type: SET_CORECT_DATA,
+          isCorectlData: data.data.messages[0],
+        });
+        break;
+    }
+    data.data.resultCode === 0 && dispatch(setAuthData());
+  });
+};
+
+export const logoutAuth = () => (dispatch) => {
+  Api.logout().then((data) => {
+    console.log(data.data.resultCode);
+    data.data.resultCode === 0 &&
+      dispatch(setAuth({ id: null, login: null, email: null }, false, null));
   });
 };
 
@@ -13,6 +46,7 @@ const initialState = {
   login: null,
   email: null,
   isAuthenticated: false,
+  isCorectlData: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -21,7 +55,13 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.data,
-        isAuthenticated: true,
+        isAuthenticated: action.isAuth,
+        isCorectlData: action.isCorectlData,
+      };
+    case SET_CORECT_DATA:
+      return {
+        ...state,
+        isCorectlData: action.isCorectlData,
       };
     default:
       return state;

@@ -8,6 +8,47 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
     background-color: white;
 }
+
+.form {
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.login input, .password input {
+    margin-bottom: 10px;
+    font-size: 20px;
+    padding: 5px 20px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.submit {
+    display: block;
+    margin: auto;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    background: #7d97a5;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.checkbox {
+    margin-bottom: 10px;
+}
+
+.validation {
+    display: inline-block;
+    color: white;
+    padding: 4px 12px;
+    background-color: red;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+

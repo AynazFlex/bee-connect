@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import withAuthNavigate from "../../hoc/withAuthNavigate";
 import {
-  newMessageInput,
   sendMessage,
   closeMessage,
   openMessage,
@@ -15,7 +14,6 @@ const mapStateToProps = (state) => ({
 });
 
 const DialogsContainer = connect(mapStateToProps, {
-  newMessageInput,
   sendMessage,
   closeMessage,
   openMessage,

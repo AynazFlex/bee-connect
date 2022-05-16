@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import s from "./Navbar.module.css";
 import Promt from "../Other/Prompt";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
-import { setAuthData } from "../../redux/authReducer";
-import { getStatus } from "../../redux/profileReducer";
+import { logoutAuth } from "../../redux/authReducer";
 
 const NavbarContainer = (props) => {
-  useEffect(() => {
-    props.setAuthData();
-  }, []);
 
   const [info, setInfo] = useState(<></>);
 
@@ -27,6 +23,7 @@ const NavbarContainer = (props) => {
       avatar={props.avatar}
       mouseOut={mouseOut}
       mouseMove={mouseMove}
+      logoutAuth={props.logoutAuth}
       info={info}
       auth={props.auth}
     />
@@ -38,6 +35,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { setAuthData, getStatus })(
+export default connect(mapStateToProps, { logoutAuth })(
   NavbarContainer
 );

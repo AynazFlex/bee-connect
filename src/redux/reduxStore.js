@@ -5,6 +5,7 @@ import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
 import thunkMiddleware from "redux-thunk";
 import newsReducer from "./newsReducer";
+import appReducer from "./appReducer";
 
 const reducers = combineReducers({
     data: dataReducer,
@@ -12,6 +13,7 @@ const reducers = combineReducers({
     profile: profileReducer,
     auth: authReducer,
     news: newsReducer,
+    app: appReducer,
 })
 
 

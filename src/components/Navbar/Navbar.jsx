@@ -6,6 +6,8 @@ import {
   faMessage,
   faNewspaper,
   faUser,
+  faArrowRightFromBracket,
+  faArrowRightToBracket
 } from "@fortawesome/free-solid-svg-icons";
 import { faVk } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
@@ -37,12 +39,22 @@ const Navbar = (props) => {
       </div>
       <div>
         {props.auth.isAuthenticated ? (
-          <a className={s.link}>
-            <img src={props.avatar} className={s.avatar} alt="nav avatar" />
-            <span className={s.login}>{props.auth.login}</span>
-          </a>
+          <div className={s.righnavpanel}>
+            <a className={s.link}>
+              <img src={props.avatar} className={s.avatar} alt="nav avatar" />
+              <span className={s.login}>{props.auth.login}</span>
+            </a>
+            <div onClick={props.logoutAuth} className={s.logout}>
+              <FontAwesomeIcon
+                icon={faArrowRightFromBracket}
+                className={s.icon}
+              />
+            </div>
+          </div>
         ) : (
-          <a className={s.link}>Login</a>
+          <Link to="/login" className={s.link}>
+            <FontAwesomeIcon icon={faArrowRightToBracket} className={s.icon} />
+          </Link>
         )}
       </div>
       {props.info}

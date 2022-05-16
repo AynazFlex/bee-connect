@@ -2,27 +2,26 @@ import React from "react";
 import s from "./Edit.module.css";
 import Button from "../Other/Button";
 import Hr from "../Other/Hr";
+import { useForm } from "react-hook-form"; 
 
 const Edit = (props) => {
+
+  const {register, handleSubmit, reset} = useForm();
     
-  const changeForm = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    props.changeForm(name, value);
+  const submit = (data) => {
+    props.commitForm(data);
+    reset();
   };
 
   return (
     <div className={s.formBlock}>
-      <form>
+      <form onSubmit={handleSubmit(submit)}>
         <label className={s.item}>
           {" "}
           Имя Фамилия:
           <input
+            {...register("fullname")}
             className={s.input}
-            type="text"
-            name="fullname"
-            value={props.state.FullName}
-            onChange={changeForm}
             placeholder="Имя Фамилия"
           />
         </label>
@@ -30,11 +29,9 @@ const Edit = (props) => {
           {" "}
           Адрес:
           <input
+            {...register("address")}
             className={s.input}
             type="text"
-            name="address"
-            value={props.state.address}
-            onChange={changeForm}
             placeholder="Адрес"
           />
         </label>
@@ -42,11 +39,9 @@ const Edit = (props) => {
           {" "}
           День рождения:
           <input
+            {...register("birthday")}
             className={s.input}
             type="text"
-            name="birthday"
-            value={props.state.birthday}
-            onChange={changeForm}
             placeholder="День рождения"
           />
         </label>
@@ -54,21 +49,15 @@ const Edit = (props) => {
           {" "}
           Работа:
           <input
+            {...register("job")}
             className={s.input}
             type="text"
-            name="job"
-            value={props.state.job}
-            onChange={changeForm}
             placeholder="Работа"
           />
         </label>
         <Hr />
         <Button
           classname={s.modify}
-          callback={(e) => {
-            e.preventDefault();
-            props.commitForm();
-          }}
           text="Сохранить"
         />
       </form>

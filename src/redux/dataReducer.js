@@ -1,26 +1,12 @@
-const CHANGE_FORM_EDIT = "CHANGE_FORM_EDIT";
 const COMMIT_FORM_EDIT = "COMMIT_FORM_EDIT";
 const ADD_POST = "ADD_POST";
-const CHANGE_ENTRY_FIELD = "CHANGE_ENTRY_FIELD";
 const OPEN_MESSAGE = "OPEN_MESSAGE";
-const NEW_MESSAGE = "NEW_MESSAGE";
 const SEND_MESSAGE = "SEND_MESSAGE";
 const CLOSE_MESSAGE = "CLOSE_MESSAGE";
 
-export const changeForm = (name, value) => ({
-  type: CHANGE_FORM_EDIT,
-  name: name,
-  value: value,
-});
+export const commitForm = (data) => ({ type: COMMIT_FORM_EDIT, data });
 
-export const commitForm = () => ({ type: COMMIT_FORM_EDIT });
-
-export const addPost = () => ({ type: ADD_POST });
-
-export const changeText = (text) => ({
-  type: CHANGE_ENTRY_FIELD,
-  newText: text,
-});
+export const addPost = (body) => ({ type: ADD_POST, body });
 
 export const openMessage = (index) => ({
   type: OPEN_MESSAGE,
@@ -31,13 +17,8 @@ export const closeMessage = () => ({
   type: CLOSE_MESSAGE,
 });
 
-export const newMessageInput = (body) => ({
-  type: NEW_MESSAGE,
-  body: body,
-});
-
-export const sendMessage = () => ({
-  type: SEND_MESSAGE,
+export const sendMessage = (body) => ({
+  type: SEND_MESSAGE, body
 });
 
 const initialState = {
@@ -77,16 +58,7 @@ const initialState = {
         body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         date: "1 day 12 hours",
       },
-    ],
-
-    textOfPost: "",
-  },
-
-  edit: {
-    FullName: "",
-    birthday: "",
-    address: "",
-    job: "",
+    ]
   },
 
   avatar: "https://vk.com/images/camera_200.png",
@@ -95,8 +67,6 @@ const initialState = {
     isOpen: false,
 
     index: "",
-
-    newMessage: "",
 
     messages: [
       {
@@ -177,87 +147,34 @@ const initialState = {
 
 const dataReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CHANGE_FORM_EDIT: {
-      switch (action.name) {
-        case "fullname":
-          return {
-            ...state,
-            edit: {
-              ...state.edit,
-              FullName: action.value,
-            },
-          };
-        case "address": 
-          return {
-            ...state,
-            edit: {
-              ...state.edit,
-              address: action.value,
-            },
-          };
-        case "birthday": 
-          return {
-            ...state,
-            edit: {
-              ...state.edit,
-              birthday: action.value,
-            },
-          };
-        case "job": 
-          return {
-            ...state,
-            edit: {
-              ...state.edit,
-              job: action.value,
-            },
-          };
-      }
-    }
     case COMMIT_FORM_EDIT: {
       return {
         ...state,
         profile: {
           ...state.profile,
-          name: state.edit.FullName || state.profile.name,
-          address: state.edit.address || state.profile.address,
-          age: state.edit.birthday || state.profile.age,
-          job: state.edit.job || state.profile.job,
+          name: action.data.fullname || state.profile.name,
+          address: action.data.address || state.profile.address,
+          age: action.data.birthday || state.profile.age,
+          job: action.data.job || state.profile.job,
         },
-        shortName: (state.edit.FullName || state.profile.name).split(" ")[0],
-        edit: {
-          FullName: "",
-          address: "",
-          birthday: "",
-          job: "",
-        },
+        shortName: (action.data.fullname || state.profile.name).split(" ")[0]
       };
     }
     case ADD_POST: {
-      if (state.main.textOfPost === "") return state;
-
       const post = {
         ava: state.avatar,
         profileName: state.profile.name,
-        body: state.main.textOfPost,
+        body: action.body,
         date: "0 sec",
       };
 
       return {
         ...state,
         main: {
-          posts: [post, ...state.main.posts],
-          textOfPost: "",
+          posts: [post, ...state.main.posts]
         },
       };
     }
-    case CHANGE_ENTRY_FIELD:
-      return {
-        ...state,
-        main: {
-          ...state.main,
-          textOfPost: action.newText,
-        },
-      };
     case OPEN_MESSAGE: {
       return {
         ...state,
@@ -268,21 +185,11 @@ const dataReducer = (state = initialState, action) => {
         },
       };
     }
-    case NEW_MESSAGE:
-      return {
-        ...state,
-        messagesPage: {
-          ...state.messagesPage,
-          newMessage: action.body,
-        },
-      };
     case SEND_MESSAGE: {
-      if (state.messagesPage.newMessage === "") return state;
       const index = state.messagesPage.index;
-      const text = state.messagesPage.newMessage;
       const message = {
         identefication: "me",
-        body: text,
+        body: action.body,
       };
       return {
         ...state,
@@ -293,14 +200,13 @@ const dataReducer = (state = initialState, action) => {
             {
               title: {
                 ...state.messagesPage.messages[index].title,
-                lastmessage: text,
+                lastmessage: action.body,
               },
 
               dialogs: [...state.messagesPage.messages[index].dialogs, message],
             },
             ...state.messagesPage.messages.slice(+index + 1),
           ],
-          newMessage: "",
         },
       };
     }

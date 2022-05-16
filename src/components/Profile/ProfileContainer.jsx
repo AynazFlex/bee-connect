@@ -4,7 +4,6 @@ import Preloader from "../Other/Preloader";
 import { getProfile, getStatus } from "../../redux/profileReducer";
 import Profile from "./Profile";
 import { useParams } from "react-router-dom";
-import withAuthNavigate from "../../hoc/withAuthNavigate";
 import { compose } from "redux";
 
 const ProfileContainer = (props) => {
@@ -28,6 +27,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-  withAuthNavigate,
   connect(mapStateToProps, { getProfile, getStatus })
 )(ProfileContainer);
