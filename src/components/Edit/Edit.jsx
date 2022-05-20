@@ -13,6 +13,8 @@ const Edit = (props) => {
     reset();
   };
 
+  //console.log('edit render');
+
   return (
     <div className={s.formBlock}>
       <form onSubmit={handleSubmit(submit)}>

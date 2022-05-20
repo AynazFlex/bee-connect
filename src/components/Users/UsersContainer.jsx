@@ -16,7 +16,7 @@ const UsersContainer = (props) => {
 
   useEffect(() => {
     props.getUsers(props.users.pageSize);
-  }, []);
+  }, [props.users.pageSize]);
 
   const pagination = () => {
     const len = Math.ceil(props.users.totalCount / props.users.pageSize);
@@ -44,6 +44,8 @@ const UsersContainer = (props) => {
     props.changeUsers(page, props.users.pageSize);
   };
 
+  //console.log('user render');
+
   return props.users.isFetch ? (
     <Preloader />
   ) : (
@@ -62,9 +64,12 @@ const UsersContainer = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  users: state.usersPage,
-});
+const mapStateToProps = (state) => {
+  //console.log("users mstp");
+  return {
+    users: state.usersPage,
+  };
+};
 
 export default compose(
   withAuthNavigate,

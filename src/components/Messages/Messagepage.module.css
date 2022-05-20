@@ -32,6 +32,7 @@
 .name {
     font-size: 16px;
     line-height: 30px;
+    font-weight: bold;
     margin: 0;
     margin-bottom: 5px;
 }
@@ -103,4 +104,10 @@
 .backicon {
     color: black;
     margin-right: 10px;
+}
+
+.timeBlock {
+    margin-left: 10px;
+    opacity: 0.60;
+    font-weight: normal;
 }

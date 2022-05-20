@@ -29,3 +29,9 @@ h3 {
     align-self: center;
     margin: 0;
 }
+
+.icon {
+    margin-left: 8px;
+    cursor: pointer;
+    color: #7d97a5;
+}

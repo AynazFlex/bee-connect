@@ -6,7 +6,6 @@ import Navbar from "./Navbar";
 import { logoutAuth } from "../../redux/authReducer";
 
 const NavbarContainer = (props) => {
-
   const [info, setInfo] = useState(<></>);
 
   const mouseMove = (e) => {
@@ -17,6 +16,8 @@ const NavbarContainer = (props) => {
   };
 
   const mouseOut = () => setInfo(<></>);
+
+  //console.log('navbar render');
 
   return (
     <Navbar
@@ -30,11 +31,12 @@ const NavbarContainer = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  avatar: state.data.avatar,
-  auth: state.auth,
-});
+const mapStateToProps = (state) => {
+  //console.log("navbar mstp");
+  return {
+    avatar: state.data.avatar,
+    auth: state.auth,
+  };
+};
 
-export default connect(mapStateToProps, { logoutAuth })(
-  NavbarContainer
-);
+export default connect(mapStateToProps, { logoutAuth })(NavbarContainer);

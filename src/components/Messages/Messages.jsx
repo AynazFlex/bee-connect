@@ -7,6 +7,8 @@ const Messages = (props) => {
 
   const i = props.state.index;
 
+  //console.log('dialog render');
+
   return (
     <>
       {props.state.isOpen ? (

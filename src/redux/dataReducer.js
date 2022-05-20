@@ -3,6 +3,9 @@ const ADD_POST = "ADD_POST";
 const OPEN_MESSAGE = "OPEN_MESSAGE";
 const SEND_MESSAGE = "SEND_MESSAGE";
 const CLOSE_MESSAGE = "CLOSE_MESSAGE";
+const DELETE_POST = "DELETE_POST";
+
+export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 
 export const commitForm = (data) => ({ type: COMMIT_FORM_EDIT, data });
 
@@ -38,25 +41,25 @@ const initialState = {
         ava: "https://www.w3schools.com/w3images/avatar2.png",
         profileName: "John Doe",
         body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        date: "1 min",
+        date: 1667658240000,
       },
       {
         ava: "https://www.w3schools.com/w3images/avatar5.png",
         profileName: "Jane Doe",
         body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        date: "32 min",
+        date: 1662365640000,
       },
       {
         ava: "https://www.w3schools.com/w3images/avatar6.png",
         profileName: "Angie Jane",
         body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        date: "1 day",
+        date: 1654416240000,
       },
       {
         ava: "https://vk.com/images/camera_200.png",
         profileName: "Ilkhan Davletshin",
         body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        date: "1 day 12 hours",
+        date: 1654093440000,
       },
     ]
   },
@@ -81,18 +84,22 @@ const initialState = {
           {
             identefication: "interlocutor",
             body: "Привет",
+            date: 1654093440000,
           },
           {
             identefication: "me",
             body: "Привет",
+            date: 1654093440500,
           },
           {
             identefication: "interlocutor",
             body: "Как дела?",
+            date: 1654093440681,
           },
           {
             identefication: "me",
             body: "Хорошо",
+            date: 1654093780740
           },
         ],
       },
@@ -108,6 +115,7 @@ const initialState = {
           {
             identefication: "interlocutor",
             body: "Привет",
+            date: 1654093440500,
           },
         ],
       },
@@ -123,6 +131,7 @@ const initialState = {
           {
             identefication: "interlocutor",
             body: "Привет",
+            date: 1654093440500,
           },
         ],
       },
@@ -138,6 +147,7 @@ const initialState = {
           {
             identefication: "interlocutor",
             body: "Привет",
+            date: 1654093440600,
           },
         ],
       },
@@ -165,7 +175,7 @@ const dataReducer = (state = initialState, action) => {
         ava: state.avatar,
         profileName: state.profile.name,
         body: action.body,
-        date: "0 sec",
+        date: Date.now(),
       };
 
       return {
@@ -175,6 +185,13 @@ const dataReducer = (state = initialState, action) => {
         },
       };
     }
+    case DELETE_POST:
+      return {
+        ...state,
+        main: {
+          posts: state.main.posts.filter((post) => post.date !== action.postId)
+        }
+      }
     case OPEN_MESSAGE: {
       return {
         ...state,
@@ -190,6 +207,7 @@ const dataReducer = (state = initialState, action) => {
       const message = {
         identefication: "me",
         body: action.body,
+        date: Date.now(),
       };
       return {
         ...state,

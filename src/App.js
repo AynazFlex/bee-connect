@@ -17,8 +17,8 @@ import InitialPage from "./components/Initial/InitialPage";
 const App = (props) => {
 
   useEffect(() => {
-    props.setInitialApp();
-  }, []);
+    !props.isInitialized && props.setInitialApp();
+  }, [props.isInitialized]);
 
   return !props.isInitialized ? (
     <InitialPage />

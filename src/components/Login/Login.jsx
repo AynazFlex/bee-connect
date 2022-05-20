@@ -65,6 +65,7 @@ const LoginForm = (props) => {
 };
 
 const Login = (props) => {
+  //console.log('login render');
   return (
     <div className={s.loginModal}>
       <LoginForm {...props}/>

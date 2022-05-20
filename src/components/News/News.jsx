@@ -5,8 +5,8 @@ import s from "./News.module.css";
 const News = ({ news }) => {
   return (
     <div className={s.news}>
-      {news.map((item, i) => (
-        <Items key={i} {...item} />
+      {news.map((item) => (
+        <Items key={item.pubDate} {...item} />
       ))}
     </div>
   );

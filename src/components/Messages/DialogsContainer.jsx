@@ -7,11 +7,14 @@ import {
 } from "../../redux/dataReducer";
 import Messages from "./Messages";
 
-const mapStateToProps = (state) => ({
-  avatar: state.data.avatar,
-  shortName: state.data.shortName,
-  state: state.data.messagesPage,
-});
+const mapStateToProps = (state) => {
+  //console.log("dialog mstp");
+  return {
+    avatar: state.data.avatar,
+    shortName: state.data.shortName,
+    state: state.data.messagesPage,
+  };
+};
 
 const DialogsContainer = connect(mapStateToProps, {
   sendMessage,

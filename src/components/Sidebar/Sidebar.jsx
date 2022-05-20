@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 
 const Sidebar = (props) => {
+  //console.log('sidebar render');
   return (
     <div className={s.sidebar}>
       <h4 className={s.profile}>{props.profile.name}</h4>

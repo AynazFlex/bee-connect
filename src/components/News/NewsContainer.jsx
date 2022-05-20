@@ -9,12 +9,17 @@ import withAuthNavigate from "../../hoc/withAuthNavigate";
 const NewsContainer = (props) => {
   useEffect(() => props.setNews(), []);
 
+  //console.log('news render');
+
   return props.news.isGet ? <News news={props.news.news} /> : <Preloader />;
 };
 
-const mapStateToProps = (state) => ({
-  news: state.news,
-});
+const mapStateToProps = (state) => {
+  //console.log("news mstp");
+  return {
+    news: state.news,
+  };
+};
 
 export default compose(
   withAuthNavigate,

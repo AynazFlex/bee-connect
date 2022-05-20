@@ -57,7 +57,8 @@ class Messagepage extends React.Component {
               <Correspondence
                 ava={ava}
                 name={name}
-                key={index}
+                key={item.date}
+                date={item.date}
                 body={item.body}
               />
             );

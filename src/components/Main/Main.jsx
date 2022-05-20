@@ -11,8 +11,8 @@ const Main = (props) => {
       <Status status={props.status} putStatus={props.putStatus} />
       <Hr />
       <Newpost addPost={props.addPost} />
-      {props.state.posts.map((post, index) => (
-        <Posts key={index} post={post} />
+      {props.state.posts.map((post) => (
+        <Posts key={post.date} post={post} deletePost={props.deletePost} />
       ))}
     </div>
   );
