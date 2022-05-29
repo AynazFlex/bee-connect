@@ -1,7 +1,7 @@
 import Api from "../api/api";
 
-const SET_AUTH_DATA = "SET-AUTH-DATA";
-const SET_CORECT_DATA = "SET-CORECT-DATA";
+const SET_AUTH_DATA = "authReducer/SET-AUTH-DATA";
+const SET_CORECT_DATA = "authReducer/SET-CORECT-DATA";
 
 const setAuth = (data, isAuth, isCorectlData) => ({
   type: SET_AUTH_DATA,
@@ -10,35 +10,33 @@ const setAuth = (data, isAuth, isCorectlData) => ({
   isCorectlData,
 });
 
-export const setAuthData = () => (dispatch) =>
-  Api.setAuth().then((data) => {
-    if (data.resultCode === 0) dispatch(setAuth(data.data, true, null));
-  });
-
-export const loginAuth = (email, password, rememberMe) => (dispatch) => {
-  Api.login(email, password, rememberMe).then((data) => {
-    console.log(data.data.resultCode);
-    switch (data.data.resultCode) {
-      case 0:
-        dispatch(setAuthData());
-        break;
-      case 1:
-        dispatch({
-          type: SET_CORECT_DATA,
-          isCorectlData: data.data.messages[0],
-        });
-        break;
-    }
-    data.data.resultCode === 0 && dispatch(setAuthData());
-  });
+export const setAuthData = () => async (dispatch) => {
+  const data = await Api.setAuth();
+  if (data.resultCode === 0) dispatch(setAuth(data.data, true, null));
 };
 
-export const logoutAuth = () => (dispatch) => {
-  Api.logout().then((data) => {
-    console.log(data.data.resultCode);
-    data.data.resultCode === 0 &&
-      dispatch(setAuth({ id: null, login: null, email: null }, false, null));
-  });
+export const loginAuth = (email, password, rememberMe) => async (dispatch) => {
+  const data = await Api.login(email, password, rememberMe);
+  console.log(data.data.resultCode);
+  switch (data.data.resultCode) {
+    case 0:
+      dispatch(setAuthData());
+      break;
+    case 1:
+      dispatch({
+        type: SET_CORECT_DATA,
+        isCorectlData: data.data.messages[0],
+      });
+      break;
+  }
+  data.data.resultCode === 0 && dispatch(setAuthData());
+};
+
+export const logoutAuth = () => async (dispatch) => {
+  const data = await Api.logout();
+  console.log(data.data.resultCode);
+  data.data.resultCode === 0 &&
+    dispatch(setAuth({ id: null, login: null, email: null }, false, null));
 };
 
 const initialState = {

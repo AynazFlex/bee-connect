@@ -6,6 +6,7 @@ import {
   openMessage,
 } from "../../redux/dataReducer";
 import Messages from "./Messages";
+import { compose } from "redux";
 
 const mapStateToProps = (state) => {
   //console.log("dialog mstp");
@@ -16,10 +17,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-const DialogsContainer = connect(mapStateToProps, {
-  sendMessage,
-  closeMessage,
-  openMessage,
-})(Messages);
-
-export default withAuthNavigate(DialogsContainer);
+export default compose(
+  withAuthNavigate,
+  connect(mapStateToProps, {
+    sendMessage,
+    closeMessage,
+    openMessage,
+  })
+)(Messages)

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import s from "./Newpost.module.css";
 import Button from "../Other/Button";
 import { useForm } from "react-hook-form";
@@ -23,4 +23,4 @@ function Newpost(props) {
   );
 }
 
-export default Newpost;
+export default memo(Newpost);

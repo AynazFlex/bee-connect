@@ -1,11 +1,11 @@
 import Api from "../api/api";
 
-const FOLLOW_UNFOLLOW = "FOLLOW-UNFOLLOW";
-const SET_USERS = "SET-USERS";
-const SET_TOTAL_COUNT = "SET-TOTAL-COUNT";
-const SET_ACTIVE_PAGE = "SET-ACTIVE-PAGE";
-const TOGGLE_LOADING = "TOGGLE-LOADING";
-const TOGGLE_FOLLOWING = "TOGGLE-FOLLOWING";
+const FOLLOW_UNFOLLOW = "userReducer/FOLLOW-UNFOLLOW";
+const SET_USERS = "userReducer/SET-USERS";
+const SET_TOTAL_COUNT = "userReducer/SET-TOTAL-COUNT";
+const SET_ACTIVE_PAGE = "userReducer/SET-ACTIVE-PAGE";
+const TOGGLE_LOADING = "userReducer/TOGGLE-LOADING";
+const TOGGLE_FOLLOWING = "userReducer/TOGGLE-FOLLOWING";
 
 const followed = (userId, follow) => ({
   type: FOLLOW_UNFOLLOW,
@@ -33,39 +33,35 @@ const toggleFollowing = (index, progress) => ({
   progress,
 });
 
-export const getUsers = (pageSize) => (dispatch) => {
+export const getUsers = (pageSize) => async (dispatch) => {
   dispatch(isFetching(true));
-  Api.getUsers(1, pageSize).then((data) => {
-    dispatch(setUsers(data.items));
-    dispatch(setTotalCount(data.totalCount));
-    dispatch(setActive(1));
-    dispatch(isFetching(false));
-  });
+  const data = await Api.getUsers(1, pageSize);
+  dispatch(setUsers(data.items));
+  dispatch(setTotalCount(data.totalCount));
+  dispatch(setActive(1));
+  dispatch(isFetching(false));
 };
 
-export const changeUsers = (page, pageSize) => (dispatch) => {
+export const changeUsers = (page, pageSize) => async (dispatch) => {
   dispatch(isFetching(true));
-  Api.getUsers(page, pageSize).then((data) => {
-    dispatch(setUsers(data.items));
-    dispatch(isFetching(false));
-  });
+  const data = await Api.getUsers(page, pageSize);
+  dispatch(setUsers(data.items));
+  dispatch(isFetching(false));
   dispatch(setActive(page));
 };
 
-export const setUnfollow = (id) => (dispatch) => {
+export const setUnfollow = (id) => async (dispatch) => {
   dispatch(toggleFollowing(id, true));
-  Api.deleteFollow(id).then((data) => {
-    data.resultCode === 0 && dispatch(followed(id, false));
-    dispatch(toggleFollowing(id, false));
-  });
+  const data = await Api.deleteFollow(id);
+  data.resultCode === 0 && dispatch(followed(id, false));
+  dispatch(toggleFollowing(id, false));
 };
 
-export const setFollow = (id) => (dispatch) => {
+export const setFollow = (id) => async (dispatch) => {
   dispatch(toggleFollowing(id, true));
-  Api.postFollow(id).then((data) => {
-    data.resultCode === 0 && dispatch(followed(id, true));
-    dispatch(toggleFollowing(id, false));
-  });
+  const data = await Api.postFollow(id);
+  data.resultCode === 0 && dispatch(followed(id, true));
+  dispatch(toggleFollowing(id, false));
 };
 
 const initialState = {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import s from "./Status.module.css";
 
 const Status = (props) => {
@@ -7,7 +7,7 @@ const Status = (props) => {
 
   useEffect(() => {
     newStatus(props.status);
-  }, [props.status])
+  }, [props.status]);
 
   return (
     <div className={s.status}>
@@ -37,4 +37,4 @@ const Status = (props) => {
   );
 };
 
-export default Status;
+export default memo(Status);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import s from "./Posts.module.css";
 import Hr from "../Other/Hr";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,4 +33,4 @@ const Posts = (props) => {
   );
 };
 
-export default Posts;
+export default memo(Posts);

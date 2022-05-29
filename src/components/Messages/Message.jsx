@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import s from "./Messages.module.css";
 
 const Message = (props) => {
@@ -20,4 +20,4 @@ const Message = (props) => {
   );
 };
 
-export default Message;
+export default memo(Message);

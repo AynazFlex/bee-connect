@@ -1,9 +1,9 @@
-const COMMIT_FORM_EDIT = "COMMIT_FORM_EDIT";
-const ADD_POST = "ADD_POST";
-const OPEN_MESSAGE = "OPEN_MESSAGE";
-const SEND_MESSAGE = "SEND_MESSAGE";
-const CLOSE_MESSAGE = "CLOSE_MESSAGE";
-const DELETE_POST = "DELETE_POST";
+const COMMIT_FORM_EDIT = "dataReducer/COMMIT_FORM_EDIT";
+const ADD_POST = "dataReducer/ADD_POST";
+const OPEN_MESSAGE = "dataReducer/OPEN_MESSAGE";
+const SEND_MESSAGE = "dataReducer/SEND_MESSAGE";
+const CLOSE_MESSAGE = "dataReducer/CLOSE_MESSAGE";
+const DELETE_POST = "dataReducer/DELETE_POST";
 
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 

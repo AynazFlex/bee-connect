@@ -1,9 +1,10 @@
 import Api from "../api/api";
 
-const SET_NEWS = "SET_NEWS";
+const SET_NEWS = "newsReducer/SET_NEWS";
 
-export const setNews = () => (dispatch) => {
-  Api.setNews().then((data) => dispatch({ type: SET_NEWS, data }));
+export const setNews = () => async (dispatch) => {
+  const data = await Api.setNews();
+  dispatch({ type: SET_NEWS, data });
 };
 
 const initialState = {

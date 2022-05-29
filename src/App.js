@@ -18,7 +18,7 @@ const App = (props) => {
 
   useEffect(() => {
     !props.isInitialized && props.setInitialApp();
-  }, [props.isInitialized]);
+  }, []);
 
   return !props.isInitialized ? (
     <InitialPage />

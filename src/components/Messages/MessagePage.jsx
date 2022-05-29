@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Correspondence from "./Correspondence";
 import s from "./Messagepage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,49 +29,43 @@ const MessageForm = (props) => {
   );
 };
 
-class Messagepage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Messagepage = (props) => {
+  useEffect(() => () => {
+      props.closeMessage();
+  }, []);
 
-  componentWillUnmount() {
-    this.props.closeMessage();
-  }
-
-  render() {
-    return (
-      <div className={s.page}>
-        <h3 className={s.title}>{this.props.title}</h3>
-        <div className={s.correspondence}>
-          {this.props.dialogs.map((item, index) => {
-            let ava;
-            let name;
-            if (item.identefication === "me") {
-              ava = this.props.avatar;
-              name = this.props.shortName;
-            } else {
-              ava = this.props.avatar1;
-              name = this.props.name;
-            }
-            return (
-              <Correspondence
-                ava={ava}
-                name={name}
-                key={item.date}
-                date={item.date}
-                body={item.body}
-              />
-            );
-          })}
-        </div>
-        <MessageForm sendMessage={this.props.sendMessage} />
-        <button onClick={this.props.closeMessage} className={s.back}>
-          <FontAwesomeIcon icon={faAngleLeft} className={s.backicon} />
-          Назад
-        </button>
+  return (
+    <div className={s.page}>
+      <h3 className={s.title}>{props.title}</h3>
+      <div className={s.correspondence}>
+        {props.dialogs.map((item) => {
+          let ava;
+          let name;
+          if (item.identefication === "me") {
+            ava = props.avatar;
+            name = props.shortName;
+          } else {
+            ava = props.avatar1;
+            name = props.name;
+          }
+          return (
+            <Correspondence
+              ava={ava}
+              name={name}
+              key={item.date}
+              date={item.date}
+              body={item.body}
+            />
+          );
+        })}
       </div>
-    );
-  }
-}
+      <MessageForm sendMessage={props.sendMessage} />
+      <button onClick={props.closeMessage} className={s.back}>
+        <FontAwesomeIcon icon={faAngleLeft} className={s.backicon} />
+        Назад
+      </button>
+    </div>
+  );
+};
 
 export default Messagepage;

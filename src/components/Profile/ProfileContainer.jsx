@@ -16,7 +16,7 @@ const ProfileContainer = (props) => {
 
   //console.log('profile render');
 
-  return !props.profile ? (
+  return !props.isOpen || props.statusIsFetching ? (
     <Preloader />
   ) : (
     <Profile {...props.profile} status={props.status} />
@@ -28,6 +28,8 @@ const mapStateToProps = (state) => {
   return {
     profile: state.profile.profile,
     status: state.profile.status,
+    isOpen: state.profile.isOpenProfile,
+    statusIsFetching: state.profile.statusIsFetching
   };
 };
 
