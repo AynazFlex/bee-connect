@@ -3,6 +3,7 @@ import s from "./Users.module.css";
 import { Link } from "react-router-dom";
 
 const User = (props) => {
+
   return (
     <div className={s.user}>
       <div className={s.data}>
@@ -17,8 +18,8 @@ const User = (props) => {
           <p className={s.birthday}>{props.user.birthday}</p>
         </div>
       </div>
-      {props.followingInProgress.includes(props.user.id) ? (
-        <div className={s.followed}>Progress</div>
+      {props.followingInProgress ? (
+        <div className={s.followed}>progress...</div>
       ) : (
         <button
           className={s.followed}

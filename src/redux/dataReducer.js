@@ -1,9 +1,13 @@
+import Api from "../api/api";
+
 const COMMIT_FORM_EDIT = "dataReducer/COMMIT_FORM_EDIT";
 const ADD_POST = "dataReducer/ADD_POST";
 const OPEN_MESSAGE = "dataReducer/OPEN_MESSAGE";
 const SEND_MESSAGE = "dataReducer/SEND_MESSAGE";
 const CLOSE_MESSAGE = "dataReducer/CLOSE_MESSAGE";
 const DELETE_POST = "dataReducer/DELETE_POST";
+const SET_MY_PROFILE = "dataReducer/SET_MY_PROFILE";
+const INITIAL_PROFILE = "dataReducer/INITIAL_PROFILE";
 
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 
@@ -24,14 +28,27 @@ export const sendMessage = (body) => ({
   type: SEND_MESSAGE, body
 });
 
+const setMyProfile = (profile) => ({ type: SET_MY_PROFILE, profile});
+
+const initiatedProfile = (status) => ({ type: INITIAL_PROFILE, status});
+
+export const getMyProfile = (myId) => async (dispatch) => {
+  dispatch(initiatedProfile(false));
+  const data = await Api.getProfile(myId);
+  console.log(data);
+  dispatch(setMyProfile(data));
+  dispatch(initiatedProfile(true));
+}
+
 const initialState = {
   profile: {
     name: "Айназ Давлетшин",
     age: "17 мая 2003",
     job: "Frontend Developer",
     address: "Россия, Mосква",
-    id: 1713,
   },
+
+  profileInitiated: false,
 
   shortName: "Айназ",
 
@@ -157,6 +174,23 @@ const initialState = {
 
 const dataReducer = (state = initialState, action) => {
   switch (action.type) {
+    case INITIAL_PROFILE:
+      return {
+        ...state,
+        profileInitiated: action.status,
+      }
+    case SET_MY_PROFILE: 
+      return {
+        ...state,
+        profile: {
+          name: action.profile.fullName,
+          address: state.profile.address,
+          age: state.profile.age,
+          job: action.profile.aboutMe || state.profile.job,
+        },
+        avatar: action.profile.photos.large || 'https://vk.com/images/camera_200.png',
+        shortName: (action.profile.fullName).split(" ")[0],
+      }
     case COMMIT_FORM_EDIT: {
       return {
         ...state,

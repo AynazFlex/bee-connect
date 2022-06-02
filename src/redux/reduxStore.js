@@ -6,20 +6,22 @@ import authReducer from "./authReducer";
 import thunkMiddleware from "redux-thunk";
 import newsReducer from "./newsReducer";
 import appReducer from "./appReducer";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const reducers = combineReducers({
-    data: dataReducer,
-    usersPage: usersReducer,
-    profile: profileReducer,
-    auth: authReducer,
-    news: newsReducer,
-    app: appReducer,
-})
+  data: dataReducer,
+  usersPage: usersReducer,
+  profile: profileReducer,
+  auth: authReducer,
+  news: newsReducer,
+  app: appReducer,
+});
 
-
-const store = createStore(reducers, applyMiddleware(thunkMiddleware));
+const store = createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(thunkMiddleware))
+);
 
 window.store = store;
-
 
 export default store;

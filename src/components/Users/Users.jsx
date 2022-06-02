@@ -11,15 +11,14 @@ const Users = (props) => (
         user={user}
         setUnfollow={props.setUnfollow}
         setFollow={props.setFollow}
-        followingInProgress={props.followingInProgress}
+        followingInProgress={props.followingInProgress.includes(user.id)}
       />
     ))}
     <Pagination
-      scrolling={props.scrolling}
-      scroll={props.scroll}
-      pagination={props.pagination}
       changePage={props.changePage}
       activePage={props.activePage}
+      totalCount={props.totalCount}
+      pageSize={props.pageSize}
     />
   </div>
 );

@@ -13,7 +13,7 @@ const Sidebar = (props) => {
   //console.log('sidebar render');
   return (
     <div className={s.sidebar}>
-      <h4 className={s.profile}>{props.auth.login}</h4>
+      <h4 className={s.profile}>{props.profile.name}</h4>
       <div>
         <img src={props.avatar} className={s.avatar} alt="my avatar" />
       </div>
