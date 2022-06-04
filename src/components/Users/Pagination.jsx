@@ -1,12 +1,11 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import s from "./Users.module.css";
 
 const Pagination = (props) => {
-
-  const [scroll, setScroll] = useState(0);
+  const len = Math.ceil(props.totalCount / props.pageSize);
+  const margin = -200*Math.trunc(props.activePage/5);
 
   const pagination = () => {
-    const len = Math.ceil(props.totalCount / props.pageSize);
     const pages = [];
     for (let i = 1; i <= len; i++) {
       pages.push(i);
@@ -14,31 +13,30 @@ const Pagination = (props) => {
     return pages;
   };
 
-  const scrolling = (direction) => {
-    switch (direction) {
-      case "left":
-        scroll === 0 || setScroll(scroll + 200);
-        return;
-      case "right":
-        setScroll(scroll - 200);
-        return;
-      default:
-        return;
-    }
-  };
+  const paginLeft = (active, pageSize) => {
+    props.changePage(active - 1, pageSize)
+  }
+
+  const paginRight = (active, pageSize) => {
+    props.changePage(active + 1, pageSize)
+  }
 
   return (
     <div className={s.paginationPanel}>
-      <div
-        onClick={() => scrolling("left")}
-        className={s.paginationItems}
-      >
-        &laquo;
-      </div>
+      {props.activePage === 1 ? (
+        <></>
+      ) : (
+        <div
+          onClick={() => paginLeft(props.activePage, props.pageSize)}
+          className={s.paginationItems}
+        >
+          &laquo;
+        </div>
+      )}
       <div className={s.paginationPages}>
         <div
           className={s.paginationPagesItem}
-          style={{ marginLeft: scroll + "px" }}
+          style={{ marginLeft: `${props.activePage % 5 === 0 ? margin + 200 : margin}px` }}
         >
           {pagination().map((p) => (
             <div
@@ -55,12 +53,16 @@ const Pagination = (props) => {
           ))}
         </div>
       </div>
-      <div
-        onClick={() => scrolling("right")}
-        className={s.paginationItems}
-      >
-        &raquo;
-      </div>
+      {props.activePage === len ? (
+        <></>
+      ) : (
+        <div
+          onClick={() => paginRight(props.activePage, props.pageSize)}
+          className={s.paginationItems}
+        >
+          &raquo;
+        </div>
+      )}
     </div>
   );
 };

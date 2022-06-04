@@ -6,8 +6,7 @@ const LoginForm = (props) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    reset
+    formState: { errors }
   } = useForm({
     mode: 'all',
   });
@@ -19,7 +18,6 @@ const LoginForm = (props) => {
 
   const onSubmit = (data) => {
     props.loginAuth(data.email, data.password, data.rememberMe);
-    reset();
   };
 
   return (

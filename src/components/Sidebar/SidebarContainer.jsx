@@ -4,6 +4,8 @@ import Sidebar from "./Sidebar";
 import { getMyProfile } from '../../redux/dataReducer'; 
 import { Link } from 'react-router-dom';
 import Button from "../Other/Button";
+import Preloader from '../Other/Preloader';
+import s from "./Sidebar.module.css";
 
 const SidebarContainer = (props) => {
 
@@ -12,12 +14,12 @@ const SidebarContainer = (props) => {
   }, [props.isAuth]);
 
   if(!props.isAuth) {
-    return <Link to="/login"><Button text="Войти" /></Link>;
+    return <Link className={s.rederectToLogin} to="/login"><Button text="Войти" /></Link>;
   }
   else if(props.initiated) {
     return <Sidebar profile={props.profile} avatar={props.avatar} />
   } else {
-    return <div>Loading ...</div>
+    return <Preloader />
   }
 }
 

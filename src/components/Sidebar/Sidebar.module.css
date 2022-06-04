@@ -34,3 +34,9 @@
     text-align: center;
     text-decoration: none;
 }
+
+.rederectToLogin {
+    display: block;
+    margin: 0 auto;
+    text-decoration: none;
+}
