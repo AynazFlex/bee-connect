@@ -46,4 +46,8 @@ const App = (props) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  isInitialized: state.app.isInitialized,
+});
+
 export default connect(mapStateToProps, { setInitialApp })(App);

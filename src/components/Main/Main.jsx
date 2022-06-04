@@ -5,22 +5,6 @@ import Posts from "./Posts";
 import Status from "./Status";
 import Hr from "../Other/Hr";
 
-<<<<<<< HEAD
-class Main extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className={s.main}>
-        <Newpost text={this.props.state.newPostText} addPost={this.props.addPost}/>
-        {this.props.state.posts.map((post, index) => <Posts key={index} post={post}/>)}
-      </div>
-    );
-  }
-}
-=======
 const Main = (props) => {
   return (
     <div className={s.main}>
@@ -33,6 +17,5 @@ const Main = (props) => {
     </div>
   );
 };
->>>>>>> newredux
 
 export default Main;
