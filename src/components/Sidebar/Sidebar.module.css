@@ -12,8 +12,7 @@
 
 .avatar {
     display: block;
-    width: 150px;
-    height: 150px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -32,4 +31,12 @@
     padding: 4px 8px;
     border: none;
     cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.rederectToLogin {
+    display: block;
+    margin: 0 auto;
+    text-decoration: none;
 }

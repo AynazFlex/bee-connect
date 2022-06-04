@@ -1,19 +1,15 @@
 import React from "react";
-import Hr from "../Other/Hr";
+import Items from "./Items";
 import s from "./News.module.css";
 
-class News extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className={s.news}>
-        Новости
-      </div>
-    );
-  }
-}
+const News = ({ news }) => {
+  return (
+    <div className={s.news}>
+      {news.map((item) => (
+        <Items key={item.pubDate} {...item} />
+      ))}
+    </div>
+  );
+};
 
 export default News;

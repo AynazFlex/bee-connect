@@ -1,37 +1,49 @@
-import React from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
-import Sidebar from "./components/Sidebar/Sidebar";
-import Main from "./components/Main/Main";
-import Friends from "./components/Friends/Friends";
-import Messages from "./components/Messages/Messages";
-import News from "./components/News/News";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NavbarContainer from "./components/Navbar/NavbarContainer";
+import SidebarContainer from "./components/Sidebar/SidebarContainer";
+import { Route, Routes } from "react-router-dom";
+import { setInitialApp } from "./redux/appReducer";
+import { connect } from "react-redux";
+import InitialPage from "./components/Initial/InitialPage";
+import Preloader from "./components/Other/Preloader";
+const MainContainer = lazy(() => import("./components/Main/MainContainer"));
+const ProfileContainer = lazy(() =>
+  import("./components/Profile/ProfileContainer")
+);
+const UsersContainer = lazy(() => import("./components/Users/UsersContainer"));
+const DialogsContainer = lazy(() =>
+  import("./components/Messages/DialogsContainer")
+);
+const NewsContainer = lazy(() => import("./components/News/NewsContainer"));
+const EditContainer = lazy(() => import("./components/Edit/EditContainer"));
+const LoginContainer = lazy(() => import("./components/Login/LoginContainer"));
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const App = (props) => {
+  useEffect(() => {
+    !props.isInitialized && props.setInitialApp();
+  }, []);
 
+  return !props.isInitialized ? (
+    <InitialPage />
+  ) : (
+    <div className="wrapper">
+      <NavbarContainer />
+      <SidebarContainer />
+      <Suspense fallback={<Preloader />}>
+        <Routes>
+          <Route path="/*" element={<MainContainer />} />
+          <Route path="/profile/:userId" element={<ProfileContainer />} />
+          <Route path="/friends" element={<UsersContainer />} />
+          <Route path="/messages" element={<DialogsContainer />} />
+          <Route path="/news" element={<NewsContainer />} />
+          <Route path="/edit" element={<EditContainer />} />
+          <Route path="/login" element={<LoginContainer />} />
+          <Route path="*" element={<h1>404</h1>} />
+        </Routes>
+      </Suspense>
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <BrowserRouter>
-        <div className="wrapper">
-          <Navbar avatar={this.props.state.avatar}/>
-          <Sidebar avatar={this.props.state.avatar} profile={this.props.state.profile}/>
-          <Routes>
-            <Route path="/" element={<Main state={this.props.state.main} addPost={this.props.addPost} />} />
-            <Route path="/profile" element={<Main state={this.props.state.main} addPost={this.props.addPost}/>} />
-            <Route path="/friends" element={<Friends />} />
-            <Route path="/messages" element={<Messages />} />
-            <Route path="/news" element={<News />} />
-            <Route path="*" element={<h1>404</h1>} />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    );
-  }
-}
-
-export default App;
+export default connect(mapStateToProps, { setInitialApp })(App);

@@ -1,0 +1,13 @@
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f7f8
+}
+
+.icon {
+    color: blue;
+    width: 100px;
+    height: 100px;
+}

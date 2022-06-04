@@ -3,6 +3,7 @@
     grid-column: 1 / span 2;
     background: #4d636f;
     justify-content: space-between;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
 }
 
 .left {
@@ -10,12 +11,29 @@
 }
 
 .link {
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 8px 24px;
     font-size: 20px;
     color: white;
     cursor: pointer;
     text-decoration: none;
+}
+
+.righnavpanel {
+    display: flex;
+}
+
+.logout {
+    align-self: center;
+    color: white;
+    padding: 0 24px 0 0;
+    cursor: pointer;
+}
+
+.login {
+    margin-left: 5px;
+    font-size: 16px;
 }
 
 .link:hover {

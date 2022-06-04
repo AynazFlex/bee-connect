@@ -1,12 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import 'normalize.css'
-import state from './components/redux/state';
-import { addPost } from './components/redux/state';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import "normalize.css";
+import store from "./redux/reduxStore";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 
 ReactDOM.render(
-  <App state={state} addPost={addPost} />,
-  document.getElementById('root')
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById("root")
 );
