@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import Sidebar from "./Sidebar";
-import { getMyProfile } from '../../redux/dataReducer'; 
+import { getMyProfile, updatePhoto } from '../../redux/dataReducer'; 
 import { Link } from 'react-router-dom';
 import Button from "../Other/Button";
 import Preloader from '../Other/Preloader';
@@ -17,7 +17,7 @@ const SidebarContainer = (props) => {
     return <Link className={s.rederectToLogin} to="/login"><Button text="Войти" /></Link>;
   }
   else if(props.initiated) {
-    return <Sidebar profile={props.profile} avatar={props.avatar} />
+    return <Sidebar profile={props.profile} avatar={props.avatar} updatePhoto={props.updatePhoto} />
   } else {
     return <Preloader />
   }
@@ -33,4 +33,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getMyProfile })(SidebarContainer);
+export default connect(mapStateToProps, { getMyProfile, updatePhoto })(SidebarContainer);

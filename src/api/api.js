@@ -55,7 +55,15 @@ const Api = {
 
   logout: () => {
     return instance.delete("auth/login");
-  }
+  },
+
+  updatePhoto: (photo) => {
+    const formData = new FormData();
+    formData.append("image", photo);
+    return instance.put("profile/photo", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+  },
 };
 
 export default Api;

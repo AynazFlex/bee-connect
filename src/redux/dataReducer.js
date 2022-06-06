@@ -8,6 +8,7 @@ const CLOSE_MESSAGE = "dataReducer/CLOSE_MESSAGE";
 const DELETE_POST = "dataReducer/DELETE_POST";
 const SET_MY_PROFILE = "dataReducer/SET_MY_PROFILE";
 const INITIAL_PROFILE = "dataReducer/INITIAL_PROFILE";
+const UPDATE_PHOTO = "dataReducer/UPDATE_PHOTO";
 
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 
@@ -32,12 +33,20 @@ const setMyProfile = (profile) => ({ type: SET_MY_PROFILE, profile});
 
 const initiatedProfile = (status) => ({ type: INITIAL_PROFILE, status});
 
+const setPhoto = (photo) => ({ type: UPDATE_PHOTO, photo});
+
 export const getMyProfile = (myId) => async (dispatch) => {
   dispatch(initiatedProfile(false));
   const data = await Api.getProfile(myId);
   console.log(data);
   dispatch(setMyProfile(data));
   dispatch(initiatedProfile(true));
+}
+
+export const updatePhoto = (photo) => async (dispatch) => {
+  const response = await Api.updatePhoto(photo);
+  console.log(response.data.data.photos.small);
+  response.data.resultCode === 0 && dispatch(setPhoto(response.data.data.photos.large));
 }
 
 const initialState = {
@@ -190,6 +199,11 @@ const dataReducer = (state = initialState, action) => {
         },
         avatar: action.profile.photos.large || 'https://vk.com/images/camera_200.png',
         shortName: (action.profile.fullName).split(" ")[0],
+      }
+    case UPDATE_PHOTO:
+      return {
+        ...state,
+        avatar: action.photo,
       }
     case COMMIT_FORM_EDIT: {
       return {
