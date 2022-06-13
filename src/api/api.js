@@ -64,6 +64,10 @@ const Api = {
       headers: { "Content-Type": "multipart/form-data" },
     });
   },
+
+  updateProfile: (data) => {
+    return instance.put("profile", data);
+  }
 };
 
 export default Api;

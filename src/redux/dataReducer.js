@@ -1,6 +1,5 @@
 import Api from "../api/api";
 
-const COMMIT_FORM_EDIT = "dataReducer/COMMIT_FORM_EDIT";
 const ADD_POST = "dataReducer/ADD_POST";
 const OPEN_MESSAGE = "dataReducer/OPEN_MESSAGE";
 const SEND_MESSAGE = "dataReducer/SEND_MESSAGE";
@@ -9,10 +8,9 @@ const DELETE_POST = "dataReducer/DELETE_POST";
 const SET_MY_PROFILE = "dataReducer/SET_MY_PROFILE";
 const INITIAL_PROFILE = "dataReducer/INITIAL_PROFILE";
 const UPDATE_PHOTO = "dataReducer/UPDATE_PHOTO";
+const SET_ERROR = "dataReducer/SET_ERROR";
 
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
-
-export const commitForm = (data) => ({ type: COMMIT_FORM_EDIT, data });
 
 export const addPost = (body) => ({ type: ADD_POST, body });
 
@@ -26,14 +24,15 @@ export const closeMessage = () => ({
 });
 
 export const sendMessage = (body) => ({
-  type: SEND_MESSAGE, body
+  type: SEND_MESSAGE,
+  body,
 });
 
-const setMyProfile = (profile) => ({ type: SET_MY_PROFILE, profile});
+const setMyProfile = (profile) => ({ type: SET_MY_PROFILE, profile });
 
-const initiatedProfile = (status) => ({ type: INITIAL_PROFILE, status});
+const initiatedProfile = (status) => ({ type: INITIAL_PROFILE, status });
 
-const setPhoto = (photo) => ({ type: UPDATE_PHOTO, photo});
+const setPhoto = (photo) => ({ type: UPDATE_PHOTO, photo });
 
 export const getMyProfile = (myId) => async (dispatch) => {
   dispatch(initiatedProfile(false));
@@ -41,25 +40,31 @@ export const getMyProfile = (myId) => async (dispatch) => {
   console.log(data);
   dispatch(setMyProfile(data));
   dispatch(initiatedProfile(true));
-}
+};
 
 export const updatePhoto = (photo) => async (dispatch) => {
   const response = await Api.updatePhoto(photo);
-  console.log(response.data.data.photos.small);
-  response.data.resultCode === 0 && dispatch(setPhoto(response.data.data.photos.large));
-}
+  console.log(response);
+  response.data.resultCode === 0 &&
+    dispatch(setPhoto(response.data.data.photos.large));
+};
+
+export const updateProfile = (data) => async (dispatch, getState) => {
+  const response = await Api.updateProfile(data);
+  console.log(response);
+  response.data.resultCode === 0 &&
+    dispatch(getMyProfile(getState().data.profile.userId));
+  dispatch({ type: SET_ERROR, errorMessage: response.data.messages[0] });
+};
 
 const initialState = {
-  profile: {
-    name: "Айназ Давлетшин",
-    age: "17 мая 2003",
-    job: "Frontend Developer",
-    address: "Россия, Mосква",
-  },
+  profile: null,
+
+  errorMessage: null,
 
   profileInitiated: false,
 
-  shortName: "Айназ",
+  shortName: null,
 
   main: {
     posts: [
@@ -87,7 +92,7 @@ const initialState = {
         body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         date: 1654093440000,
       },
-    ]
+    ],
   },
 
   avatar: "https://vk.com/images/camera_200.png",
@@ -125,7 +130,7 @@ const initialState = {
           {
             identefication: "me",
             body: "Хорошо",
-            date: 1654093780740
+            date: 1654093780740,
           },
         ],
       },
@@ -187,37 +192,25 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         profileInitiated: action.status,
-      }
-    case SET_MY_PROFILE: 
+      };
+    case SET_ERROR:
       return {
         ...state,
-        profile: {
-          name: action.profile.fullName,
-          address: state.profile.address,
-          age: state.profile.age,
-          job: action.profile.aboutMe || state.profile.job,
-        },
-        avatar: action.profile.photos.large || 'https://vk.com/images/camera_200.png',
-        shortName: (action.profile.fullName).split(" ")[0],
-      }
+        errorMessage: action.errorMessage,
+      };
+    case SET_MY_PROFILE:
+      return {
+        ...state,
+        profile: action.profile,
+        avatar:
+          action.profile.photos.small || "https://vk.com/images/camera_200.png",
+        shortName: action.profile.fullName.split(" ")[0],
+      };
     case UPDATE_PHOTO:
       return {
         ...state,
         avatar: action.photo,
-      }
-    case COMMIT_FORM_EDIT: {
-      return {
-        ...state,
-        profile: {
-          ...state.profile,
-          name: action.data.fullname || state.profile.name,
-          address: action.data.address || state.profile.address,
-          age: action.data.birthday || state.profile.age,
-          job: action.data.job || state.profile.job,
-        },
-        shortName: (action.data.fullname || state.profile.name).split(" ")[0]
       };
-    }
     case ADD_POST: {
       const post = {
         ava: state.avatar,
@@ -229,7 +222,7 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         main: {
-          posts: [post, ...state.main.posts]
+          posts: [post, ...state.main.posts],
         },
       };
     }
@@ -237,9 +230,9 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         main: {
-          posts: state.main.posts.filter((post) => post.date !== action.postId)
-        }
-      }
+          posts: state.main.posts.filter((post) => post.date !== action.postId),
+        },
+      };
     case OPEN_MESSAGE: {
       return {
         ...state,

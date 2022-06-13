@@ -17,13 +17,14 @@
 }
 
 .avatar {
+    display: block;
     border-radius: 50%;
     width: 80px;
     height: 80px;
     margin-right: 20px;
 }
 
-.locations, .name, .birthday {
+.locations, .name {
     margin: 0;
     max-width: 400px;
     overflow: hidden;

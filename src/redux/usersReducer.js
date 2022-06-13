@@ -91,8 +91,7 @@ const usersReducer = (state = initialState, action) => {
           id: user.id,
           avatar: user.photos.small || "https://vk.com/images/camera_200.png",
           name: user.name,
-          birthday: user.birthday || "Дата рождения не указана",
-          locations: user.locations || user.status || "Локация не указана",
+          status: user.status || "Статус не указан",
           followed: user.followed,
         })),
       };

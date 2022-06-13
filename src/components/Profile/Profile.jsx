@@ -3,9 +3,10 @@ import Hr from "../Other/Hr";
 import s from "./Profile.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCakeCandles,
-  faHome,
+  faHammer,
   faPen,
+  faScrewdriverWrench,
+  faGlobe,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Profile = (props) => {
@@ -14,30 +15,42 @@ const Profile = (props) => {
       <div className={s.profile}>
         <img
           className={s.photo}
-          src={
-            props.photos.large ||
-            "https://vk.com/images/camera_200.png"
-          }
+          src={props.photos.large || "https://vk.com/images/camera_200.png"}
           alt="profile avatar"
         />
-        <div>
-          <h3 className={s.name}>{props.fullName}</h3>
-          <p className={s.aboutUser}>
-            {props.status || "Статус не установлен"}
-          </p>
+        <div className={s.infoPanel}>
+          <div>{props.status || "статуса нет"}</div>
           <Hr />
-          <p>
+          <div className={s.description}>
             <FontAwesomeIcon icon={faPen} className={s.icon} />
-            {props.job || "--"}
-          </p>
-          <p>
-            <FontAwesomeIcon icon={faHome} className={s.icon} />
-            {props.address || "--"}
-          </p>
-          <p>
-            <FontAwesomeIcon icon={faCakeCandles} className={s.icon} />
-            {props.age || "--"}
-          </p>
+            <div>{props.aboutMe || "---"}</div>
+          </div>
+          <div className={s.description}>
+            <FontAwesomeIcon icon={faScrewdriverWrench} className={s.icon} />
+            <div>{props.lookingForAJobDescription || "---"}</div>
+          </div>
+          <div className={s.description}>
+            <FontAwesomeIcon icon={faHammer} className={s.icon} />
+            <div>{props.lookingForAJob ? "ищу работу" : "не ищу работу"}</div>
+          </div>
+          {props.contacts.website && (
+            <div className={s.description}>
+              <FontAwesomeIcon icon={faGlobe} className={s.icon} />
+              <a href={props.contacts.website} target="_blank">
+                {props.contacts.website}
+              </a>
+            </div>
+          )}
+          {Object.values(props.contacts).find((values) => values) && (
+            <div className={s.contacts}>
+              {Object.keys(props.contacts).map(
+                (contact) =>
+                  props.contacts[contact] && (
+                    <a key={contact} target="_blank" className={s.link} href={props.contacts[contact]}>{contact}</a>
+                  )
+              )}
+            </div>
+                  )}
         </div>
       </div>
       <div className={s.posts}>

@@ -14,8 +14,7 @@ const User = (props) => {
           <Link to={`/profile/${props.user.id}`} className={s.link}>
             <h3 className={s.name}>{props.user.name}</h3>
           </Link>
-          <p className={s.locations}>{props.user.locations}</p>
-          <p className={s.birthday}>{props.user.birthday}</p>
+          <p className={s.locations}>{props.user.status}</p>
         </div>
       </div>
       {props.followingInProgress ? (

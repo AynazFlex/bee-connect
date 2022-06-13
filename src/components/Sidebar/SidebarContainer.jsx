@@ -17,7 +17,7 @@ const SidebarContainer = (props) => {
     return <Link className={s.rederectToLogin} to="/login"><Button text="Войти" /></Link>;
   }
   else if(props.initiated) {
-    return <Sidebar profile={props.profile} avatar={props.avatar} updatePhoto={props.updatePhoto} />
+    return <Sidebar profile={props.profile} avatar={props.avatar} updatePhoto={props.updatePhoto} deletePhoto={props.deletePhoto} />
   } else {
     return <Preloader />
   }
@@ -25,7 +25,6 @@ const SidebarContainer = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    avatar: state.data.avatar,
     profile: state.data.profile,
     id: state.auth.id,
     initiated: state.data.profileInitiated,
