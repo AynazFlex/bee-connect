@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/bee-connect/static/css/main.a113ac04.css",
-    "main.js": "/bee-connect/static/js/main.60c2081e.js",
+    "main.js": "/bee-connect/static/js/main.ece2132d.js",
     "static/css/870.f7850e1b.chunk.css": "/bee-connect/static/css/870.f7850e1b.chunk.css",
     "static/js/870.63439fd5.chunk.js": "/bee-connect/static/js/870.63439fd5.chunk.js",
     "static/css/280.836cf32a.chunk.css": "/bee-connect/static/css/280.836cf32a.chunk.css",
@@ -13,13 +13,13 @@
     "static/css/263.4f3a5dc7.chunk.css": "/bee-connect/static/css/263.4f3a5dc7.chunk.css",
     "static/js/263.a4687e74.chunk.js": "/bee-connect/static/js/263.a4687e74.chunk.js",
     "static/css/788.49999dd1.chunk.css": "/bee-connect/static/css/788.49999dd1.chunk.css",
-    "static/js/788.26473f68.chunk.js": "/bee-connect/static/js/788.26473f68.chunk.js",
+    "static/js/788.f2e38091.chunk.js": "/bee-connect/static/js/788.f2e38091.chunk.js",
     "static/css/842.d9a6bfca.chunk.css": "/bee-connect/static/css/842.d9a6bfca.chunk.css",
     "static/js/842.f3ba90ec.chunk.js": "/bee-connect/static/js/842.f3ba90ec.chunk.js",
     "static/js/896.66cef854.chunk.js": "/bee-connect/static/js/896.66cef854.chunk.js",
     "index.html": "/bee-connect/index.html",
     "main.a113ac04.css.map": "/bee-connect/static/css/main.a113ac04.css.map",
-    "main.60c2081e.js.map": "/bee-connect/static/js/main.60c2081e.js.map",
+    "main.ece2132d.js.map": "/bee-connect/static/js/main.ece2132d.js.map",
     "870.f7850e1b.chunk.css.map": "/bee-connect/static/css/870.f7850e1b.chunk.css.map",
     "870.63439fd5.chunk.js.map": "/bee-connect/static/js/870.63439fd5.chunk.js.map",
     "280.836cf32a.chunk.css.map": "/bee-connect/static/css/280.836cf32a.chunk.css.map",
@@ -31,13 +31,13 @@
     "263.4f3a5dc7.chunk.css.map": "/bee-connect/static/css/263.4f3a5dc7.chunk.css.map",
     "263.a4687e74.chunk.js.map": "/bee-connect/static/js/263.a4687e74.chunk.js.map",
     "788.49999dd1.chunk.css.map": "/bee-connect/static/css/788.49999dd1.chunk.css.map",
-    "788.26473f68.chunk.js.map": "/bee-connect/static/js/788.26473f68.chunk.js.map",
+    "788.f2e38091.chunk.js.map": "/bee-connect/static/js/788.f2e38091.chunk.js.map",
     "842.d9a6bfca.chunk.css.map": "/bee-connect/static/css/842.d9a6bfca.chunk.css.map",
     "842.f3ba90ec.chunk.js.map": "/bee-connect/static/js/842.f3ba90ec.chunk.js.map",
     "896.66cef854.chunk.js.map": "/bee-connect/static/js/896.66cef854.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a113ac04.css",
-    "static/js/main.60c2081e.js"
+    "static/js/main.ece2132d.js"
   ]
 }
