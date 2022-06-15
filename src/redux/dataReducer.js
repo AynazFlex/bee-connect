@@ -9,6 +9,7 @@ const SET_MY_PROFILE = "dataReducer/SET_MY_PROFILE";
 const INITIAL_PROFILE = "dataReducer/INITIAL_PROFILE";
 const UPDATE_PHOTO = "dataReducer/UPDATE_PHOTO";
 const SET_ERROR = "dataReducer/SET_ERROR";
+const PHOTO_LOADING = "dataReducer/PHOTO_LOADING";
 
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 
@@ -34,24 +35,25 @@ const initiatedProfile = (status) => ({ type: INITIAL_PROFILE, status });
 
 const setPhoto = (photo) => ({ type: UPDATE_PHOTO, photo });
 
+const setPhotoLoading = (status) => ({ type: PHOTO_LOADING, status });
+
 export const getMyProfile = (myId) => async (dispatch) => {
   dispatch(initiatedProfile(false));
   const data = await Api.getProfile(myId);
-  console.log(data);
   dispatch(setMyProfile(data));
   dispatch(initiatedProfile(true));
 };
 
 export const updatePhoto = (photo) => async (dispatch) => {
+  dispatch(setPhotoLoading(true));
   const response = await Api.updatePhoto(photo);
-  console.log(response);
   response.data.resultCode === 0 &&
-    dispatch(setPhoto(response.data.data.photos.large));
+    dispatch(setPhoto(response.data.data.photos));
+  dispatch(setPhotoLoading(false));
 };
 
 export const updateProfile = (data) => async (dispatch, getState) => {
   const response = await Api.updateProfile(data);
-  console.log(response);
   response.data.resultCode === 0 &&
     dispatch(getMyProfile(getState().data.profile.userId));
   dispatch({ type: SET_ERROR, errorMessage: response.data.messages[0] });
@@ -63,6 +65,8 @@ const initialState = {
   errorMessage: null,
 
   profileInitiated: false,
+
+  isPhotoLoadin: false,
 
   shortName: null,
 
@@ -209,12 +213,21 @@ const dataReducer = (state = initialState, action) => {
     case UPDATE_PHOTO:
       return {
         ...state,
-        avatar: action.photo,
+        profile: {
+          ...state.profile,
+          photos: action.photo,
+        },
+        avatar: action.photo.small,
       };
+    case PHOTO_LOADING:
+      return {
+        ...state,
+        isPhotoLoadin: action.status,
+      }
     case ADD_POST: {
       const post = {
         ava: state.avatar,
-        profileName: state.profile.name,
+        profileName: state.profile.fullName,
         body: action.body,
         date: Date.now(),
       };

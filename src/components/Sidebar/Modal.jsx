@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import s from "./Sidebar.module.css";
 import Hr from "../Other/Hr";
 
-const Modal = ({ setModal, updatePhoto }) => {
+const Modal = ({ setModal, updatePhoto, isPhotoLoadin }) => {
   const closeModal = (e) => {
     e.target.className === `${s.modal}` && setModal(false);
   };
@@ -23,14 +23,18 @@ const Modal = ({ setModal, updatePhoto }) => {
         </div>
         <div>Вы можете загрузить изображение в формате JPG, GIF или PNG.</div>
         <Hr />
-        <label className={s.label}>
-          выбрать файл
-          <input
-            className={s.fileInput}
-            type="file"
-            onChange={(e) => updatePhoto(e.target.files[0])}
-          />
-        </label>
+        {isPhotoLoadin ? (
+          <div className={s.label}>progres...</div>
+        ) : (
+          <label className={s.label}>
+            выбрать файл
+            <input
+              className={s.fileInput}
+              type="file"
+              onChange={(e) => updatePhoto(e.target.files[0])}
+            />
+          </label>
+        )}
       </div>
     </div>
   );

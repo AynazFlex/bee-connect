@@ -17,7 +17,7 @@ const LoginForm = (props) => {
   }, [watch])*/
 
   const onSubmit = (data) => {
-    props.loginAuth(data.email, data.password, data.rememberMe);
+    props.loginAuth(data.email, data.password, data.rememberMe, data.captcha);
   };
 
   return (
@@ -52,6 +52,21 @@ const LoginForm = (props) => {
         {errors?.password && (
           <div className={s.validation}>{errors.password.message}</div>
         )}
+        {props.captchaUrl && <img className={s.captchaImg} src={props.captchaUrl} />}
+        {props.captchaUrl && (
+          <div className={s.password}>
+          <input
+            {...register("captcha", {
+              required: "Введите символы с картинки",
+            })}
+            type="text"
+            placeholder="Введите символы с картинки"
+          />
+        </div>
+        )}
+        {errors?.captcha && (
+          <div className={s.validation}>{errors.captcha.message}</div>
+        )}
         <div className={s.checkbox}>
           <input {...register('rememberMe')} type="checkbox" /> Remember me
         </div>
@@ -64,6 +79,7 @@ const LoginForm = (props) => {
 
 const Login = (props) => {
   //console.log('login render');
+  console.log(props.captchaUrl);
   return (
     <div className={s.loginModal}>
       <LoginForm {...props}/>

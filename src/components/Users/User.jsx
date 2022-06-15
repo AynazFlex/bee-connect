@@ -28,7 +28,7 @@ const User = (props) => {
               : props.setFollow(props.user.id);
           }}
         >
-          {props.user.followed ? "Удалить из друзей" : "Добавить в друзья"}
+          {props.user.followed ? "отписаться" : "подписаться"}
         </button>
       )}
     </div>

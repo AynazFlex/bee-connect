@@ -4,32 +4,6 @@ import Button from "../Other/Button";
 import Hr from "../Other/Hr";
 import { useForm } from "react-hook-form";
 
-const createInput = (
-  Type,
-  name,
-  label,
-  required,
-  defaultValue,
-  placeholder,
-  register,
-  className
-) => {
-  return (
-    <label className={s.item}>
-      {" "}
-      {label + ":"}
-      <Type
-        {...register(name, {
-          required: required,
-        })}
-        defaultValue={defaultValue}
-        className={className}
-        placeholder={placeholder}
-      />
-    </label>
-  );
-};
-
 const Edit = ({ profile, updateProfile, errorMessage }) => {
   const {
     register,
@@ -46,6 +20,31 @@ const Edit = ({ profile, updateProfile, errorMessage }) => {
     reset();
   };
 
+  const createInput = (
+    Type,
+    name,
+    label,
+    required,
+    defaultValue,
+    placeholder,
+    className
+  ) => {
+    return (
+      <label className={s.item}>
+        {" "}
+        {label + ":"}
+        <Type
+          {...register(name, {
+            required: required,
+          })}
+          defaultValue={defaultValue}
+          className={className}
+          placeholder={placeholder}
+        />
+      </label>
+    );
+  };
+
   //console.log('edit render');
 
   return (
@@ -58,7 +57,6 @@ const Edit = ({ profile, updateProfile, errorMessage }) => {
           true,
           profile.fullName,
           "full name",
-          register,
           s.input
         )}
         {errors?.fullName && (
@@ -71,7 +69,6 @@ const Edit = ({ profile, updateProfile, errorMessage }) => {
           true,
           profile.aboutMe,
           "Обо мне",
-          register,
           s.inputText
         )}
         {errors?.aboutMe && <div className={s.validation}>enter about me</div>}
@@ -82,7 +79,6 @@ const Edit = ({ profile, updateProfile, errorMessage }) => {
           true,
           profile.lookingForAJobDescription,
           "Описание моих навыков",
-          register,
           s.inputText
         )}
         {errors?.lookingForAJobDescription && (
@@ -97,7 +93,6 @@ const Edit = ({ profile, updateProfile, errorMessage }) => {
           false,
           profile.contacts.website,
           "https://blabla.xxx/",
-          register,
           s.input
         )}
         {createInput(
@@ -107,7 +102,6 @@ const Edit = ({ profile, updateProfile, errorMessage }) => {
           false,
           profile.contacts.facebook,
           "https://facebook.com/",
-          register,
           s.input
         )}
         {createInput(
@@ -117,7 +111,6 @@ const Edit = ({ profile, updateProfile, errorMessage }) => {
           false,
           profile.contacts.github,
           "https://github.com/",
-          register,
           s.input
         )}
         {createInput(
@@ -127,7 +120,6 @@ const Edit = ({ profile, updateProfile, errorMessage }) => {
           false,
           profile.contacts.instagram,
           "https://instagram.com/",
-          register,
           s.input
         )}
         {createInput(
@@ -137,7 +129,6 @@ const Edit = ({ profile, updateProfile, errorMessage }) => {
           false,
           profile.contacts.twitter,
           "https://twitter.com/",
-          register,
           s.input
         )}
         {createInput(
@@ -147,7 +138,6 @@ const Edit = ({ profile, updateProfile, errorMessage }) => {
           false,
           profile.contacts.vk,
           "https://vk.com/",
-          register,
           s.input
         )}
         {createInput(
@@ -157,7 +147,6 @@ const Edit = ({ profile, updateProfile, errorMessage }) => {
           false,
           profile.contacts.youtube,
           "https://youtube.com/",
-          register,
           s.input
         )}
         <label className={s.itemForChecbox}>

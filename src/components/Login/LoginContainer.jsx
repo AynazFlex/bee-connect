@@ -4,7 +4,7 @@ import Login from "./Login";
 import { loginAuth } from "../../redux/authReducer";
 import { useNavigate } from "react-router-dom";
 
-const LoginContainer = ({isAuth, loginAuth, isCorectlData }) => {
+const LoginContainer = ({isAuth, loginAuth, isCorectlData, captchaUrl }) => {
 
   const navigate = useNavigate();
 
@@ -12,7 +12,7 @@ const LoginContainer = ({isAuth, loginAuth, isCorectlData }) => {
     isAuth && navigate(-1);
   }, [isAuth])
 
-  return <Login loginAuth={loginAuth} isCorectlData={isCorectlData} />
+  return <Login loginAuth={loginAuth} isCorectlData={isCorectlData} captchaUrl={captchaUrl} />
 }
 
 const mapStateToProps = (state) => {
@@ -20,6 +20,7 @@ const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuthenticated,
     isCorectlData: state.auth.isCorectlData,
+    captchaUrl: state.auth.captchaUrl,
   };
 };
 

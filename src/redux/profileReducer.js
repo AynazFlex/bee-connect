@@ -30,7 +30,6 @@ export const putStatus = (status) => async (dispatch) => {
 export const getProfile = (userId) => async (dispatch) => {
   dispatch(openProfile(false));
   const data = await Api.getProfile(userId);
-  console.log(data);
   dispatch(setProfile(data));
   dispatch(openProfile(true));
 };

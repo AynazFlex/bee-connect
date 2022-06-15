@@ -17,7 +17,7 @@ const SidebarContainer = (props) => {
     return <Link className={s.rederectToLogin} to="/login"><Button text="Войти" /></Link>;
   }
   else if(props.initiated) {
-    return <Sidebar profile={props.profile} avatar={props.avatar} updatePhoto={props.updatePhoto} deletePhoto={props.deletePhoto} />
+    return <Sidebar profile={props.profile} updatePhoto={props.updatePhoto} deletePhoto={props.deletePhoto} isPhotoLoadin={props.isPhotoLoadin} />
   } else {
     return <Preloader />
   }
@@ -29,6 +29,7 @@ const mapStateToProps = (state) => {
     id: state.auth.id,
     initiated: state.data.profileInitiated,
     isAuth: state.auth.isAuthenticated,
+    isPhotoLoadin: state.data.isPhotoLoadin,
   };
 };
 

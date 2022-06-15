@@ -1,15 +1,9 @@
 import React from "react";
 import s from "./Sidebar.module.css";
 import Hr from "../Other/Hr";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHammer,
-  faPen,
-  faScrewdriverWrench,
-  faGlobe,
-} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Contact from "./Contact";
+import ProfileInfoContainer from "../Other/ProfileInfoContainer"
 
 const MyProfile = ({ profile, setModal }) => {
   return (
@@ -21,37 +15,7 @@ const MyProfile = ({ profile, setModal }) => {
           изменить фото профиля
         </div>
       </div>
-      <Hr />
-      <div className={s.description}>
-        <FontAwesomeIcon icon={faPen} className={s.icon} />
-        <div>{profile.aboutMe || "---"}</div>
-      </div>
-      <div className={s.description}>
-        <FontAwesomeIcon icon={faScrewdriverWrench} className={s.icon} />
-        <div>{profile.lookingForAJobDescription || "---"}</div>
-      </div>
-      <div className={s.description}>
-        <FontAwesomeIcon icon={faHammer} className={s.icon} />
-        <div>{profile.lookingForAJob ? "ищу работу" : "не ищу работу"}</div>
-      </div>
-      {profile.contacts.website && <div className={s.description}>
-        <FontAwesomeIcon icon={faGlobe} className={s.icon} />
-        <a href={profile.contacts.website} target="_blank">{profile.contacts.website}</a>
-      </div>}
-      {Object.values(profile.contacts).find(values => values) && (
-        <div className={s.contacts}>
-          {Object.keys(profile.contacts).map(
-            (contact) =>
-              profile.contacts[contact] && (
-                <Contact
-                  key={contact}
-                  contact={contact}
-                  link={profile.contacts[contact]}
-                />
-              )
-          )}
-        </div>
-      )}
+      <ProfileInfoContainer {...profile} />
       <Hr />
       <Link to="/edit" className={s.redac}>
         Редактировать

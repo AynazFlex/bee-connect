@@ -49,8 +49,8 @@ const Api = {
     return instance.put("profile/status", { status: status });
   },
 
-  login: (email, password, rememberMe) => {
-    return instance.post("auth/login", { email, password, rememberMe });
+  login: (email, password, rememberMe, captcha) => {
+    return instance.post("auth/login", { email, password, rememberMe, captcha });
   },
 
   logout: () => {
@@ -67,6 +67,10 @@ const Api = {
 
   updateProfile: (data) => {
     return instance.put("profile", data);
+  },
+
+  getCaptchaUrl: () => {
+    return instance.get("security/get-captcha-url")
   }
 };
 

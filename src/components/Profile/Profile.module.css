@@ -9,17 +9,11 @@
 .photo {
     margin-right: 20px;
     width: 30%;
+    align-self: flex-start;
 }
 
 .noposts {
     text-align: center;
-}
-
-.icon {
-    align-self: start;
-    width: 20px;
-    margin: 0 20px 0 0;
-    color: #7d97a5;
 }
 
 .description {
@@ -29,41 +23,6 @@
     overflow-x: hidden;
 }
 
-.contacts {
-    margin-top: 26px;
-    display: flex;
-    position: relative;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 14px 8px 4px 8px;
-}
-
-.contacts::before {
-    content: "Мои контакты и соц. сети";
-    font-size: 12px;
-    line-height: 12px;
-    left: 8px;
-    top: -10px;
-    position: absolute;
-    display: block;
-    box-sizing: border-box;
-    padding: 3px;
-    border: 1px solid black;
-    border-radius: 5px;
-    background: white;
-}
-
 .infoPanel {
     flex-grow: 1
-}
-
-.link {
-    margin: 5px;
-    padding: 3px;
-    background: blue;
-    border-radius: 4px;
-    color: white;
-    text-decoration-line: none;
 }
