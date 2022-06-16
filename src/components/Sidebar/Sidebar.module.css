@@ -73,10 +73,27 @@
 }
 
 .formBlock {
+    position: relative;
     padding: 30px 40px;
     border-radius: 20px;
     background: white;
     text-align: center;
+}
+
+.closeModal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 20px;
+    width: 20px;
+    color: black;
+    cursor: pointer;
+}
+
+.icon {
+    display: block;
+    width: 20px;
+    height: 20px;
 }
 
 .fileInput {

@@ -8,7 +8,7 @@ import Hr from "../Other/Hr";
 const Main = (props) => {
   return (
     <div className={s.main}>
-      <Status status={props.status} putStatus={props.putStatus} />
+      <Status status={props.status} putStatus={props.putStatus} errorMessage={props.errorMessage} setError={props.setError} />
       <Hr />
       <Newpost addPost={props.addPost} />
       {props.state.posts.map((post) => (

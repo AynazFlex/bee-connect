@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
 import s from "./Sidebar.module.css";
 import Hr from "../Other/Hr";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Modal = ({ setModal, updatePhoto, isPhotoLoadin }) => {
   const closeModal = (e) => {
-    e.target.className === `${s.modal}` && setModal(false);
+    (e.target.className === `${s.modal}` ||
+      e.target.closest(`.${s.closeModal}`)) &&
+      setModal(false);
   };
 
   useEffect(() => {
@@ -35,6 +39,9 @@ const Modal = ({ setModal, updatePhoto, isPhotoLoadin }) => {
             />
           </label>
         )}
+        <div className={s.closeModal}>
+          <FontAwesomeIcon icon={faXmark} className={s.icon}/>
+        </div>
       </div>
     </div>
   );
