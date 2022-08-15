@@ -12,7 +12,7 @@ const MainContainer = (props) => {
     props.getStatus(props.id);
   }, []);
 
-  //console.log('main render');
+  console.log('main render');
 
   return props.statusIsFetching ? (
     <Preloader />

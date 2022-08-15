@@ -1,21 +1,20 @@
-import { connect } from "react-redux";
+import React, { useCallback } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import Edit from "./Edit";
-import { updateProfile } from "../../redux/dataReducer";
 import withAuthNavigate from "../../hoc/withAuthNavigate";
+import { updateProfile } from "../../redux/dataReducer";
 import { compose } from "redux";
 import Preloader from "../Other/Preloader";
 
 const EditContainer = (props) => {
-  return props.initiated ? <Edit {...props} /> : <Preloader /> 
+  const profile = useSelector(state => state.data.profile);
+  const initiated = useSelector(state => state.data.profileInitiated);
+  const errorMessage = useSelector(state => state.data.errorMessage);
+  const dispatch = useDispatch();
+  const updateProfileDispatcher = useCallback((data) => dispatch(updateProfile(data)), [dispatch]);
+  return initiated ? <Edit profile={profile} errorMessage={errorMessage} updateProfileDispatcher={updateProfileDispatcher} /> : <Preloader /> 
 }
-
-const mapStateToProps = (state) => ({
-  profile: state.data.profile,
-  initiated: state.data.profileInitiated,
-  errorMessage: state.data.errorMessage,
-})
 
 export default compose(
   withAuthNavigate,
-  connect(mapStateToProps, { updateProfile })
 )(EditContainer);

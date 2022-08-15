@@ -4,7 +4,7 @@ import Button from "../Other/Button";
 import Hr from "../Other/Hr";
 import { useForm } from "react-hook-form";
 
-const Edit = ({ profile, updateProfile, errorMessage }) => {
+const Edit = ({ profile, errorMessage, updateProfileDispatcher }) => {
   const {
     register,
     handleSubmit,
@@ -15,8 +15,7 @@ const Edit = ({ profile, updateProfile, errorMessage }) => {
   });
 
   const submit = (data) => {
-    console.log(data.lookingForAJob);
-    updateProfile(data);
+    updateProfileDispatcher(data);
     reset();
   };
 
